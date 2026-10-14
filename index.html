@@ -447,6 +447,79 @@
       letter-spacing: 0.05em;
     }
 
+    /* ─── Upload Modal / Drawer ─── */
+    .upload-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .upload-modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .upload-modal-dialog {
+      background: var(--canvas-elevated);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--rounded-md);
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      transform: scale(0.96) translateY(8px);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .upload-modal-backdrop.open .upload-modal-dialog {
+      transform: scale(1) translateY(0);
+    }
+    .upload-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .modal-close-btn {
+      background: transparent;
+      border: 1px solid var(--hairline);
+      border-radius: var(--rounded-sm);
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mute);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+      line-height: 1;
+    }
+    .modal-close-btn:hover {
+      background: var(--hairline-soft);
+      color: var(--ink);
+      border-color: var(--hairline-hover);
+    }
+    .upload-modal-body {
+      padding: 20px;
+    }
+    .upload-top-btn {
+      font-size: 0.78rem;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: var(--rounded-pill);
+      gap: 6px;
+      font-weight: 500;
+    }
+
     /* ─── Settings Card ─── */
     .settings-panel {
       width: 100%;
@@ -1253,7 +1326,17 @@
 
     <div class="upload-top-controls">
       <div class="mono-eyebrow">// NPTEL PRACTICE ENGINE</div>
-      <button class="theme-toggle-btn" id="theme-toggle-upload" type="button" title="Toggle Light / Dark mode"></button>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button class="btn btn-secondary upload-top-btn" id="btn-open-upload-modal" type="button" title="Upload custom assignment HTML">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <span>Upload HTML</span>
+        </button>
+        <button class="theme-toggle-btn" id="theme-toggle-upload" type="button" title="Toggle Light / Dark mode"></button>
+      </div>
     </div>
 
     <div class="upload-header">
@@ -1333,30 +1416,16 @@
           <span class="week-sub">Coming Soon</span>
         </button>
       </div>
-    </div>
 
-    <!-- Divider -->
-    <div class="upload-divider">
-      <div class="upload-divider-line"></div>
-      <div class="upload-divider-text">or upload any saved NPTEL page</div>
-      <div class="upload-divider-line"></div>
-    </div>
-
-    <div class="upload-card" id="drop-zone">
-      <input type="file" id="file-input" accept=".html,.htm" />
-      <div class="upload-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="12" y1="18" x2="12" y2="12"></line>
-          <line x1="9" y1="15" x2="12" y2="12"></line>
-          <line x1="15" y1="15" x2="12" y2="12"></line>
-        </svg>
+      <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--hairline); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span style="font-size:0.78rem; color:var(--mute);">Have a saved HTML file from another assignment?</span>
+        <button type="button" id="btn-open-upload-card" class="btn btn-secondary" style="font-size:0.78rem; padding:4px 12px; height:32px; border-radius:var(--rounded-pill);">
+          Upload Custom File &rarr;
+        </button>
       </div>
-      <h3>Drop assignment HTML here</h3>
-      <p>or <span>browse files</span> to upload &bull; saved NPTEL web pages</p>
     </div>
 
+    <!-- Active assignment status card -->
     <div class="parse-status" id="parse-status">
       <div class="status-icon">✓</div>
       <div class="status-text">
@@ -1365,10 +1434,40 @@
       </div>
     </div>
 
-    <div class="upload-tips">
-      <div class="tip"><code>● MCQ</code> Single choice</div>
-      <div class="tip"><code>☐ MSQ</code> Multiple choice</div>
-      <div class="tip"><code>Ctrl+S</code> Saved NPTEL page</div>
+    <!-- Upload Modal / Drawer -->
+    <div id="upload-modal" class="upload-modal-backdrop" style="display:none;" role="dialog" aria-modal="true">
+      <div class="upload-modal-dialog">
+        <div class="upload-modal-header">
+          <div>
+            <h3 style="margin:0; font-size:1.05rem; font-weight:600; color:var(--ink);">Upload Custom Assignment</h3>
+            <p style="margin:3px 0 0; font-size:0.8rem; color:var(--mute);">Upload any saved NPTEL assignment page (.html)</p>
+          </div>
+          <button type="button" id="btn-close-upload-modal" class="modal-close-btn" aria-label="Close modal">✕</button>
+        </div>
+
+        <div class="upload-modal-body">
+          <div class="upload-card" id="drop-zone">
+            <input type="file" id="file-input" accept=".html,.htm" />
+            <div class="upload-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="12" y2="12"></line>
+                <line x1="15" y1="15" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h3>Drop assignment HTML here</h3>
+            <p>or <span>browse files</span> to upload &bull; saved NPTEL web pages</p>
+          </div>
+
+          <div class="upload-tips" style="margin-top:14px;">
+            <div class="tip"><code>● MCQ</code> Single choice</div>
+            <div class="tip"><code>☐ MSQ</code> Multiple choice</div>
+            <div class="tip"><code>Ctrl+S</code> Saved NPTEL page</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Settings -->
@@ -2092,10 +2191,47 @@ fileInput.addEventListener('change', e => {
 function handleFile(file) {
   const reader = new FileReader();
   reader.onload = e => {
-    loadAssignmentFromHtml(e.target.result);
+    const ok = loadAssignmentFromHtml(e.target.result);
+    if (ok) {
+      document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+      closeUploadModal();
+      startBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   };
   reader.readAsText(file);
 }
+
+// ─── Upload Modal Controls ─────────────────────────────
+const uploadModal = $('upload-modal');
+function openUploadModal() {
+  if (!uploadModal) return;
+  uploadModal.style.display = 'flex';
+  requestAnimationFrame(() => {
+    uploadModal.classList.add('open');
+  });
+}
+
+function closeUploadModal() {
+  if (!uploadModal) return;
+  uploadModal.classList.remove('open');
+  setTimeout(() => {
+    uploadModal.style.display = 'none';
+  }, 220);
+}
+
+$('btn-open-upload-modal')?.addEventListener('click', openUploadModal);
+$('btn-open-upload-card')?.addEventListener('click', openUploadModal);
+$('btn-close-upload-modal')?.addEventListener('click', closeUploadModal);
+
+uploadModal?.addEventListener('click', e => {
+  if (e.target === uploadModal) closeUploadModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && uploadModal?.classList.contains('open')) {
+    closeUploadModal();
+  }
+});
 
 function loadAssignmentFromHtml(htmlString) {
   const result = parseNPTELHtml(htmlString);
