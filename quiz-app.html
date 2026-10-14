@@ -1266,63 +1266,67 @@
     </div>
 
     <!-- Course & Week Selector -->
-    <div class="course-card">
+    <div class="course-card" id="course-card">
       <div class="course-header">
-        <div>
-          <div class="course-meta">Curated Course</div>
-          <div class="course-title">Research Methodology</div>
+        <div style="flex:1;">
+          <div class="course-meta" id="course-meta">Curated Course</div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <select id="course-select" style="display:none; font-family:var(--font-sans); font-size:1.05rem; font-weight:600; background:var(--canvas); color:var(--ink); border:1px solid var(--hairline); border-radius:var(--rounded-sm); padding:4px 8px; cursor:pointer;">
+            </select>
+            <div class="course-title" id="course-title">Research Methodology</div>
+          </div>
         </div>
-        <span class="course-tag">Weeks 1–11 Ready</span>
+        <span class="course-tag" id="course-tag">Weeks 1–11 Ready</span>
       </div>
 
-      <div style="font-size:0.82rem; color:var(--body); margin-bottom:12px;">
+      <div style="font-size:0.82rem; color:var(--body); margin-bottom:12px;" id="course-desc">
         Select an assignment week to practice:
       </div>
 
       <div class="weeks-grid" id="weeks-grid">
-        <button type="button" class="week-btn" data-week="1" data-file="rm_week1.html">
+        <button type="button" class="week-btn" data-week="1" data-file="data/rm/week-01.html">
           <span class="week-num">Week 01</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 1</span>
         </button>
-        <button type="button" class="week-btn" data-week="2" data-file="rm_week2.html">
+        <button type="button" class="week-btn" data-week="2" data-file="data/rm/week-02.html">
           <span class="week-num">Week 02</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 2</span>
         </button>
-        <button type="button" class="week-btn" data-week="3" data-file="rm_week3.html">
+        <button type="button" class="week-btn" data-week="3" data-file="data/rm/week-03.html">
           <span class="week-num">Week 03</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 3</span>
         </button>
-        <button type="button" class="week-btn" data-week="4" data-file="rm_week4.html">
+        <button type="button" class="week-btn" data-week="4" data-file="data/rm/week-04.html">
           <span class="week-num">Week 04</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 4</span>
         </button>
-        <button type="button" class="week-btn" data-week="5" data-file="rm_week5.html">
+        <button type="button" class="week-btn" data-week="5" data-file="data/rm/week-05.html">
           <span class="week-num">Week 05</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 5</span>
         </button>
-        <button type="button" class="week-btn" data-week="6" data-file="rm_week6.html">
+        <button type="button" class="week-btn" data-week="6" data-file="data/rm/week-06.html">
           <span class="week-num">Week 06</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 6</span>
         </button>
-        <button type="button" class="week-btn" data-week="7" data-file="rm_week7.html">
+        <button type="button" class="week-btn" data-week="7" data-file="data/rm/week-07.html">
           <span class="week-num">Week 07</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 7</span>
         </button>
-        <button type="button" class="week-btn" data-week="8" data-file="rm_week8.html">
+        <button type="button" class="week-btn" data-week="8" data-file="data/rm/week-08.html">
           <span class="week-num">Week 08</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 8</span>
         </button>
-        <button type="button" class="week-btn" data-week="9" data-file="rm_week9.html">
+        <button type="button" class="week-btn" data-week="9" data-file="data/rm/week-09.html">
           <span class="week-num">Week 09</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 9</span>
         </button>
-        <button type="button" class="week-btn" data-week="10" data-file="rm_week10.html">
+        <button type="button" class="week-btn" data-week="10" data-file="data/rm/week-10.html">
           <span class="week-num">Week 10</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 10</span>
         </button>
-        <button type="button" class="week-btn" data-week="11" data-file="rm_week11.html">
+        <button type="button" class="week-btn" data-week="11" data-file="data/rm/week-11.html">
           <span class="week-num">Week 11</span>
-          <span class="week-sub">Assignment</span>
+          <span class="week-sub">Assignment 11</span>
         </button>
         <button type="button" class="week-btn disabled" disabled data-week="12" title="Will be available after assignment release">
           <span class="week-num">Week 12</span>
@@ -2120,49 +2124,143 @@ function loadAssignmentFromHtml(htmlString) {
   return true;
 }
 
-// ─── Course Week Selector ──────────────────────────────
-async function loadWeekAssignment(weekNum, fileName, btnEl) {
+// ─── Course & Week Manifest Loader (courses.json) ──────
+const FALLBACK_COURSES = [
+  {
+    id: "research-methodology",
+    name: "Research Methodology",
+    code: "NPTEL-RM",
+    description: "NPTEL Swayam Research Methodology 12-Week Assignment Series",
+    totalWeeks: 12,
+    weeks: [
+      { week: 1, title: "Week 01", subtitle: "Assignment 1", file: "data/rm/week-01.html", available: true },
+      { week: 2, title: "Week 02", subtitle: "Assignment 2", file: "data/rm/week-02.html", available: true },
+      { week: 3, title: "Week 03", subtitle: "Assignment 3", file: "data/rm/week-03.html", available: true },
+      { week: 4, title: "Week 04", subtitle: "Assignment 4", file: "data/rm/week-04.html", available: true },
+      { week: 5, title: "Week 05", subtitle: "Assignment 5", file: "data/rm/week-05.html", available: true },
+      { week: 6, title: "Week 06", subtitle: "Assignment 6", file: "data/rm/week-06.html", available: true },
+      { week: 7, title: "Week 07", subtitle: "Assignment 7", file: "data/rm/week-07.html", available: true },
+      { week: 8, title: "Week 08", subtitle: "Assignment 8", file: "data/rm/week-08.html", available: true },
+      { week: 9, title: "Week 9", subtitle: "Assignment 9", file: "data/rm/week-09.html", available: true },
+      { week: 10, title: "Week 10", subtitle: "Assignment 10", file: "data/rm/week-10.html", available: true },
+      { week: 11, title: "Week 11", subtitle: "Assignment 11", file: "data/rm/week-11.html", available: true },
+      { week: 12, title: "Week 12", subtitle: "Coming Soon", file: "data/rm/week-12.html", available: false }
+    ]
+  }
+];
+
+let appCourses = FALLBACK_COURSES;
+let currentCourse = FALLBACK_COURSES[0];
+
+async function initCourses() {
+  try {
+    const res = await fetch('./data/courses.json');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        appCourses = data;
+      }
+    }
+  } catch (err) {
+    // If running in local file:// without server, fallback array is used
+  }
+
+  renderCourseSelector();
+  checkDeepLink();
+}
+
+function renderCourseSelector() {
+  const selectEl = $('course-select');
+  const titleEl = $('course-title');
+
+  if (appCourses.length > 1) {
+    selectEl.style.display = 'block';
+    titleEl.style.display = 'none';
+    selectEl.innerHTML = appCourses.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    selectEl.addEventListener('change', () => {
+      const sel = appCourses.find(c => c.id === selectEl.value);
+      if (sel) {
+        currentCourse = sel;
+        renderWeeksGrid(currentCourse);
+      }
+    });
+  } else {
+    selectEl.style.display = 'none';
+    titleEl.style.display = 'block';
+    titleEl.textContent = appCourses[0].name;
+  }
+
+  currentCourse = appCourses[0];
+  renderWeeksGrid(currentCourse);
+}
+
+function renderWeeksGrid(course) {
+  const grid = $('weeks-grid');
+  grid.innerHTML = '';
+
+  const availCount = course.weeks.filter(w => w.available).length;
+  $('course-tag').textContent = `Weeks 1–${availCount} Ready`;
+  if ($('course-meta')) $('course-meta').textContent = course.code ? `${course.code} • Curated Course` : 'Curated Course';
+
+  course.weeks.forEach(w => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = `week-btn ${w.available ? '' : 'disabled'}`;
+    btn.dataset.week = w.week;
+    btn.dataset.file = w.file;
+    if (!w.available) {
+      btn.disabled = true;
+      btn.title = 'Will be available after assignment release';
+    }
+
+    btn.innerHTML = `
+      <span class="week-num">${w.title}</span>
+      <span class="week-sub">${w.subtitle || (w.available ? 'Assignment' : 'Coming Soon')}</span>
+    `;
+
+    if (w.available) {
+      btn.addEventListener('click', () => {
+        loadWeekAssignment(course, w, btn);
+      });
+    }
+
+    grid.appendChild(btn);
+  });
+}
+
+async function loadWeekAssignment(course, weekObj, btnEl) {
   document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
   if (btnEl) btnEl.classList.add('active');
 
   try {
-    const res = await fetch(`./${fileName}`);
+    const res = await fetch(`./${weekObj.file}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}: File not found`);
     const htmlString = await res.text();
     const ok = loadAssignmentFromHtml(htmlString);
     if (ok) {
-      state.quizTitle = `Research Methodology — Week ${weekNum}`;
+      state.quizTitle = `${course.name} — ${weekObj.title}`;
       $('quiz-title').textContent = state.quizTitle;
       startBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   } catch (err) {
-    alert(`Could not load ${fileName} via direct browser fetch.\n\nNote: If testing locally via file://, browser security blocks direct fetching. When hosted on Vercel or localhost, this works seamlessly!\n\nFor now on file://, please drag & drop "${fileName}" into the upload box.`);
+    alert(`Could not load ${weekObj.file} via direct browser fetch.\n\nNote: If testing locally via file://, browser security blocks direct fetching. When hosted on Vercel or localhost, this works seamlessly!\n\nFor now on file://, please drag & drop "${weekObj.file}" into the upload box.`);
   }
 }
 
-document.querySelectorAll('.week-btn:not(:disabled)').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const week = btn.dataset.week;
-    const file = btn.dataset.file;
-    if (file) {
-      loadWeekAssignment(week, file, btn);
+function checkDeepLink() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialWeek = urlParams.get('week');
+    if (initialWeek) {
+      const targetBtn = document.querySelector(`.week-btn[data-week="${initialWeek}"]:not(:disabled)`);
+      if (targetBtn) {
+        targetBtn.click();
+      }
     }
-  });
-});
-
-// Deep linking support via ?week=X query parameter
-try {
-  const urlParams = new URLSearchParams(window.location.search);
-  const initialWeek = urlParams.get('week');
-  if (initialWeek) {
-    const targetBtn = document.querySelector(`.week-btn[data-week="${initialWeek}"]:not(:disabled)`);
-    if (targetBtn) {
-      targetBtn.click();
-    }
-  }
-} catch (e) {
-  // Ignore query param error if in restricted environment
+  } catch (e) {}
 }
+
+initCourses();
 
 // ─── Settings ─────────────────────────────────────────
 $('opt-instant').addEventListener('change', e => state.settings.instantFeedback = e.target.checked);
