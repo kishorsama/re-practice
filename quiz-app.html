@@ -324,6 +324,129 @@
       box-shadow: var(--shadow-whisper);
     }
 
+    /* ─── Course & Week Selector ─── */
+    .course-card {
+      width: 100%;
+      background: var(--canvas-elevated);
+      border: 1px solid var(--hairline);
+      border-radius: var(--rounded-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-whisper);
+    }
+    .course-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+    .course-meta {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--mute);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+    .course-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .course-tag {
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      padding: 3px 10px;
+      border-radius: var(--rounded-pill);
+      background: var(--mono-badge-bg);
+      border: 1px solid var(--mono-badge-bdr);
+      color: var(--mono-badge-text);
+      white-space: nowrap;
+    }
+    .weeks-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    @media (max-width: 640px) {
+      .weeks-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 440px) {
+      .weeks-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .week-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 6px;
+      border-radius: var(--rounded-sm);
+      border: 1px solid var(--hairline);
+      background: var(--canvas);
+      color: var(--ink);
+      cursor: pointer;
+      transition: var(--transition);
+      user-select: none;
+      text-align: center;
+    }
+    .week-btn:hover:not(:disabled) {
+      border-color: var(--hairline-hover);
+      background: var(--hairline-soft);
+      transform: translateY(-1px);
+    }
+    .week-btn.active {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--canvas);
+      box-shadow: var(--shadow-whisper);
+    }
+    .week-btn.active .week-sub {
+      color: var(--canvas);
+      opacity: 0.85;
+    }
+    .week-btn .week-num {
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .week-btn .week-sub {
+      font-size: 0.68rem;
+      color: var(--mute);
+      margin-top: 3px;
+      line-height: 1.1;
+    }
+    .week-btn:disabled, .week-btn.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      background: var(--canvas-elevated);
+      border-style: dashed;
+    }
+    .upload-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin: 4px 0;
+    }
+    .upload-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--hairline);
+    }
+    .upload-divider-text {
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      color: var(--mute);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
     /* ─── Settings Card ─── */
     .settings-panel {
       width: 100%;
@@ -1142,6 +1265,79 @@
       <p>Upload any saved NPTEL assignment HTML and quiz yourself again — with instant answer keys and feedback.</p>
     </div>
 
+    <!-- Course & Week Selector -->
+    <div class="course-card">
+      <div class="course-header">
+        <div>
+          <div class="course-meta">Curated Course</div>
+          <div class="course-title">Research Methodology</div>
+        </div>
+        <span class="course-tag">Weeks 1–11 Ready</span>
+      </div>
+
+      <div style="font-size:0.82rem; color:var(--body); margin-bottom:12px;">
+        Select an assignment week to practice:
+      </div>
+
+      <div class="weeks-grid" id="weeks-grid">
+        <button type="button" class="week-btn" data-week="1" data-file="rm_week1.html">
+          <span class="week-num">Week 01</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="2" data-file="rm_week2.html">
+          <span class="week-num">Week 02</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="3" data-file="rm_week3.html">
+          <span class="week-num">Week 03</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="4" data-file="rm_week4.html">
+          <span class="week-num">Week 04</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="5" data-file="rm_week5.html">
+          <span class="week-num">Week 05</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="6" data-file="rm_week6.html">
+          <span class="week-num">Week 06</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="7" data-file="rm_week7.html">
+          <span class="week-num">Week 07</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="8" data-file="rm_week8.html">
+          <span class="week-num">Week 08</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="9" data-file="rm_week9.html">
+          <span class="week-num">Week 09</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="10" data-file="rm_week10.html">
+          <span class="week-num">Week 10</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn" data-week="11" data-file="rm_week11.html">
+          <span class="week-num">Week 11</span>
+          <span class="week-sub">Assignment</span>
+        </button>
+        <button type="button" class="week-btn disabled" disabled data-week="12" title="Will be available after assignment release">
+          <span class="week-num">Week 12</span>
+          <span class="week-sub">Coming Soon</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="upload-divider">
+      <div class="upload-divider-line"></div>
+      <div class="upload-divider-text">or upload any saved NPTEL page</div>
+      <div class="upload-divider-line"></div>
+    </div>
+
     <div class="upload-card" id="drop-zone">
       <input type="file" id="file-input" accept=".html,.htm" />
       <div class="upload-icon-wrap">
@@ -1163,13 +1359,6 @@
         <strong id="parse-status-title">Questions detected</strong>
         <span id="parse-status-detail">Ready to quiz</span>
       </div>
-    </div>
-
-    <!-- Quick sample loader -->
-    <div style="display:flex; justify-content:center; width:100%;">
-      <button class="btn btn-secondary" id="btn-load-sample" type="button" style="font-size:0.84rem; padding:0 20px; height:38px;">
-        ⚡ Load sample: Research Methodology
-      </button>
     </div>
 
     <div class="upload-tips">
@@ -1472,6 +1661,83 @@ function escapeHtml(str) {
 
 function clamp(v, mn, mx) { return Math.min(mx, Math.max(mn, v)); }
 
+// ─── Accepted Answer Matching Engine ──────────────────
+function normalizeText(s) {
+  if (!s) return '';
+  return s
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/^[\s,.;:–—"'`]+|[\s,.;:–—"'`]+$/g, '')
+    .trim();
+}
+
+function cleanTrailingScoringMarkers(str) {
+  if (!str) return '';
+  return str.split(/(?:1\s*Point|Score:|Yes,\s*the\s*answer|You\s*didn)/i)[0].trim();
+}
+
+function extractAcceptedAnswerString(cardEl) {
+  if (!cardEl) return '';
+
+  // Look for exact "Accepted answer is" or "Accepted answer:" element
+  const allEls = cardEl.querySelectorAll('span, div, b, strong, p');
+  for (const el of allEls) {
+    const st = el.textContent.trim();
+    if (/^accepted\s+answer\s*(?:is|:)?$/i.test(st)) {
+      const parent = el.parentElement;
+      if (parent) {
+        const full = parent.textContent.trim();
+        const extracted = full.replace(/^accepted\s+answer\s*(?:is|:)?\s*/i, '').trim();
+        if (extracted) return cleanTrailingScoringMarkers(extracted);
+      }
+      const sib = el.nextElementSibling;
+      if (sib && sib.textContent.trim()) {
+        const extracted = sib.textContent.trim();
+        if (!/accepted\s+answer/i.test(extracted)) {
+          return cleanTrailingScoringMarkers(extracted);
+        }
+      }
+    }
+  }
+
+  // Fallback: search regex across entire card text
+  const cardText = cardEl.textContent || '';
+  const m = cardText.match(/accepted\s+answer\s+(?:is|:)\s*(.*?)(?:1\s*Point|Score:|Yes,\s*the\s*answer|You\s*didn|$)/i);
+  if (m && m[1]) {
+    const extracted = m[1].trim();
+    if (extracted) return cleanTrailingScoringMarkers(extracted);
+  }
+
+  return '';
+}
+
+function isOptionCorrect(optText, acceptedStr) {
+  if (!acceptedStr) return false;
+  const optNorm = normalizeText(optText);
+  const accNorm = normalizeText(acceptedStr);
+  if (!optNorm || !accNorm) return false;
+
+  // 1. Exact match
+  if (optNorm === accNorm) return true;
+
+  // 2. Short options (e.g. <= 6 chars like True / False / Yes / No)
+  if (optNorm.length <= 6) {
+    const escaped = optNorm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp('(?:^|[\\s,;])' + escaped + '(?:$|[\\s,;])', 'i');
+    return pattern.test(accNorm);
+  }
+
+  // 3. Substring inclusion
+  if (accNorm.includes(optNorm)) return true;
+
+  // 4. Relaxed punctuation match
+  const cleanOpt = optNorm.replace(/[^\w\s]/g, '');
+  const cleanAcc = accNorm.replace(/[^\w\s]/g, '');
+  if (cleanOpt.length > 10 && cleanAcc.includes(cleanOpt)) return true;
+
+  return false;
+}
+
 // ─── HTML Parser ──────────────────────────────────────
 function parseNPTELHtml(htmlString) {
   const parser = new DOMParser();
@@ -1587,7 +1853,9 @@ function parseNPTELHtml(htmlString) {
     if (!inputs || inputs.length < 2) return; // need at least 2 options
 
     const type = inputs[0].type;
-    const questionType = type === 'radio' ? 'mcq' : 'msq';
+    const firstInput = inputs[0];
+    const qCard = firstInput.closest('section') || firstInput.closest('div[class*="border"]') || firstInput.parentElement;
+    const acceptedAnswerStr = extractAcceptedAnswerString(qCard);
 
     // ── Extract option text ─────────────────────────────
     const options = inputs.map((inp, i) => {
@@ -1659,9 +1927,16 @@ function parseNPTELHtml(htmlString) {
       labelHtml = tmpDiv.innerHTML.trim();
       labelText = tmpDiv.textContent.trim();
 
-      // isCorrect: NPTEL uses checked="" attribute
-      const isCorrect = inp.checked || inp.defaultChecked ||
-        inp.getAttribute('checked') !== null;
+      // Determine correctness:
+      // PRIORITY 1: Official NPTEL "Accepted answer is" ground truth!
+      // PRIORITY 2: Checked input attribute (only as fallback if no accepted answer was found)
+      let isCorrect = false;
+      if (acceptedAnswerStr) {
+        isCorrect = isOptionCorrect(labelText, acceptedAnswerStr);
+      } else {
+        isCorrect = inp.checked || inp.defaultChecked ||
+          inp.getAttribute('checked') !== null;
+      }
 
       return {
         id: groupName + '-opt-' + i,
@@ -1672,8 +1947,11 @@ function parseNPTELHtml(htmlString) {
       };
     });
 
+    const correctCount = options.filter(o => o.isCorrect).length;
+    // An MSQ has multiple correct answers or was a checkbox input
+    const questionType = (correctCount > 1 || type === 'checkbox') ? 'msq' : 'mcq';
+
     // ── Extract question text ──────────────────────────
-    const firstInput = inputs[0];
     let questionHtml = '';
     let questionText = '';
 
@@ -1736,7 +2014,6 @@ function parseNPTELHtml(htmlString) {
     if (validOptions.length < 2) return;
 
     // ── Associate Question with Reading Passage ────────
-    const qCard = firstInput.closest('section') || firstInput.closest('div[class*="border"]') || firstInput.parentElement;
     let questionPassage = passageMap.get(qCard) || null;
 
     // Fallback: search backwards if not found in map
@@ -1767,6 +2044,7 @@ function parseNPTELHtml(htmlString) {
       hasCorrect: validOptions.some(o => o.isCorrect),
       originalIndex: qIdx,
       passage: questionPassage,
+      acceptedAnswerText: acceptedAnswerStr,
     });
 
     qIdx++;
@@ -1842,17 +2120,49 @@ function loadAssignmentFromHtml(htmlString) {
   return true;
 }
 
-// Sample loader button
-$('btn-load-sample')?.addEventListener('click', async () => {
+// ─── Course Week Selector ──────────────────────────────
+async function loadWeekAssignment(weekNum, fileName, btnEl) {
+  document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+
   try {
-    const res = await fetch('./Course_ Research Methodology _ SWAYAM.html');
-    if (!res.ok) throw new Error('File fetch failed');
+    const res = await fetch(`./${fileName}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}: File not found`);
     const htmlString = await res.text();
-    loadAssignmentFromHtml(htmlString);
+    const ok = loadAssignmentFromHtml(htmlString);
+    if (ok) {
+      state.quizTitle = `Research Methodology — Week ${weekNum}`;
+      $('quiz-title').textContent = state.quizTitle;
+      startBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   } catch (err) {
-    alert('Browser blocked direct reading (standard browser security on local file:// URLs).\n\nPlease drag and drop "Course_ Research Methodology _ SWAYAM.html" into the upload box above!');
+    alert(`Could not load ${fileName} via direct browser fetch.\n\nNote: If testing locally via file://, browser security blocks direct fetching. When hosted on Vercel or localhost, this works seamlessly!\n\nFor now on file://, please drag & drop "${fileName}" into the upload box.`);
   }
+}
+
+document.querySelectorAll('.week-btn:not(:disabled)').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const week = btn.dataset.week;
+    const file = btn.dataset.file;
+    if (file) {
+      loadWeekAssignment(week, file, btn);
+    }
+  });
 });
+
+// Deep linking support via ?week=X query parameter
+try {
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialWeek = urlParams.get('week');
+  if (initialWeek) {
+    const targetBtn = document.querySelector(`.week-btn[data-week="${initialWeek}"]:not(:disabled)`);
+    if (targetBtn) {
+      targetBtn.click();
+    }
+  }
+} catch (e) {
+  // Ignore query param error if in restricted environment
+}
 
 // ─── Settings ─────────────────────────────────────────
 $('opt-instant').addEventListener('change', e => state.settings.instantFeedback = e.target.checked);
@@ -2440,6 +2750,12 @@ function buildAnswerBoxHTML(q) {
         <span class="ans-label-tag">✅ Correct Answer:</span>
         <span class="ans-detail-text">${correctFormatted}</span>
       </div>
+      ${q.acceptedAnswerText ? `
+        <div class="ans-detail-row info-row" style="margin-top:2px;">
+          <span class="ans-label-tag">📋 Accepted Key:</span>
+          <span class="ans-detail-text" style="color:var(--text-secondary);font-size:0.84rem;">${escapeHtml(q.acceptedAnswerText)}</span>
+        </div>
+      ` : ''}
       ${isAttempted ? `
         <div class="ans-detail-row ${isFullyCorrect ? 'correct-row' : 'wrong-row'}">
           <span class="ans-label-tag">${isFullyCorrect ? '✓' : '✗'} Your Choice:</span>
@@ -2795,6 +3111,7 @@ function showResults() {
       </div>
       ${passageBadge}
       <div class="review-q-text">${d.q.text.substring(0, 200)}${d.q.text.length > 200 ? '...' : ''}</div>
+      ${d.q.acceptedAnswerText ? `<div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-style:italic;">📋 Official Accepted Key: <span style="color:var(--text);">${escapeHtml(d.q.acceptedAnswerText)}</span></div>` : ''}
       ${answersHtml}
     `;
 
