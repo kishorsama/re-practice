@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NPTEL Assignment Practice | Quiz Repeater</title>
+  <title>NPTEL Assignment Practice — No feedback needed 🥱</title>
   <meta name="description" content="Re-practice your NPTEL assignments. Upload a saved assignment HTML and answer questions with instant feedback." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -193,11 +193,35 @@
     }
 
     .upload-top-controls {
+      position: sticky;
+      top: 14px;
+      z-index: 200;
       width: 100%;
+      max-width: 680px;
+      margin: 14px auto 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 8px;
+      gap: 12px;
+      padding: 8px 18px;
+      min-height: 48px;
+      background: var(--topbar-bg);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--rounded-pill);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.07), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .upload-top-controls.scrolled {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.06);
+    }
+    [data-theme="dark"] .upload-top-controls {
+      box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+    [data-theme="dark"] .upload-top-controls.scrolled {
+      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12);
     }
 
     .upload-header {
@@ -641,16 +665,47 @@
     }
     #quiz-screen.active { display: flex; }
 
-    /* Top bar */
+    /* Floating Island Pill Navbar (Quiz) */
     .quiz-topbar {
-      width: 100%; background: var(--topbar-bg);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--hairline);
-      padding: 0 24px; position: sticky; top: 0; z-index: 100;
+      position: sticky;
+      top: 14px;
+      z-index: 200;
+      width: 100%;
+      max-width: 860px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+      background: transparent;
+      pointer-events: none;
     }
     .quiz-topbar-inner {
-      max-width: 820px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 56px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 18px;
+      min-height: 48px;
+      background: var(--topbar-bg);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--rounded-pill);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.07), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+      pointer-events: auto;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .quiz-topbar-inner.scrolled {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.06);
+    }
+    [data-theme="dark"] .quiz-topbar-inner {
+      box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+    [data-theme="dark"] .quiz-topbar-inner.scrolled {
+      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12);
     }
     .quiz-title {
       font-size: 0.88rem; font-weight: 600; color: var(--ink);
@@ -658,56 +713,24 @@
       display: flex; align-items: center; gap: 8px;
     }
 
-    /* Mode Switcher Pill Segment */
-    .mode-switcher {
-      display: inline-flex;
-      background: var(--hairline-soft);
-      border: 1px solid var(--hairline);
-      border-radius: var(--rounded-pill);
-      padding: 2px;
-      gap: 2px;
-      flex-shrink: 0;
-    }
-    .mode-btn {
-      background: transparent;
-      border: none;
-      color: var(--mute);
-      padding: 5px 12px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      border-radius: var(--rounded-pill);
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-family: var(--font-sans);
-    }
-    .mode-btn:hover { color: var(--ink); }
-    .mode-btn.active {
-      background: var(--canvas-elevated);
-      color: var(--ink);
-      font-weight: 600;
-      box-shadow: var(--shadow-whisper);
-    }
-
-    .quiz-counter {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--mute);
-      white-space: nowrap;
-    }
-    .quiz-counter strong { color: var(--ink); font-weight: 600; }
-
-    /* Progress bar */
+    /* Embedded Progress bar in floating island pill */
     .progress-wrap {
-      width: 100%; background: transparent; padding: 0; position: sticky; top: 56px; z-index: 99;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 2.5px;
+      background: transparent;
+      z-index: 10;
+      overflow: hidden;
     }
-    .progress-bar-bg { width: 100%; height: 2px; background: var(--hairline); }
+    .progress-bar-bg { width: 100%; height: 100%; background: var(--hairline-soft); }
     .progress-bar-fill {
-      height: 2px;
+      height: 100%;
       background: linear-gradient(90deg, #007cf0, #00dfd8);
       transition: width 0.3s ease; width: 0%;
+      border-radius: var(--rounded-pill);
     }
 
     /* Question area */
@@ -1345,7 +1368,8 @@
         NPTEL Assignment Practice
       </div>
       <h1>Re-practice your<br/>NPTEL assignments.</h1>
-      <p>Upload any saved NPTEL assignment HTML and quiz yourself again — with instant answer keys and feedback.</p>
+      <p style="font-size:0.86rem; color:var(--mute); margin-top:6px; font-style:italic;">No feedback is needed as I am not going to invest more time on this 🥱</p>
+      <p style="margin-top:8px;">Upload any saved NPTEL assignment HTML and quiz yourself again — with instant answer keys and feedback.</p>
     </div>
 
     <!-- Course & Week Selector -->
@@ -1543,15 +1567,15 @@
             Answered <strong id="q-answered-count">0</strong> / <strong id="q-total-count">0</strong>
           </span>
           <button class="theme-toggle-btn" id="theme-toggle-quiz" type="button" title="Toggle Light / Dark mode"></button>
-          <button class="btn btn-ghost" id="quit-btn" style="padding:4px 8px; font-size:0.8rem;">✕</button>
+          <button class="btn btn-ghost" id="quit-btn" style="padding:4px 8px; font-size:0.8rem;" title="Exit to courses">✕</button>
         </div>
-      </div>
-    </div>
 
-    <!-- Progress bar -->
-    <div class="progress-wrap">
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progress-fill"></div>
+        <!-- Embedded Progress bar in floating pill -->
+        <div class="progress-wrap">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -2232,6 +2256,13 @@ document.addEventListener('keydown', e => {
     closeUploadModal();
   }
 });
+
+// ─── Floating Island Navbar Scroll Elevation ───────────
+window.addEventListener('scroll', () => {
+  const isScrolled = window.scrollY > 15;
+  document.querySelector('.quiz-topbar-inner')?.classList.toggle('scrolled', isScrolled);
+  document.querySelector('.upload-top-controls')?.classList.toggle('scrolled', isScrolled);
+}, { passive: true });
 
 function loadAssignmentFromHtml(htmlString) {
   const result = parseNPTELHtml(htmlString);

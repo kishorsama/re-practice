@@ -17,7 +17,7 @@
       { "week": 9, "title": "Week 9", "subtitle": "Assignment 9", "file": "data/rm/week-09.html", "available": true },
       { "week": 10, "title": "Week 10", "subtitle": "Assignment 10", "file": "data/rm/week-10.html", "available": true },
       { "week": 11, "title": "Week 11", "subtitle": "Assignment 11", "file": "data/rm/week-11.html", "available": true },
-      { "week": 12, "title": "Week 12", "subtitle": "Coming Soon", "file": "data/rm/week-12.html", "available": false }
+      { "week": 12, "title": "Week 12", "subtitle": "Assignment 12", "file": "data/rm/week-12.html", "available": true }
     ]
   }
 ]
