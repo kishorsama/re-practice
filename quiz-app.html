@@ -600,6 +600,146 @@
       display: flex; flex-direction: column; gap: 20px; width: 100%;
     }
 
+    /* ─── Reading Passage Card (Vercel Geist System) ─── */
+    .passage-card {
+      background: var(--canvas-elevated);
+      border: 1px solid var(--hairline);
+      border-left: 3px solid var(--ink);
+      border-radius: var(--rounded-md);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-whisper);
+      scroll-margin-top: 80px;
+      animation: fadeIn 0.25s ease;
+      position: relative;
+      transition: border-color var(--transition-fast);
+    }
+    .passage-card.passage-card-single {
+      margin-bottom: 20px;
+    }
+    .passage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .passage-eyebrow-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .passage-range-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--hairline-soft);
+      border: 1px solid var(--hairline);
+      padding: 2px 8px;
+      border-radius: var(--rounded-sm);
+      color: var(--ink);
+    }
+    .passage-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .passage-jumps {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .passage-jump-chip {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      color: var(--body);
+      border-radius: var(--rounded-sm);
+      padding: 3px 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .passage-jump-chip:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--canvas-elevated);
+    }
+    .passage-toggle-btn {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      height: 28px;
+      border-radius: var(--rounded-sm);
+    }
+    .passage-directive {
+      font-size: 0.84rem;
+      color: var(--mute);
+      font-style: italic;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--hairline);
+    }
+    .passage-title {
+      font-family: var(--font-heading);
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      color: var(--ink);
+      margin: 4px 0 12px 0;
+    }
+    .passage-body {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink);
+      word-break: break-word;
+    }
+    .passage-body.scrollable {
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 8px;
+      scrollbar-width: thin;
+    }
+    .passage-body p, .passage-body div {
+      margin-bottom: 12px;
+    }
+    .passage-body p:last-child, .passage-body div:last-child {
+      margin-bottom: 0;
+    }
+    .q-passage-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: var(--rounded-sm);
+      background: var(--hairline-soft);
+      border: 1px solid var(--hairline);
+      color: var(--body);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .q-passage-badge:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .jump-pill.has-passage {
+      border-bottom: 2.5px solid var(--ink);
+    }
+
     /* ─── Question Card (Level 0 / 1) ─── */
     .question-card {
       background: var(--canvas-elevated);
@@ -1063,7 +1203,7 @@
       <div class="option-row">
         <div>
           <label>Shuffle Questions</label>
-          <span>Randomize question order each time</span>
+          <span>Randomize order (keeps passage questions intact &amp; in sequence)</span>
         </div>
         <label class="toggle">
           <input type="checkbox" id="opt-shuffle" />
@@ -1229,11 +1369,13 @@
 // ─── State ────────────────────────────────────────────
 const state = {
   rawQuestions: [],    // parsed from HTML
+  passages: [],        // parsed reading passages
   questions: [],       // current session (maybe shuffled)
   currentIdx: 0,
   answers: {},         // { questionId: [optionIds] }
   answered: {},        // { questionId: bool }
   revealed: {},        // { questionId: bool } -- for showing answers inline!
+  passageCollapsed: {}, // { passageId: bool } -- for collapsing in single view
   settings: {
     instantFeedback: true,
     shuffleQuestions: false,
@@ -1318,6 +1460,16 @@ function stripHtml(html) {
   return d.textContent || d.innerText || '';
 }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function clamp(v, mn, mx) { return Math.min(mx, Math.max(mn, v)); }
 
 // ─── HTML Parser ──────────────────────────────────────
@@ -1331,7 +1483,7 @@ function parseNPTELHtml(htmlString) {
   const inputsAll = Array.from(doc.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
 
   if (inputsAll.length === 0) {
-    return { questions: [], title: 'NPTEL Assignment' };
+    return { questions: [], title: 'NPTEL Assignment', passages: [] };
   }
 
   // Group by name, preserving order of first appearance
@@ -1346,6 +1498,89 @@ function parseNPTELHtml(htmlString) {
     groups[name].push(inp);
   });
 
+  // ── Find Question Container & Pre-Scan Reading Passages ──
+  const passages = [];
+  const passageMap = new Map(); // question DOM section -> passage object
+  let currentPassage = null;
+  let pCounter = 0;
+
+  const firstInp = groups[groupOrder[0]] ? groups[groupOrder[0]][0] : null;
+  const sampleCard = firstInp ? (firstInp.closest('section') || firstInp.closest('div[class*="border"]') || firstInp.parentElement) : null;
+  const container = sampleCard ? sampleCard.parentElement : null;
+
+  const scanElements = (container && container.children.length > 2)
+    ? Array.from(container.children)
+    : Array.from(doc.querySelectorAll('section, div.space-y-5 > div, div[class*="border"]'));
+
+  scanElements.forEach(el => {
+    const inputs = el.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+    const txt = el.textContent.trim();
+
+    // Check if element is a reading passage
+    if (inputs.length === 0 && txt.length > 35) {
+      const isPassageKw = /passage|paragraph|comprehension|read the (passage|text|following)|based on the passage/i.test(txt);
+      const isSubstantialHtml = !!el.querySelector('.question-html-content') && txt.length > 120;
+
+      if (isPassageKw || isSubstantialHtml) {
+        pCounter++;
+        const htmlBox = el.querySelector('.question-html-content') || el;
+        const rawHtml = htmlBox.innerHTML.trim();
+
+        // Extract title
+        let pTitle = '';
+        const bolds = Array.from(el.querySelectorAll('b, strong, span[style*="bold"], h1, h2, h3, h4'));
+        for (const b of bolds) {
+          const t = b.textContent.trim();
+          if (t && !/read\s+the\s+passage|based\s+on\s+the\s+passage|answer\s+the\s+question/i.test(t)) {
+            if (t.length < 80) { pTitle = t; break; }
+          }
+        }
+        if (!pTitle) {
+          const bodyText = txt.replace(/Read\s+the\s+passage\s+below\s+and\s+answer\s+the\s+questions\s+based\s+on\s+the\s+passage\.?/i, '').trim();
+          const smartMatch = bodyText.match(/^([A-Z][a-zA-Z0-9\s]{2,30}?)(?:\s+(?:refers\s+to|is\s+|are\s+|describes|means|represents)\b|[,.:;–—\n])/i);
+          if (smartMatch) {
+            pTitle = smartMatch[1].trim();
+          } else {
+            const lines = bodyText.split(/[\r\n]+/).map(l => l.trim()).filter(Boolean);
+            const first = lines.length > 0 ? lines[0] : bodyText;
+            const m = first.match(/^([^.,:;–—]{4,45})/);
+            pTitle = m ? m[1].trim() : (first.slice(0, 45).trim() + '...');
+          }
+        }
+        if (!pTitle) pTitle = `Passage ${pCounter}`;
+
+        // Clean directive & leading breaks from body HTML
+        const directive = 'Read the passage below and answer the questions based on the passage.';
+        let bodyHtml = rawHtml
+          .replace(/<b[^>]*>\s*Read the passage below and answer the questions based on the passage\.?\s*<\/b>/gi, '')
+          .replace(/<span[^>]*style="[^"]*bold[^"]*"[^>]*>\s*(?:<br\s*\/?>)*\s*Read the passage below and answer the questions based on the passage\.?\s*<\/span>/gi, '')
+          .replace(/^\s*(?:<br\s*\/?>|\s)+/gi, '')
+          .trim();
+
+        currentPassage = {
+          id: 'passage-' + pCounter,
+          title: pTitle,
+          directive: directive,
+          html: bodyHtml || rawHtml,
+          text: txt
+        };
+        passages.push(currentPassage);
+        return;
+      }
+    }
+
+    // Delimiter: empty spacer section clears current passage
+    if (inputs.length === 0 && txt.length === 0) {
+      currentPassage = null;
+      return;
+    }
+
+    // Attach active passage to question section
+    if (inputs.length > 0 && currentPassage) {
+      passageMap.set(el, currentPassage);
+    }
+  });
+
   let qIdx = 0;
   groupOrder.forEach(groupName => {
     const inputs = groups[groupName];
@@ -1355,7 +1590,6 @@ function parseNPTELHtml(htmlString) {
     const questionType = type === 'radio' ? 'mcq' : 'msq';
 
     // ── Extract option text ─────────────────────────────
-    // NPTEL structure: <label><div>...<input>...</div><div><span>TEXT</span></div></label>
     const options = inputs.map((inp, i) => {
       let labelText = '';
       let labelHtml = '';
@@ -1366,7 +1600,6 @@ function parseNPTELHtml(htmlString) {
         const divChildren = Array.from(parentLabel.children).filter(c => c.tagName === 'DIV');
         const textDiv = divChildren.length > 1 ? divChildren[divChildren.length - 1] : null;
         if (textDiv) {
-          // Find deepest span without nested spans (leaf span = actual text)
           const allSpans = Array.from(textDiv.querySelectorAll('span'));
           const leafSpan = allSpans.find(sp => sp.children.length === 0 && sp.textContent.trim().length > 0)
             || allSpans[0];
@@ -1426,7 +1659,7 @@ function parseNPTELHtml(htmlString) {
       labelHtml = tmpDiv.innerHTML.trim();
       labelText = tmpDiv.textContent.trim();
 
-      // isCorrect: NPTEL uses checked="" attribute (DOMParser sees this as .checked = true)
+      // isCorrect: NPTEL uses checked="" attribute
       const isCorrect = inp.checked || inp.defaultChecked ||
         inp.getAttribute('checked') !== null;
 
@@ -1440,7 +1673,6 @@ function parseNPTELHtml(htmlString) {
     });
 
     // ── Extract question text ──────────────────────────
-    // NPTEL uses class="question-content" for the question text
     const firstInput = inputs[0];
     let questionHtml = '';
     let questionText = '';
@@ -1478,7 +1710,7 @@ function parseNPTELHtml(htmlString) {
             const sib = siblings[si];
             if (sib.querySelector('input')) continue;
             const t = sib.textContent.trim();
-            if (t.length > 15 && t.length < 2000) {
+            if (t.length > 15 && t.length < 2000 && !/read\s+the\s+passage/i.test(t)) {
               const clone = sib.cloneNode(true);
               clone.querySelectorAll('input,button,script,style').forEach(e => e.remove());
               return { html: clone.innerHTML.trim(), text: clone.textContent.trim() };
@@ -1503,6 +1735,28 @@ function parseNPTELHtml(htmlString) {
     const validOptions = options.filter(o => o.text && o.text.length > 0);
     if (validOptions.length < 2) return;
 
+    // ── Associate Question with Reading Passage ────────
+    const qCard = firstInput.closest('section') || firstInput.closest('div[class*="border"]') || firstInput.parentElement;
+    let questionPassage = passageMap.get(qCard) || null;
+
+    // Fallback: search backwards if not found in map
+    if (!questionPassage && qCard) {
+      let prev = qCard.previousElementSibling;
+      while (prev) {
+        if (prev.querySelector('input')) {
+          if (passageMap.has(prev)) questionPassage = passageMap.get(prev);
+          break;
+        }
+        const t = prev.textContent.trim();
+        if (t.length > 35 && (/passage|paragraph|comprehension|read the/i.test(t) || t.length > 200)) {
+          const matchP = passages.find(p => p.text === t);
+          if (matchP) questionPassage = matchP;
+          break;
+        }
+        prev = prev.previousElementSibling;
+      }
+    }
+
     questions.push({
       id: 'q-' + qIdx,
       groupName,
@@ -1512,6 +1766,7 @@ function parseNPTELHtml(htmlString) {
       options: validOptions,
       hasCorrect: validOptions.some(o => o.isCorrect),
       originalIndex: qIdx,
+      passage: questionPassage,
     });
 
     qIdx++;
@@ -1531,7 +1786,7 @@ function parseNPTELHtml(htmlString) {
     }
   }
 
-  return { questions, title };
+  return { questions, title, passages };
 }
 
 // ─── Upload handling ───────────────────────────────────
@@ -1569,15 +1824,18 @@ function loadAssignmentFromHtml(htmlString) {
   }
 
   state.rawQuestions = result.questions;
+  state.passages = result.passages || [];
   state.quizTitle = result.title || 'NPTEL Assignment Practice';
 
   const total = result.questions.length;
   const mcqCount = result.questions.filter(q => q.type === 'mcq').length;
   const msqCount = result.questions.filter(q => q.type === 'msq').length;
+  const pCount = state.passages.length;
+  const pMsg = pCount > 0 ? ` • ${pCount} Reading Passage${pCount > 1 ? 's' : ''}` : '';
 
   $('parse-status-title').textContent = `${total} question${total > 1 ? 's' : ''} found!`;
   $('parse-status-detail').textContent =
-    `${mcqCount} MCQ (single) + ${msqCount} MSQ (multiple) • ${state.quizTitle}`;
+    `${mcqCount} MCQ + ${msqCount} MSQ${pMsg} • ${state.quizTitle}`;
   parseStatus.classList.add('show');
   startBtn.disabled = false;
   startBtn.textContent = `Start Quiz (${total} Qs)`;
@@ -1616,18 +1874,51 @@ function switchViewMode(mode) {
 startBtn.addEventListener('click', startQuiz);
 
 function startQuiz() {
-  // Prepare questions
-  let qs = state.rawQuestions.map(q => {
-    const opts = state.settings.shuffleOptions ? shuffle(q.options) : [...q.options];
+  // Prepare questions with option shuffling (preserve True/False standard order)
+  const processedQuestions = state.rawQuestions.map(q => {
+    const isTrueFalse = q.options.length === 2 &&
+      q.options.some(o => /^(true|yes)$/i.test(o.text.trim())) &&
+      q.options.some(o => /^(false|no)$/i.test(o.text.trim()));
+    const opts = (state.settings.shuffleOptions && !isTrueFalse)
+      ? shuffle(q.options)
+      : [...q.options];
     return { ...q, options: opts };
   });
-  if (state.settings.shuffleQuestions) qs = shuffle(qs);
+
+  let qs;
+  if (state.settings.shuffleQuestions) {
+    // ── Atomic Grouping for Randomization ───────────────
+    // Questions sharing the same passage MUST NOT be randomized relative to each other!
+    // They remain grouped together in their strict sequential order under their passage.
+    const units = [];
+    const passageUnits = new Map();
+
+    processedQuestions.forEach(q => {
+      if (q.passage && q.passage.id) {
+        if (!passageUnits.has(q.passage.id)) {
+          const pUnit = { type: 'passage', passageId: q.passage.id, questions: [] };
+          passageUnits.set(q.passage.id, pUnit);
+          units.push(pUnit);
+        }
+        passageUnits.get(q.passage.id).questions.push(q);
+      } else {
+        units.push({ type: 'single', questions: [q] });
+      }
+    });
+
+    const shuffledUnits = shuffle(units);
+    qs = [];
+    shuffledUnits.forEach(u => u.questions.forEach(q => qs.push(q)));
+  } else {
+    qs = processedQuestions;
+  }
 
   state.questions = qs;
   state.currentIdx = 0;
   state.answers = {};
   state.answered = {};
   state.revealed = {};
+  state.passageCollapsed = {};
   state.settings.viewMode = $('opt-view-all').checked ? 'all' : 'single';
 
   $('quiz-title').textContent = state.quizTitle;
@@ -1716,11 +2007,26 @@ function renderAllQuestionsView() {
   toolbar.appendChild(jumpBarWrap);
   body.appendChild(toolbar);
 
-  // Container with all cards
+  // Container with all cards & preceding passage cards
   const container = document.createElement('div');
   container.className = 'all-qs-container';
 
+  let currentPassageId = null;
+
   state.questions.forEach((q, i) => {
+    // If this question starts a new reading passage, insert passage card
+    if (q.passage && q.passage.id && q.passage.id !== currentPassageId) {
+      currentPassageId = q.passage.id;
+      const relatedIndices = [];
+      state.questions.forEach((qu, qIdx) => {
+        if (qu.passage?.id === q.passage.id) relatedIndices.push(qIdx);
+      });
+      const pCard = createPassageCard(q.passage, relatedIndices, false);
+      container.appendChild(pCard);
+    } else if (!q.passage) {
+      currentPassageId = null;
+    }
+
     const card = createQuestionCard(q, i, false);
     container.appendChild(card);
   });
@@ -1753,7 +2059,17 @@ function renderSingleQuestionView(idx) {
   jumpBarWrap.appendChild(jumpBar);
   body.appendChild(jumpBarWrap);
 
-  // Single card
+  // If this question is based on a reading passage, show passage card above
+  if (q.passage) {
+    const relatedIndices = [];
+    state.questions.forEach((qu, qIdx) => {
+      if (qu.passage?.id === q.passage.id) relatedIndices.push(qIdx);
+    });
+    const pCard = createPassageCard(q.passage, relatedIndices, true);
+    body.appendChild(pCard);
+  }
+
+  // Single question card
   const card = createQuestionCard(q, idx, true);
   body.appendChild(card);
 
@@ -1770,10 +2086,11 @@ function renderSingleQuestionView(idx) {
 // ─── Jump Pill Factory ────────────────────────────────
 function createJumpPill(q, idx, isAllMode) {
   const pill = document.createElement('div');
-  pill.className = 'jump-pill';
+  pill.className = 'jump-pill' + (q.passage ? ' has-passage' : '');
   pill.id = 'jump-pill-' + idx;
   pill.textContent = idx + 1;
-  pill.title = `Jump to Question ${idx + 1}`;
+  const pNote = q.passage ? ` (Passage: ${q.passage.title})` : '';
+  pill.title = `Jump to Question ${idx + 1}${pNote}`;
 
   applyPillStatus(pill, q);
 
@@ -1814,6 +2131,110 @@ function applyPillStatus(pill, q) {
   }
 }
 
+// ─── Create Reading Passage Card ──────────────────────
+function createPassageCard(passage, relatedQIndices = [], isSingleView = false) {
+  const card = document.createElement('div');
+  card.className = 'passage-card' + (isSingleView ? ' passage-card-single' : '');
+  card.id = 'passage-' + passage.id;
+
+  const header = document.createElement('div');
+  header.className = 'passage-header';
+
+  const leftMeta = document.createElement('div');
+  leftMeta.className = 'passage-eyebrow-wrap';
+
+  const eyebrow = document.createElement('div');
+  eyebrow.className = 'mono-eyebrow';
+  eyebrow.style.fontSize = '11px';
+  eyebrow.textContent = '// READING PASSAGE';
+  leftMeta.appendChild(eyebrow);
+
+  if (relatedQIndices && relatedQIndices.length > 0) {
+    const rangeTag = document.createElement('span');
+    rangeTag.className = 'passage-range-tag';
+    const nums = relatedQIndices.map(i => i + 1);
+    rangeTag.textContent = nums.length === 1 ? `Q${nums[0]}` : `Questions ${nums[0]}–${nums[nums.length - 1]}`;
+    leftMeta.appendChild(rangeTag);
+  }
+  header.appendChild(leftMeta);
+
+  const actions = document.createElement('div');
+  actions.className = 'passage-actions';
+
+  if (isSingleView) {
+    const collapseBtn = document.createElement('button');
+    collapseBtn.className = 'btn btn-secondary passage-toggle-btn';
+    collapseBtn.type = 'button';
+    const isCollapsed = !!state.passageCollapsed[passage.id];
+    collapseBtn.textContent = isCollapsed ? '▼ Expand Passage' : '▲ Collapse';
+    actions.appendChild(collapseBtn);
+  } else if (relatedQIndices && relatedQIndices.length > 1) {
+    const jumpWrap = document.createElement('div');
+    jumpWrap.className = 'passage-jumps';
+    relatedQIndices.forEach(qIdx => {
+      const jBtn = document.createElement('button');
+      jBtn.className = 'passage-jump-chip';
+      jBtn.type = 'button';
+      jBtn.textContent = `Q${qIdx + 1} ↓`;
+      jBtn.title = `Scroll down to Question ${qIdx + 1}`;
+      jBtn.addEventListener('click', () => {
+        const target = document.getElementById('q-card-' + qIdx);
+        if (target) {
+          const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+      jumpWrap.appendChild(jBtn);
+    });
+    actions.appendChild(jumpWrap);
+  }
+
+  header.appendChild(actions);
+  card.appendChild(header);
+
+  // Directive
+  if (passage.directive) {
+    const dir = document.createElement('div');
+    dir.className = 'passage-directive';
+    dir.innerHTML = `📖 ${escapeHtml(passage.directive)}`;
+    card.appendChild(dir);
+  }
+
+  // Passage Title
+  if (passage.title && !passage.title.startsWith('Passage ')) {
+    const title = document.createElement('h3');
+    title.className = 'passage-title';
+    title.textContent = passage.title;
+    card.appendChild(title);
+  }
+
+  // Body content
+  const body = document.createElement('div');
+  body.className = 'passage-body' + (isSingleView ? ' scrollable' : '');
+  body.id = 'passage-body-' + passage.id;
+  body.innerHTML = passage.html;
+
+  if (isSingleView && state.passageCollapsed[passage.id]) {
+    body.style.display = 'none';
+  }
+
+  card.appendChild(body);
+
+  if (isSingleView) {
+    const collapseBtn = actions.querySelector('.passage-toggle-btn');
+    if (collapseBtn) {
+      collapseBtn.addEventListener('click', () => {
+        const nowCollapsed = body.style.display !== 'none';
+        body.style.display = nowCollapsed ? 'none' : 'block';
+        state.passageCollapsed[passage.id] = nowCollapsed;
+        collapseBtn.textContent = nowCollapsed ? '▼ Expand Passage' : '▲ Collapse';
+      });
+    }
+  }
+
+  return card;
+}
+
 // ─── Create Question Card Element ─────────────────────
 function createQuestionCard(q, idx, isSingleMode) {
   const card = document.createElement('div');
@@ -1841,14 +2262,35 @@ function createQuestionCard(q, idx, isSingleMode) {
   typeSpan.className = `q-type ${q.type}`;
   typeSpan.textContent = q.type === 'mcq' ? 'MCQ' : 'MSQ';
 
+  meta.appendChild(numSpan);
+  meta.appendChild(typeSpan);
+
+  // If question has an associated reading passage, add jump pill in meta
+  if (q.passage) {
+    const passageBtn = document.createElement('button');
+    passageBtn.className = 'q-passage-badge';
+    passageBtn.type = 'button';
+    passageBtn.title = 'Jump to reading passage';
+    passageBtn.innerHTML = `📖 Passage: ${escapeHtml(q.passage.title)}`;
+    passageBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const pEl = document.getElementById('passage-' + q.passage.id);
+      if (pEl) {
+        const y = pEl.getBoundingClientRect().top + window.pageYOffset - 75;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        pEl.style.borderColor = 'var(--ink)';
+        setTimeout(() => { pEl.style.borderColor = ''; }, 1500);
+      }
+    });
+    meta.appendChild(passageBtn);
+  }
+
   const badgeSpan = document.createElement('span');
   badgeSpan.className = 'q-status-badge';
   badgeSpan.id = 'badge-' + q.id;
   updateBadgeContent(badgeSpan, isRevealed, isAttempted, isFullyCorrect);
-
-  meta.appendChild(numSpan);
-  meta.appendChild(typeSpan);
   meta.appendChild(badgeSpan);
+
   card.appendChild(meta);
 
   // Question text
@@ -2341,12 +2783,17 @@ function showResults() {
       return `<div class="review-answers">${yourAnswers}${missed}</div>`;
     })();
 
+    const passageBadge = d.q.passage
+      ? `<div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--mute); margin-bottom:6px;">📖 Passage: ${escapeHtml(d.q.passage.title)}</div>`
+      : '';
+
     item.innerHTML = `
       <div class="review-item-header">
         <span>Q${i + 1}</span>
         <span class="q-type ${d.q.type}" style="font-size:0.72rem;padding:2px 8px">${d.q.type.toUpperCase()}</span>
         <span class="review-result-badge ${badgeClass}">${resultText}</span>
       </div>
+      ${passageBadge}
       <div class="review-q-text">${d.q.text.substring(0, 200)}${d.q.text.length > 200 ? '...' : ''}</div>
       ${answersHtml}
     `;
@@ -2373,10 +2820,12 @@ $('retry-btn').addEventListener('click', () => {
 
 $('back-home-btn').addEventListener('click', () => {
   state.rawQuestions = [];
+  state.passages = [];
   state.questions = [];
   state.answers = {};
   state.answered = {};
   state.revealed = {};
+  state.passageCollapsed = {};
   parseStatus.classList.remove('show');
   startBtn.disabled = true;
   startBtn.textContent = 'Start Quiz';
