@@ -451,6 +451,162 @@
       background: var(--canvas-elevated);
       border-style: dashed;
     }
+
+    /* ─── Full Course Mock Test Banner ─── */
+    .full-test-banner {
+      background: linear-gradient(135deg, rgba(0, 112, 243, 0.05) 0%, rgba(0, 223, 216, 0.04) 100%), var(--canvas-elevated);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--rounded-md);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-whisper);
+      transition: var(--transition);
+      position: relative;
+    }
+    .full-test-banner:hover {
+      border-color: var(--hairline-hover);
+      box-shadow: var(--shadow-floating);
+    }
+    [data-theme="dark"] .full-test-banner {
+      background: linear-gradient(135deg, rgba(0, 112, 243, 0.1) 0%, rgba(121, 40, 202, 0.08) 100%), var(--canvas-elevated);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .full-test-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: var(--rounded-pill);
+      background: rgba(0, 112, 243, 0.12);
+      color: var(--link);
+    }
+    [data-theme="dark"] .full-test-badge {
+      background: rgba(0, 112, 243, 0.22);
+      color: #70b4ff;
+    }
+    .full-test-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin: 8px 0 4px 0;
+    }
+    .full-test-subtitle {
+      font-size: 0.82rem;
+      color: var(--mute);
+      line-height: 1.45;
+      margin: 0 0 16px 0;
+    }
+    .full-test-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .full-test-mode-toggle {
+      display: inline-flex;
+      background: var(--hairline-soft);
+      border: 1px solid var(--hairline);
+      border-radius: var(--rounded-pill);
+      padding: 3px;
+      gap: 3px;
+    }
+    .ft-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--mute);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      border-radius: var(--rounded-pill);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ft-toggle-btn:hover {
+      color: var(--ink);
+    }
+    .ft-toggle-btn.active {
+      background: var(--canvas-elevated);
+      color: var(--ink);
+      font-weight: 600;
+      box-shadow: var(--shadow-whisper);
+    }
+    .btn-full-test {
+      height: 40px;
+      padding: 0 20px;
+      font-size: 0.88rem;
+      border-radius: var(--rounded-pill);
+      gap: 8px;
+      font-weight: 600;
+    }
+    .btn-full-test.loading {
+      opacity: 0.75;
+      pointer-events: none;
+    }
+    .week-selector-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .week-selector-title {
+      font-size: 0.82rem;
+      color: var(--body);
+      font-weight: 500;
+    }
+    .week-count-tag {
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      padding: 2px 8px;
+      border-radius: var(--rounded-pill);
+      background: var(--mono-badge-bg);
+      border: 1px solid var(--mono-badge-bdr);
+      color: var(--mono-badge-text);
+    }
+    .q-week-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: var(--rounded-pill);
+      background: var(--mono-badge-bg);
+      border: 1px solid var(--mono-badge-bdr);
+      color: var(--mono-badge-text);
+      white-space: nowrap;
+      line-height: normal;
+    }
+    button.q-week-badge-toggle {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--canvas-elevated);
+      border: 1px dashed var(--hairline-hover);
+      color: var(--mute);
+      outline: none;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    button.q-week-badge-toggle:hover {
+      background: var(--hairline-soft);
+      border-color: var(--hairline-strong);
+      color: var(--ink);
+    }
+    button.q-week-badge-toggle.revealed {
+      background: var(--mono-badge-bg);
+      border: 1px solid var(--mono-badge-bdr);
+      color: var(--mono-badge-text);
+    }
     .upload-divider {
       display: flex;
       align-items: center;
@@ -712,6 +868,34 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       display: flex; align-items: center; gap: 8px;
     }
+    .mode-switcher {
+      display: inline-flex;
+      background: var(--hairline-soft);
+      padding: 2px;
+      border-radius: var(--rounded-pill);
+      border: 1px solid var(--hairline);
+    }
+    .mode-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 12px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--mute);
+      border-radius: var(--rounded-pill);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .mode-btn:hover {
+      color: var(--ink);
+    }
+    .mode-btn.active {
+      background: var(--canvas-elevated);
+      color: var(--ink);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
 
     /* Embedded Progress bar in floating island pill */
     .progress-wrap {
@@ -813,10 +997,68 @@
     .jump-pill.current {
       box-shadow: 0 0 0 2px var(--link);
     }
+    .jump-pill.on-current-page {
+      border-color: var(--ink);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .jump-pill.on-current-page {
+      border-color: #ededed;
+    }
 
     /* All questions container */
     .all-qs-container {
       display: flex; flex-direction: column; gap: 20px; width: 100%;
+    }
+
+    /* ─── Pagination Bar ─── */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+      padding: 16px 20px;
+      background: var(--canvas-elevated);
+      border: 1px solid var(--hairline);
+      border-radius: var(--rounded-md);
+      box-shadow: var(--shadow-whisper);
+      flex-wrap: wrap;
+    }
+    .pagination-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .page-pill {
+      min-width: 32px;
+      height: 32px;
+      padding: 0 8px;
+      border-radius: var(--rounded-sm);
+      border: 1px solid var(--hairline);
+      background: var(--canvas-elevated);
+      color: var(--body);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .page-pill:hover {
+      background: var(--hairline-soft);
+      border-color: var(--hairline-hover);
+      color: var(--ink);
+    }
+    .page-pill.active {
+      background: var(--primary-btn-bg);
+      border-color: var(--primary-btn-bg);
+      color: var(--primary-btn-text);
+      font-weight: 600;
     }
 
     /* ─── Reading Passage Card (Vercel Geist System) ─── */
@@ -1383,11 +1625,40 @@
             <div class="course-title" id="course-title">Research Methodology</div>
           </div>
         </div>
-        <span class="course-tag" id="course-tag">Weeks 1–11 Ready</span>
+        <span class="course-tag" id="course-tag">All 12 Weeks Ready</span>
       </div>
 
-      <div style="font-size:0.82rem; color:var(--body); margin-bottom:12px;" id="course-desc">
-        Select an assignment week to practice:
+      <!-- Full Course Mock Test Banner (All 12 Weeks) -->
+      <div class="full-test-banner" id="full-test-banner">
+        <div class="full-test-header">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="full-test-badge">🎯 Comprehensive Exam</span>
+            <span class="badge" style="background:var(--mono-badge-bg); border:1px solid var(--mono-badge-bdr); color:var(--mono-badge-text); font-family:var(--font-mono); font-size:0.72rem; padding:2px 8px; border-radius:var(--rounded-pill);">12 Weeks • 120 Qs</span>
+          </div>
+          <h4 class="full-test-title">Full Course Mock Test</h4>
+          <p class="full-test-subtitle">Practice all 120 questions across all 12 weeks with instant scoring and complete answer keys.</p>
+        </div>
+
+        <div class="full-test-action-row">
+          <div class="full-test-mode-toggle" id="full-test-mode-toggle">
+            <button type="button" class="ft-toggle-btn active" id="btn-ft-random" data-mode="random" title="Randomize question and option order across all 12 weeks">
+              🔀 Random Order <small style="opacity:0.7; font-weight:normal;">(Default)</small>
+            </button>
+            <button type="button" class="ft-toggle-btn" id="btn-ft-seq" data-mode="sequential" title="Go week by week in sequential order: Week 1 → Week 12">
+              📚 Week-by-Week <small style="opacity:0.7; font-weight:normal;">(1 → 12)</small>
+            </button>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-full-test" id="btn-start-full-test">
+            <span id="btn-full-test-text">Start Full Test (120 Qs)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="week-selector-header">
+        <span class="week-selector-title" id="course-desc">Or practice individual weeks:</span>
+        <span class="week-count-tag">12 Assignments</span>
       </div>
 
       <div class="weeks-grid" id="weeks-grid">
@@ -1435,9 +1706,9 @@
           <span class="week-num">Week 11</span>
           <span class="week-sub">Assignment 11</span>
         </button>
-        <button type="button" class="week-btn disabled" disabled data-week="12" title="Will be available after assignment release">
+        <button type="button" class="week-btn" data-week="12" data-file="data/rm/week-12.html">
           <span class="week-num">Week 12</span>
-          <span class="week-sub">Coming Soon</span>
+          <span class="week-sub">Assignment 12</span>
         </button>
       </div>
 
@@ -1498,8 +1769,8 @@
     <div class="settings-panel">
       <div class="option-row">
         <div>
-          <label>View All Questions</label>
-          <span>Show all questions on one scrollable sheet</span>
+          <label>10 Questions Per Page</label>
+          <span>Page questions in groups of 10 instead of one by one</span>
         </div>
         <label class="toggle">
           <input type="checkbox" id="opt-view-all" checked />
@@ -1558,7 +1829,7 @@
 
         <!-- View mode switcher -->
         <div class="mode-switcher" id="mode-switcher">
-          <button class="mode-btn active" id="btn-mode-all" type="button" title="View all questions together">📋 All Questions</button>
+          <button class="mode-btn active" id="btn-mode-all" type="button" title="View questions 10 per page">📄 10 per Page</button>
           <button class="mode-btn" id="btn-mode-single" type="button" title="View one question at a time">📑 One by One</button>
         </div>
 
@@ -1586,13 +1857,18 @@
 
     <!-- Bottom nav -->
     <div class="quiz-nav">
-      <!-- Nav in All Questions mode -->
+      <!-- Nav in All Questions / 10-per-Page mode -->
       <div class="quiz-nav-inner" id="nav-all-mode">
-        <div class="quiz-nav-status">
-          Answered <strong id="nav-all-answered">0</strong> of <strong id="nav-all-total">0</strong> questions
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button class="btn btn-secondary" id="btn-page-prev-bottom" type="button" style="padding:0 12px; height:34px; font-size:0.82rem; display:none;">← Prev 10</button>
+          <div class="quiz-nav-status">
+            <span id="nav-all-page-indicator" style="display:none; font-weight:600; color:var(--ink); margin-right:4px;"></span>
+            Answered <strong id="nav-all-answered">0</strong> of <strong id="nav-all-total">0</strong>
+          </div>
+          <button class="btn btn-secondary" id="btn-page-next-bottom" type="button" style="padding:0 12px; height:34px; font-size:0.82rem; display:none;">Next 10 →</button>
         </div>
         <div style="display:flex; gap:8px; align-items:center;">
-          <button class="btn btn-secondary" id="btn-reveal-all-bottom" type="button" style="padding:0 14px; height:34px; font-size:0.82rem;">👁 Show All Answers</button>
+          <button class="btn btn-secondary" id="btn-reveal-all-bottom" type="button" style="padding:0 14px; height:34px; font-size:0.82rem;">👁 Show Answers</button>
           <button class="btn btn-secondary" id="btn-scroll-top" type="button" style="padding:0 12px; height:34px; font-size:0.82rem;" title="Back to top">⬆ Top</button>
           <button class="btn btn-primary" id="btn-submit-all" type="button" style="padding:0 20px; height:36px; font-size:0.85rem;">Submit Quiz</button>
         </div>
@@ -1688,9 +1964,13 @@ const state = {
   passages: [],        // parsed reading passages
   questions: [],       // current session (maybe shuffled)
   currentIdx: 0,
+  currentPage: 0,      // 0-indexed page number for 10-per-page mode
+  pageSize: 10,        // 10 questions per page
+  isFullTest: false,   // whether currently taking the 120-question full course test
   answers: {},         // { questionId: [optionIds] }
   answered: {},        // { questionId: bool }
   revealed: {},        // { questionId: bool } -- for showing answers inline!
+  revealedWeeks: {},   // { questionId: bool } -- for revealing hidden week tags on demand
   passageCollapsed: {}, // { passageId: bool } -- for collapsing in single view
   settings: {
     instantFeedback: true,
@@ -1866,10 +2146,11 @@ function isOptionCorrect(optText, acceptedStr) {
 }
 
 // ─── HTML Parser ──────────────────────────────────────
-function parseNPTELHtml(htmlString) {
+function parseNPTELHtml(htmlString, weekNum = null) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlString, 'text/html');
 
+  const idPrefix = weekNum != null ? ('w' + weekNum + '-') : '';
   const questions = [];
 
   // Find all radio + checkbox inputs
@@ -1951,7 +2232,7 @@ function parseNPTELHtml(htmlString) {
           .trim();
 
         currentPassage = {
-          id: 'passage-' + pCounter,
+          id: idPrefix + 'passage-' + pCounter,
           title: pTitle,
           directive: directive,
           html: bodyHtml || rawHtml,
@@ -2066,7 +2347,7 @@ function parseNPTELHtml(htmlString) {
       }
 
       return {
-        id: groupName + '-opt-' + i,
+        id: idPrefix + groupName + '-opt-' + i,
         text: labelText,
         html: labelHtml || labelText,
         isCorrect,
@@ -2082,7 +2363,53 @@ function parseNPTELHtml(htmlString) {
     let questionHtml = '';
     let questionText = '';
 
+    function sanitizeQuestionContent(htmlStr, textStr) {
+      if (!htmlStr) return { html: '', text: '' };
+
+      const tmp = document.createElement('div');
+      tmp.innerHTML = htmlStr;
+
+      // Remove elements containing question numbers (like <span class="shrink-0">3.</span>) or points
+      tmp.querySelectorAll('.shrink-0, .question-text, span, div, b, strong, p').forEach(el => {
+        const t = el.textContent.trim();
+        if (/^\s*(?:Question\s*\d+[:.]?|Q\.?\s*\d+[:.]?|\d+[\s.)\-:]*)\s*$/i.test(t)) {
+          el.remove();
+        } else if (/^\s*(?:\(\d+\s*Points?\)|\d+\s*Points?)\s*$/i.test(t)) {
+          el.remove();
+        }
+      });
+
+      let h = tmp.innerHTML.trim();
+      let t = tmp.textContent.trim();
+
+      // Strip any remaining leading question number pattern and trailing point indicators
+      h = h
+        .replace(/^\s*(?:<[^>]+>\s*)*(?:Question\s*\d+[:.]?|Q\.?\s*\d+[:.]?|\d+[\s.)\-:])\s*/i, '')
+        .replace(/\s*(?:<div[^>]*>|<span[^>]*>|<br\s*\/?>|\s)*(?:\(\d+\s*Points?\)|\d+\s*Points?)(?:\s*<\/[^>]+>)*\s*$/i, '')
+        .trim();
+
+      t = t
+        .replace(/^\s*(?:Question\s*\d+[:.]?|Q\.?\s*\d+[:.]?|\d+[\s.)\-:])\s*/i, '')
+        .replace(/\s*(?:\(\d+\s*Points?\)|\d+\s*Points?)\s*$/i, '')
+        .trim();
+
+      return { html: h || t, text: t || h };
+    }
+
     function findQuestionText(startEl) {
+      // Priority 1: Check closest question section directly for .question-content
+      const section = startEl.closest('section') || startEl.closest('div[class*="border"]');
+      if (section) {
+        const qc = section.querySelector('.question-content');
+        if (qc) {
+          const clone = qc.cloneNode(true);
+          clone.querySelectorAll('input,button,script,style').forEach(e => e.remove());
+          const res = sanitizeQuestionContent(clone.innerHTML.trim(), clone.textContent.trim());
+          if (res.text.length > 3) return res;
+        }
+      }
+
+      // Priority 2: Walk up ancestor chain
       let cur = startEl.parentElement;
       let level = 0;
       const MAX = 14;
@@ -2092,19 +2419,16 @@ function parseNPTELHtml(htmlString) {
         if (qc) {
           const clone = qc.cloneNode(true);
           clone.querySelectorAll('input,button,script,style').forEach(e => e.remove());
-          const t = clone.textContent.trim();
-          if (t.length > 3) return { html: clone.innerHTML.trim(), text: t };
+          const res = sanitizeQuestionContent(clone.innerHTML.trim(), clone.textContent.trim());
+          if (res.text.length > 3) return res;
         }
         // NPTEL: .question-row (contains number span + question-content)
         const qr = cur.querySelector('.question-row');
         if (qr) {
           const clone = qr.cloneNode(true);
           clone.querySelectorAll('input,button,script,style').forEach(e => e.remove());
-          // Strip leading number span like "1."
-          const firstSpan = clone.querySelector('span.shrink-0, span:first-child');
-          if (firstSpan && /^\d+\.?$/.test(firstSpan.textContent.trim())) firstSpan.remove();
-          const t = clone.textContent.trim();
-          if (t.length > 5) return { html: clone.innerHTML.trim(), text: t };
+          const res = sanitizeQuestionContent(clone.innerHTML.trim(), clone.textContent.trim());
+          if (res.text.length > 3) return res;
         }
         // Generic: previous sibling with substantial text, no inputs
         const parent = cur.parentElement;
@@ -2114,11 +2438,21 @@ function parseNPTELHtml(htmlString) {
           for (let si = myIdx - 1; si >= 0; si--) {
             const sib = siblings[si];
             if (sib.querySelector('input')) continue;
+
+            const sibQc = sib.querySelector('.question-content');
+            if (sibQc) {
+              const clone = sibQc.cloneNode(true);
+              clone.querySelectorAll('input,button,script,style').forEach(e => e.remove());
+              const res = sanitizeQuestionContent(clone.innerHTML.trim(), clone.textContent.trim());
+              if (res.text.length > 3) return res;
+            }
+
             const t = sib.textContent.trim();
             if (t.length > 15 && t.length < 2000 && !/read\s+the\s+passage/i.test(t)) {
               const clone = sib.cloneNode(true);
               clone.querySelectorAll('input,button,script,style').forEach(e => e.remove());
-              return { html: clone.innerHTML.trim(), text: clone.textContent.trim() };
+              const res = sanitizeQuestionContent(clone.innerHTML.trim(), clone.textContent.trim());
+              return res;
             }
           }
         }
@@ -2130,8 +2464,9 @@ function parseNPTELHtml(htmlString) {
 
     const found = findQuestionText(firstInput);
     if (found && found.text.length > 3) {
-      questionHtml = found.html;
-      questionText = found.text;
+      const sanitized = sanitizeQuestionContent(found.html, found.text);
+      questionHtml = sanitized.html;
+      questionText = sanitized.text;
     } else {
       questionText = 'Question ' + (qIdx + 1);
       questionHtml = questionText;
@@ -2162,7 +2497,9 @@ function parseNPTELHtml(htmlString) {
     }
 
     questions.push({
-      id: 'q-' + qIdx,
+      id: idPrefix + 'q-' + qIdx,
+      weekNumber: weekNum,
+      weekTitle: weekNum != null ? ('Week ' + (weekNum < 10 ? '0' + weekNum : weekNum)) : null,
       groupName,
       type: questionType,
       text: questionText,
@@ -2264,8 +2601,8 @@ window.addEventListener('scroll', () => {
   document.querySelector('.upload-top-controls')?.classList.toggle('scrolled', isScrolled);
 }, { passive: true });
 
-function loadAssignmentFromHtml(htmlString) {
-  const result = parseNPTELHtml(htmlString);
+function loadAssignmentFromHtml(htmlString, weekNum = null) {
+  const result = parseNPTELHtml(htmlString, weekNum);
 
   if (!result || result.questions.length === 0) {
     alert('⚠️ No quiz questions found in this HTML file.\n\nMake sure:\n• You saved the correct NPTEL assignment page\n• The page was fully loaded before saving\n• You submitted the assignment so answers are marked');
@@ -2275,6 +2612,7 @@ function loadAssignmentFromHtml(htmlString) {
   state.rawQuestions = result.questions;
   state.passages = result.passages || [];
   state.quizTitle = result.title || 'NPTEL Assignment Practice';
+  state.isFullTest = false;
 
   const total = result.questions.length;
   const mcqCount = result.questions.filter(q => q.type === 'mcq').length;
@@ -2311,7 +2649,7 @@ const FALLBACK_COURSES = [
       { week: 9, title: "Week 9", subtitle: "Assignment 9", file: "data/rm/week-09.html", available: true },
       { week: 10, title: "Week 10", subtitle: "Assignment 10", file: "data/rm/week-10.html", available: true },
       { week: 11, title: "Week 11", subtitle: "Assignment 11", file: "data/rm/week-11.html", available: true },
-      { week: 12, title: "Week 12", subtitle: "Coming Soon", file: "data/rm/week-12.html", available: false }
+      { week: 12, title: "Week 12", subtitle: "Assignment 12", file: "data/rm/week-12.html", available: true }
     ]
   }
 ];
@@ -2403,8 +2741,9 @@ async function loadWeekAssignment(course, weekObj, btnEl) {
     const res = await fetch(`./${weekObj.file}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}: File not found`);
     const htmlString = await res.text();
-    const ok = loadAssignmentFromHtml(htmlString);
+    const ok = loadAssignmentFromHtml(htmlString, weekObj.week);
     if (ok) {
+      state.isFullTest = false;
       state.quizTitle = `${course.name} — ${weekObj.title}`;
       $('quiz-title').textContent = state.quizTitle;
       startBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -2414,10 +2753,135 @@ async function loadWeekAssignment(course, weekObj, btnEl) {
   }
 }
 
+// ─── Full Course Mock Test Mode ────────────────────────
+let fullTestOrderMode = 'random'; // 'random' (default) or 'sequential'
+
+function initFullTestControls() {
+  const btnRandom = $('btn-ft-random');
+  const btnSeq = $('btn-ft-seq');
+  const btnStartFull = $('btn-start-full-test');
+
+  if (btnRandom && btnSeq) {
+    btnRandom.addEventListener('click', () => {
+      fullTestOrderMode = 'random';
+      btnRandom.classList.add('active');
+      btnSeq.classList.remove('active');
+    });
+    btnSeq.addEventListener('click', () => {
+      fullTestOrderMode = 'sequential';
+      btnSeq.classList.add('active');
+      btnRandom.classList.remove('active');
+    });
+  }
+
+  if (btnStartFull) {
+    btnStartFull.addEventListener('click', () => {
+      startFullCourseTest(fullTestOrderMode);
+    });
+  }
+}
+
+async function startFullCourseTest(orderMode = 'random') {
+  const btnStartFull = $('btn-start-full-test');
+  const textSpan = $('btn-full-test-text');
+  const originalText = textSpan ? textSpan.textContent : 'Start Full Test (120 Qs)';
+
+  if (btnStartFull) {
+    btnStartFull.disabled = true;
+    if (textSpan) {
+      textSpan.innerHTML = `<span style="display:inline-block;width:12px;height:12px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;vertical-align:-1px;"></span>Loading 120 Questions...`;
+    }
+  }
+
+  try {
+    const course = currentCourse || FALLBACK_COURSES[0];
+    const availableWeeks = (course.weeks || []).filter(w => w.available);
+
+    if (availableWeeks.length === 0) {
+      alert('No available assignments found for this course.');
+      return;
+    }
+
+    // Parallel fetch all available assignment HTML files
+    const fetchPromises = availableWeeks.map(async (w) => {
+      const res = await fetch(`./${w.file}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to load ${w.file}`);
+      const text = await res.text();
+      return { week: w.week, text };
+    });
+
+    const results = await Promise.all(fetchPromises);
+    results.sort((a, b) => a.week - b.week);
+
+    let allQuestions = [];
+    let allPassages = [];
+
+    results.forEach(item => {
+      const parsed = parseNPTELHtml(item.text, item.week);
+      if (parsed && parsed.questions) {
+        allQuestions.push(...parsed.questions);
+      }
+      if (parsed && parsed.passages) {
+        allPassages.push(...parsed.passages);
+      }
+    });
+
+    if (allQuestions.length === 0) {
+      alert('⚠️ No questions could be loaded for the full course mock test.');
+      return;
+    }
+
+    state.rawQuestions = allQuestions;
+    state.passages = allPassages;
+    state.isFullTest = true;
+    state.quizTitle = `${course.name} — Full Course Mock Test (${allQuestions.length} Qs • ${availableWeeks.length} Weeks)`;
+
+    if (orderMode === 'random') {
+      state.settings.shuffleQuestions = true;
+      state.settings.shuffleOptions = true;
+      $('opt-shuffle').checked = true;
+      $('opt-shuffle-opts').checked = true;
+    } else {
+      // Sequential: questions appear week-by-week (1 to 12)
+      state.settings.shuffleQuestions = false;
+      state.settings.shuffleOptions = true;
+      $('opt-shuffle').checked = false;
+      $('opt-shuffle-opts').checked = true;
+    }
+
+    startQuiz();
+  } catch (err) {
+    console.error('Error starting full test:', err);
+    alert(`Could not load full course mock test.\n\nDetails: ${err.message}\n\nNote: Direct fetching of assignments requires a local HTTP server or hosting (like Vercel). If opening via direct file:// protocol, your browser may block fetching local files.`);
+  } finally {
+    if (btnStartFull) {
+      btnStartFull.disabled = false;
+      if (textSpan) textSpan.textContent = originalText;
+    }
+  }
+}
+
 function checkDeepLink() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
+    const testParam = urlParams.get('test');
+    const orderParam = urlParams.get('order');
     const initialWeek = urlParams.get('week');
+
+    if (testParam === 'full' || initialWeek === 'all') {
+      const mode = (orderParam === 'sequential' || orderParam === 'seq') ? 'sequential' : 'random';
+      if (mode === 'sequential') {
+        const btnRandom = $('btn-ft-random');
+        const btnSeq = $('btn-ft-seq');
+        if (btnRandom && btnSeq) {
+          btnSeq.classList.add('active');
+          btnRandom.classList.remove('active');
+        }
+      }
+      startFullCourseTest(mode);
+      return;
+    }
+
     if (initialWeek) {
       const targetBtn = document.querySelector(`.week-btn[data-week="${initialWeek}"]:not(:disabled)`);
       if (targetBtn) {
@@ -2428,6 +2892,7 @@ function checkDeepLink() {
 }
 
 initCourses();
+initFullTestControls();
 
 // ─── Settings ─────────────────────────────────────────
 $('opt-instant').addEventListener('change', e => state.settings.instantFeedback = e.target.checked);
@@ -2442,6 +2907,9 @@ $('btn-mode-single').addEventListener('click', () => switchViewMode('single'));
 function switchViewMode(mode) {
   if (state.settings.viewMode === mode) return;
   state.settings.viewMode = mode;
+  if (mode === 'all') {
+    state.currentPage = Math.floor(state.currentIdx / (state.pageSize || 10));
+  }
   renderQuizView();
 }
 
@@ -2490,9 +2958,11 @@ function startQuiz() {
 
   state.questions = qs;
   state.currentIdx = 0;
+  state.currentPage = 0;
   state.answers = {};
   state.answered = {};
   state.revealed = {};
+  state.revealedWeeks = {};
   state.passageCollapsed = {};
   state.settings.viewMode = $('opt-view-all').checked ? 'all' : 'single';
 
@@ -2520,12 +2990,22 @@ function renderQuizView() {
   updateToolbarAndNav();
 }
 
-// ─── Render All Questions View ────────────────────────
+// ─── Render All Questions View (10 per Page) ───────────
 function renderAllQuestionsView() {
   const body = $('quiz-body');
   body.innerHTML = '';
 
   const total = state.questions.length;
+  const pageSize = state.pageSize || 10;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+  if (state.currentPage >= totalPages) state.currentPage = totalPages - 1;
+  if (state.currentPage < 0) state.currentPage = 0;
+
+  const startIdx = state.currentPage * pageSize;
+  const endIdx = Math.min(startIdx + pageSize, total);
+  const pageQuestions = state.questions.slice(startIdx, endIdx);
+
   const mcqCount = state.questions.filter(q => q.type === 'mcq').length;
   const msqCount = state.questions.filter(q => q.type === 'msq').length;
 
@@ -2538,16 +3018,47 @@ function renderAllQuestionsView() {
 
   const stats = document.createElement('div');
   stats.className = 'toolbar-stats';
-  stats.textContent = `${total} Questions (${mcqCount} MCQ, ${msqCount} MSQ)`;
+  if (totalPages > 1) {
+    stats.innerHTML = `<span style="color:var(--ink);font-weight:600;">Page ${state.currentPage + 1} of ${totalPages}</span> &bull; Questions ${startIdx + 1}–${endIdx} of ${total}`;
+  } else {
+    stats.textContent = `${total} Questions (${mcqCount} MCQ, ${msqCount} MSQ)`;
+  }
 
   const actions = document.createElement('div');
   actions.className = 'toolbar-actions';
+
+  if (totalPages > 1) {
+    const pageNavInline = document.createElement('div');
+    pageNavInline.style.display = 'inline-flex';
+    pageNavInline.style.alignItems = 'center';
+    pageNavInline.style.gap = '4px';
+
+    const tPrev = document.createElement('button');
+    tPrev.className = 'btn btn-sm btn-secondary';
+    tPrev.type = 'button';
+    tPrev.textContent = '← Prev';
+    tPrev.disabled = state.currentPage === 0;
+    tPrev.title = 'Previous 10 questions';
+    tPrev.addEventListener('click', () => changePage(state.currentPage - 1));
+
+    const tNext = document.createElement('button');
+    tNext.className = 'btn btn-sm btn-secondary';
+    tNext.type = 'button';
+    tNext.textContent = 'Next →';
+    tNext.disabled = state.currentPage === totalPages - 1;
+    tNext.title = 'Next 10 questions';
+    tNext.addEventListener('click', () => changePage(state.currentPage + 1));
+
+    pageNavInline.appendChild(tPrev);
+    pageNavInline.appendChild(tNext);
+    actions.appendChild(pageNavInline);
+  }
 
   const btnToggleAll = document.createElement('button');
   btnToggleAll.className = 'btn btn-sm btn-secondary';
   btnToggleAll.id = 'btn-toggle-all-answers';
   const allRev = state.questions.length > 0 && state.questions.every(q => !!state.revealed[q.id]);
-  btnToggleAll.innerHTML = allRev ? '🙈 Hide All Answers' : '👁 Show All Answers';
+  btnToggleAll.innerHTML = allRev ? '🙈 Hide Answers' : '👁 Show Answers';
   btnToggleAll.addEventListener('click', toggleAllAnswers);
 
   const btnSubmitTop = document.createElement('button');
@@ -2565,7 +3076,10 @@ function renderAllQuestionsView() {
   const jumpBarWrap = document.createElement('div');
   const jumpLabel = document.createElement('div');
   jumpLabel.className = 'jump-bar-label';
-  jumpLabel.textContent = 'Quick Question Jump';
+  jumpLabel.style.display = 'flex';
+  jumpLabel.style.justifyContent = 'space-between';
+  jumpLabel.style.alignItems = 'center';
+  jumpLabel.innerHTML = `<span>Quick Question Jump</span>${totalPages > 1 ? `<span style="font-size:0.7rem;color:var(--mute);text-transform:none;">Page ${state.currentPage + 1} (Q${startIdx + 1}–Q${endIdx})</span>` : ''}`;
   jumpBarWrap.appendChild(jumpLabel);
 
   const jumpBar = document.createElement('div');
@@ -2574,6 +3088,9 @@ function renderAllQuestionsView() {
 
   state.questions.forEach((q, i) => {
     const pill = createJumpPill(q, i, true);
+    if (i >= startIdx && i < endIdx) {
+      pill.classList.add('on-current-page');
+    }
     jumpBar.appendChild(pill);
   });
   jumpBarWrap.appendChild(jumpBar);
@@ -2582,14 +3099,16 @@ function renderAllQuestionsView() {
   toolbar.appendChild(jumpBarWrap);
   body.appendChild(toolbar);
 
-  // Container with all cards & preceding passage cards
+  // Container with question cards & preceding passage cards for current page
   const container = document.createElement('div');
   container.className = 'all-qs-container';
 
   let currentPassageId = null;
 
-  state.questions.forEach((q, i) => {
-    // If this question starts a new reading passage, insert passage card
+  pageQuestions.forEach((q, localIdx) => {
+    const globalIdx = startIdx + localIdx;
+
+    // If this question starts a new reading passage on this page, insert passage card
     if (q.passage && q.passage.id && q.passage.id !== currentPassageId) {
       currentPassageId = q.passage.id;
       const relatedIndices = [];
@@ -2602,11 +3121,66 @@ function renderAllQuestionsView() {
       currentPassageId = null;
     }
 
-    const card = createQuestionCard(q, i, false);
+    const card = createQuestionCard(q, globalIdx, false);
     container.appendChild(card);
   });
 
   body.appendChild(container);
+
+  // Bottom pagination bar if more than 1 page
+  if (totalPages > 1) {
+    const pageNav = document.createElement('div');
+    pageNav.className = 'pagination-bar';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'btn btn-secondary';
+    prevBtn.type = 'button';
+    prevBtn.disabled = state.currentPage === 0;
+    prevBtn.innerHTML = `← Prev 10 Qs`;
+    prevBtn.addEventListener('click', () => changePage(state.currentPage - 1));
+
+    const pillsWrap = document.createElement('div');
+    pillsWrap.className = 'pagination-pills';
+
+    for (let p = 0; p < totalPages; p++) {
+      const pPill = document.createElement('button');
+      pPill.type = 'button';
+      pPill.className = 'page-pill' + (p === state.currentPage ? ' active' : '');
+      pPill.textContent = p + 1;
+      const pStart = p * pageSize + 1;
+      const pEnd = Math.min((p + 1) * pageSize, total);
+      pPill.title = `Page ${p + 1} (Q${pStart}–Q${pEnd})`;
+      pPill.addEventListener('click', () => changePage(p));
+      pillsWrap.appendChild(pPill);
+    }
+
+    const nextBtn = document.createElement('button');
+    if (state.currentPage === totalPages - 1) {
+      nextBtn.className = 'btn btn-primary';
+      nextBtn.type = 'button';
+      nextBtn.innerHTML = `Submit Quiz ✔`;
+      nextBtn.addEventListener('click', submitQuiz);
+    } else {
+      nextBtn.className = 'btn btn-primary';
+      nextBtn.type = 'button';
+      nextBtn.innerHTML = `Next 10 Qs →`;
+      nextBtn.addEventListener('click', () => changePage(state.currentPage + 1));
+    }
+
+    pageNav.appendChild(prevBtn);
+    pageNav.appendChild(pillsWrap);
+    pageNav.appendChild(nextBtn);
+    body.appendChild(pageNav);
+  }
+}
+
+function changePage(newPage) {
+  const totalPages = Math.max(1, Math.ceil(state.questions.length / (state.pageSize || 10)));
+  if (newPage < 0 || newPage >= totalPages) return;
+  state.currentPage = newPage;
+  renderAllQuestionsView();
+  updateToolbarAndNav();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ─── Render Single Question View ──────────────────────
@@ -2671,12 +3245,21 @@ function createJumpPill(q, idx, isAllMode) {
 
   pill.addEventListener('click', () => {
     if (isAllMode) {
-      const el = document.getElementById('q-card-' + idx);
-      if (el) {
-        const yOffset = -75;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+      const pageSize = state.pageSize || 10;
+      const targetPage = Math.floor(idx / pageSize);
+      if (state.currentPage !== targetPage) {
+        state.currentPage = targetPage;
+        renderAllQuestionsView();
+        updateToolbarAndNav();
       }
+      setTimeout(() => {
+        const el = document.getElementById('q-card-' + idx);
+        if (el) {
+          const yOffset = -75;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 50);
     } else {
       renderSingleQuestionView(idx);
       updateToolbarAndNav();
@@ -2838,6 +3421,37 @@ function createQuestionCard(q, idx, isSingleMode) {
   typeSpan.textContent = q.type === 'mcq' ? 'MCQ' : 'MSQ';
 
   meta.appendChild(numSpan);
+  if (q.weekTitle) {
+    const shouldHideWeek = state.isFullTest || state.settings.shuffleQuestions;
+    if (shouldHideWeek) {
+      // In full course test or random order, hide week info by default to avoid confusion with the 1-120 index
+      const isRevealed = !!state.revealedWeeks[q.id];
+      const weekBtn = document.createElement('button');
+      weekBtn.type = 'button';
+      weekBtn.className = 'q-week-badge q-week-badge-toggle' + (isRevealed ? ' revealed' : '');
+      const originalNum = q.originalIndex != null ? (q.originalIndex + 1) : null;
+      const labelRevealed = originalNum != null
+        ? `👁 ${escapeHtml(q.weekTitle)} • Q${originalNum}`
+        : `👁 ${escapeHtml(q.weekTitle)}`;
+      weekBtn.title = isRevealed ? 'Click to hide week details' : 'Click to reveal which week and question this is from';
+      weekBtn.innerHTML = isRevealed ? labelRevealed : '👁 Show Week';
+      weekBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.revealedWeeks[q.id] = !state.revealedWeeks[q.id];
+        const nowRevealed = state.revealedWeeks[q.id];
+        weekBtn.classList.toggle('revealed', nowRevealed);
+        weekBtn.innerHTML = nowRevealed ? labelRevealed : '👁 Show Week';
+        weekBtn.title = nowRevealed ? 'Click to hide week details' : 'Click to reveal which week and question this is from';
+      });
+      meta.appendChild(weekBtn);
+    } else {
+      // In single-week sequential practice, show week tag directly
+      const weekSpan = document.createElement('span');
+      weekSpan.className = 'q-week-badge';
+      weekSpan.textContent = q.weekTitle;
+      meta.appendChild(weekSpan);
+    }
+  }
   meta.appendChild(typeSpan);
 
   // If question has an associated reading passage, add jump pill in meta
@@ -2871,7 +3485,12 @@ function createQuestionCard(q, idx, isSingleMode) {
   // Question text
   const qText = document.createElement('div');
   qText.className = 'question-text';
-  qText.innerHTML = q.html;
+  // Strip any accidental leading question numbers or trailing point indicators
+  let cleanHtml = (q.html || '')
+    .replace(/^\s*(?:<[^>]+>\s*)*(?:Question\s*\d+[:.]?|Q\.?\s*\d+[:.]?|\d+[\s.)\-:])\s*/i, '')
+    .replace(/\s*(?:<div[^>]*>|<span[^>]*>|<br\s*\/?>|\s)*(?:\(\d+\s*Points?\)|\d+\s*Points?)(?:\s*<\/[^>]+>)*\s*$/i, '')
+    .trim();
+  qText.innerHTML = cleanHtml || q.html;
   card.appendChild(qText);
 
   // Instruction
@@ -3196,32 +3815,64 @@ function toggleAllAnswers() {
 function updateToolbarAndNav() {
   const total = state.questions.length;
   const answeredCount = state.questions.filter(q => (state.answers[q.id] || []).length > 0).length;
+  const pageSize = state.pageSize || 10;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
 
   // Topbar counter
   if (state.settings.viewMode === 'all') {
-    $('quiz-counter').innerHTML = `Answered <strong>${answeredCount}</strong> / <strong>${total}</strong>`;
+    if (totalPages > 1) {
+      $('quiz-counter').innerHTML = `Page <strong>${state.currentPage + 1}</strong>/${totalPages} &bull; <strong>${answeredCount}</strong>/<strong>${total}</strong> ans`;
+    } else {
+      $('quiz-counter').innerHTML = `Answered <strong>${answeredCount}</strong> / <strong>${total}</strong>`;
+    }
     $('progress-fill').style.width = `${total > 0 ? (answeredCount / total) * 100 : 0}%`;
   } else {
     $('quiz-counter').innerHTML = `Question <strong>${state.currentIdx + 1}</strong> of <strong>${total}</strong>`;
     $('progress-fill').style.width = `${total > 0 ? ((state.currentIdx + 1) / total) * 100 : 0}%`;
   }
 
-  // Bottom nav all mode counters
+  // Bottom nav all mode counters & pagination
   const navAns = $('nav-all-answered');
   const navTot = $('nav-all-total');
   if (navAns) navAns.textContent = answeredCount;
   if (navTot) navTot.textContent = total;
 
+  const btnPrev = $('btn-page-prev-bottom');
+  const btnNext = $('btn-page-next-bottom');
+  const pageIndicator = $('nav-all-page-indicator');
+
+  if (totalPages > 1) {
+    if (btnPrev) {
+      btnPrev.style.display = 'inline-flex';
+      btnPrev.disabled = state.currentPage === 0;
+    }
+    if (btnNext) {
+      btnNext.style.display = 'inline-flex';
+      btnNext.disabled = state.currentPage === totalPages - 1;
+    }
+    if (pageIndicator) {
+      pageIndicator.style.display = 'inline-block';
+      pageIndicator.innerHTML = `Page ${state.currentPage + 1}/${totalPages} &bull; `;
+    }
+  } else {
+    if (btnPrev) btnPrev.style.display = 'none';
+    if (btnNext) btnNext.style.display = 'none';
+    if (pageIndicator) pageIndicator.style.display = 'none';
+  }
+
   // Toggle all answers button in toolbar & bottom
   const allRev = total > 0 && state.questions.every(q => !!state.revealed[q.id]);
   const topToggle = $('btn-toggle-all-answers');
-  if (topToggle) topToggle.innerHTML = allRev ? '🙈 Hide All Answers' : '👁 Show All Answers';
+  if (topToggle) topToggle.innerHTML = allRev ? '🙈 Hide Answers' : '👁 Show Answers';
 
   const bottomToggle = $('btn-reveal-all-bottom');
-  if (bottomToggle) bottomToggle.innerHTML = allRev ? '🙈 Hide All Answers' : '👁 Show All Answers';
+  if (bottomToggle) bottomToggle.innerHTML = allRev ? '🙈 Hide Answers' : '👁 Show Answers';
 }
 
 // ─── Bottom Nav Events ────────────────────────────────
+$('btn-page-prev-bottom')?.addEventListener('click', () => changePage(state.currentPage - 1));
+$('btn-page-next-bottom')?.addEventListener('click', () => changePage(state.currentPage + 1));
+
 $('btn-reveal-all-bottom')?.addEventListener('click', toggleAllAnswers);
 
 $('btn-scroll-top')?.addEventListener('click', () => {
@@ -3371,6 +4022,7 @@ function showResults() {
     item.innerHTML = `
       <div class="review-item-header">
         <span>Q${i + 1}</span>
+        ${d.q.weekTitle ? `<span class="q-week-badge">${escapeHtml(d.q.weekTitle)}${state.isFullTest ? ` • Q${d.q.originalIndex + 1}` : ''}</span>` : ''}
         <span class="q-type ${d.q.type}" style="font-size:0.72rem;padding:2px 8px">${d.q.type.toUpperCase()}</span>
         <span class="review-result-badge ${badgeClass}">${resultText}</span>
       </div>
@@ -3404,9 +4056,12 @@ $('back-home-btn').addEventListener('click', () => {
   state.rawQuestions = [];
   state.passages = [];
   state.questions = [];
+  state.currentIdx = 0;
+  state.currentPage = 0;
   state.answers = {};
   state.answered = {};
   state.revealed = {};
+  state.revealedWeeks = {};
   state.passageCollapsed = {};
   parseStatus.classList.remove('show');
   startBtn.disabled = true;
