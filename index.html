@@ -2986,8 +2986,14 @@
   ══════════════════════════════════════════ -->
     <div id="result-screen" class="screen">
       <div
-        style="width:100%; max-width:720px; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-        <div class="mono-eyebrow">// EVALUATION COMPLETE</div>
+        style="width:100%; max-width:720px; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:8px;">
+        <button class="quiz-back-btn" id="btn-result-top-back" type="button" title="Back to Courses">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          <span>Back to Courses</span>
+        </button>
         <button class="theme-toggle-btn" id="theme-toggle-result" type="button"
           title="Toggle Light / Dark mode"></button>
       </div>
@@ -3031,18 +3037,24 @@
         </div>
       </div>
 
+      <!-- Result Action CTAs positioned at TOP directly beneath stats -->
+      <div class="result-cta" id="result-cta-top" style="margin-top:20px; margin-bottom:24px;">
+        <button class="btn btn-primary" id="practice-mistakes-now-btn"
+          style="display:none; background:#d97706; border-color:#d97706; color:#ffffff;">🎯 Practice Mistakes (<span
+            id="result-mistakes-count">0</span>)</button>
+        <button class="btn btn-secondary" id="review-all-btn">Review All Questions</button>
+        <button class="btn btn-primary" id="retry-btn">Try Again</button>
+      </div>
+
       <div class="review-section" id="review-section">
         <h3>Question Review</h3>
         <div id="review-list"></div>
       </div>
 
-      <div class="result-cta">
-        <button class="btn btn-secondary" id="back-home-btn">← Back to Courses</button>
-        <button class="btn btn-secondary" id="review-all-btn">Review All Questions</button>
-        <button class="btn btn-primary" id="practice-mistakes-now-btn"
-          style="display:none; background:#d97706; border-color:#d97706; color:#ffffff;">🎯 Practice Mistakes (<span
-            id="result-mistakes-count">0</span>)</button>
-        <button class="btn btn-primary" id="retry-btn">Try Again</button>
+      <!-- Secondary Exit CTA at the bottom for convenience after reading review -->
+      <div class="result-cta" style="margin-top:24px;">
+        <button class="btn btn-secondary" id="back-home-btn-bottom">← Back to Courses</button>
+        <button class="btn btn-primary" id="retry-btn-bottom">Try Again</button>
       </div>
     </div>
 
@@ -3179,8 +3191,11 @@
     let currentScreen = 'upload';
     let skipNextBackConfirm = false;
 
-    // Initialize history state on load
+    // Initialize history state on load and disable automatic browser scroll restoration
     try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
       history.replaceState({ screen: 'upload' }, '', window.location.href);
     } catch (e) { }
 
@@ -3193,6 +3208,16 @@
       if (name === 'upload' && typeof renderCourseView === 'function') {
         renderCourseView();
       }
+
+      // Instantly reset scroll to top across all devices & browsers
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
 
       if (pushHistory) {
         try {
@@ -4837,7 +4862,14 @@
       state.currentPage = newPage;
       renderAllQuestionsView();
       updateToolbarAndNav();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
     }
 
     // ─── Render Single Question View ──────────────────────
@@ -4886,7 +4918,14 @@
       $('next-btn').textContent = isLast ? '✔ Finish' : 'Next →';
       $('next-btn').className = isLast ? 'btn btn-correct' : 'btn btn-primary';
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
     }
 
     // ─── Jump Pill Factory ────────────────────────────────
@@ -5783,27 +5822,18 @@
       });
 
       showScreen('result');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
     }
 
     // ─── Results CTA Actions ──────────────────────────────
-    $('review-all-btn')?.addEventListener('click', () => {
-      state.settings.viewMode = 'all';
-      // Reveal all answers for comprehensive study
-      state.questions.forEach(q => state.revealed[q.id] = true);
-      showScreen('quiz');
-      renderQuizView();
-    });
-
-    $('retry-btn').addEventListener('click', () => {
-      if (state.isMistakesWorkout) {
-        startMistakesWorkout(currentCourse);
-      } else {
-        startQuiz();
-      }
-    });
-
-    $('back-home-btn').addEventListener('click', () => {
+    function returnToHome() {
       state.isFullTest = false;
       state.isMistakesWorkout = false;
       state.rawQuestions = [];
@@ -5821,7 +5851,38 @@
       startBtn.textContent = 'Start Quiz';
       fileInput.value = '';
       showScreen('upload');
+    }
+
+    $('btn-result-top-back')?.addEventListener('click', returnToHome);
+    $('back-home-btn')?.addEventListener('click', returnToHome);
+    $('back-home-btn-bottom')?.addEventListener('click', returnToHome);
+
+    $('review-all-btn')?.addEventListener('click', () => {
+      state.settings.viewMode = 'all';
+      // Reveal all answers for comprehensive study
+      state.questions.forEach(q => state.revealed[q.id] = true);
+      showScreen('quiz');
+      renderQuizView();
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
     });
+
+    function retryCurrentQuiz() {
+      if (state.isMistakesWorkout) {
+        startMistakesWorkout(currentCourse);
+      } else {
+        startQuiz();
+      }
+    }
+
+    $('retry-btn')?.addEventListener('click', retryCurrentQuiz);
+    $('retry-btn-bottom')?.addEventListener('click', retryCurrentQuiz);
 
 
   </script>
