@@ -2257,12 +2257,80 @@ const screens = {
   result: $('result-screen'),
 };
 
-// ─── Helpers ──────────────────────────────────────────
-function showScreen(name) {
-  Object.entries(screens).forEach(([k,el]) => {
+// ─── Screen & Navigation Management (Mobile Phone Back Button Support) ──
+let currentScreen = 'upload';
+let skipNextBackConfirm = false;
+
+// Initialize history state on load
+try {
+  history.replaceState({ screen: 'upload' }, '', window.location.href);
+} catch (e) {}
+
+function showScreen(name, pushHistory = true) {
+  currentScreen = name;
+  Object.entries(screens).forEach(([k, el]) => {
     el.classList.toggle('active', k === name);
   });
+
+  if (pushHistory) {
+    try {
+      history.pushState({ screen: name }, '', window.location.href);
+    } catch (e) {}
+  }
 }
+
+// Intercept browser and mobile phone back button
+window.addEventListener('popstate', (e) => {
+  if (skipNextBackConfirm) {
+    skipNextBackConfirm = false;
+    showScreen('upload', false);
+    return;
+  }
+
+  // If currently taking a quiz and back button is pressed
+  if (currentScreen === 'quiz') {
+    const answeredCount = state.questions.filter(q => (state.answers[q.id] || []).length > 0).length;
+    if (answeredCount > 0) {
+      const leave = confirm('⚠️ Warning: Leaving this quiz will discard your current answers and progress.\n\nDo you want to return to the home page?');
+      if (leave) {
+        showScreen('upload', false);
+      } else {
+        // Stay in quiz: restore history state
+        try {
+          history.pushState({ screen: 'quiz' }, '', window.location.href);
+        } catch (err) {}
+      }
+    } else {
+      // No answers yet: return to home page
+      showScreen('upload', false);
+    }
+    return;
+  }
+
+  // If on result screen, return to home
+  if (currentScreen === 'result') {
+    showScreen('upload', false);
+    return;
+  }
+
+  if (e.state && e.state.screen && screens[e.state.screen]) {
+    showScreen(e.state.screen, false);
+  } else {
+    showScreen('upload', false);
+  }
+});
+
+// Guard against accidental tab close or page reload while taking a quiz
+window.addEventListener('beforeunload', (e) => {
+  if (currentScreen === 'quiz') {
+    const answeredCount = state.questions.filter(q => (state.answers[q.id] || []).length > 0).length;
+    if (answeredCount > 0) {
+      e.preventDefault();
+      e.returnValue = '';
+      return '';
+    }
+  }
+});
 
 // ─── Theme Management (Vercel Geist Dark Mode) ────────
 function initTheme() {
@@ -4467,11 +4535,21 @@ $('skip-link').addEventListener('click', () => {
 $('quit-btn').addEventListener('click', () => {
   const answeredCount = state.questions.filter(q => (state.answers[q.id] || []).length > 0).length;
   if (answeredCount > 0) {
-    if (confirm('Leave quiz and return to courses? Your current progress will be lost.')) {
-      showScreen('upload');
+    if (confirm('⚠️ Warning: Leaving this quiz will discard your current answers and progress.\n\nDo you want to return to the home page?')) {
+      skipNextBackConfirm = true;
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        showScreen('upload', false);
+      }
     }
   } else {
-    showScreen('upload');
+    skipNextBackConfirm = true;
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      showScreen('upload', false);
+    }
   }
 });
 
