@@ -1,20 +1,43 @@
 [
   {
+    "id": "entrepreneurship",
+    "name": "Entrepreneurship",
+    "code": "NPTEL-EP",
+    "description": "NPTEL Swayam Entrepreneurship 12-Week Assignment Series",
+    "archived": false,
+    "totalWeeks": 12,
+    "weeks": [
+      { "week": 1, "title": "Week 01", "subtitle": "Assignment 1", "file": "data/ep/week-01.html", "available": true },
+      { "week": 2, "title": "Week 02", "subtitle": "Assignment 2", "file": "data/ep/week-02.html", "available": true },
+      { "week": 3, "title": "Week 03", "subtitle": "Assignment 3", "file": "data/ep/week-03.html", "available": true },
+      { "week": 4, "title": "Week 04", "subtitle": "Assignment 4", "file": "data/ep/week-04.html", "available": true },
+      { "week": 5, "title": "Week 05", "subtitle": "Assignment 5", "file": "data/ep/week-05.html", "available": true },
+      { "week": 6, "title": "Week 06", "subtitle": "Assignment 6", "file": "data/ep/week-06.html", "available": true },
+      { "week": 7, "title": "Week 07", "subtitle": "Assignment 7", "file": "data/ep/week-07.html", "available": true },
+      { "week": 8, "title": "Week 08", "subtitle": "Assignment 8", "file": "data/ep/week-08.html", "available": true },
+      { "week": 9, "title": "Week 09", "subtitle": "Assignment 9", "file": "data/ep/week-09.html", "available": true },
+      { "week": 10, "title": "Week 10", "subtitle": "Assignment 10", "file": "data/ep/week-10.html", "available": true },
+      { "week": 11, "title": "Week 11", "subtitle": "Assignment 11", "file": "data/ep/week-11.html", "available": true },
+      { "week": 12, "title": "Week 12", "subtitle": "Assignment 12", "file": "data/ep/week-12.html", "available": true }
+    ]
+  },
+  {
     "id": "research-methodology",
     "name": "Research Methodology",
     "code": "NPTEL-RM",
     "description": "NPTEL Swayam Research Methodology 12-Week Assignment Series",
+    "archived": true,
     "totalWeeks": 12,
     "weeks": [
       { "week": 1, "title": "Week 01", "subtitle": "Assignment 1", "file": "data/rm/week-01.html", "available": true },
       { "week": 2, "title": "Week 02", "subtitle": "Assignment 2", "file": "data/rm/week-02.html", "available": true },
       { "week": 3, "title": "Week 03", "subtitle": "Assignment 3", "file": "data/rm/week-03.html", "available": true },
-      { "week": 4, "title": "Week 4", "subtitle": "Assignment 4", "file": "data/rm/week-04.html", "available": true },
+      { "week": 4, "title": "Week 04", "subtitle": "Assignment 4", "file": "data/rm/week-04.html", "available": true },
       { "week": 5, "title": "Week 05", "subtitle": "Assignment 5", "file": "data/rm/week-05.html", "available": true },
       { "week": 6, "title": "Week 06", "subtitle": "Assignment 6", "file": "data/rm/week-06.html", "available": true },
       { "week": 7, "title": "Week 07", "subtitle": "Assignment 7", "file": "data/rm/week-07.html", "available": true },
       { "week": 8, "title": "Week 08", "subtitle": "Assignment 8", "file": "data/rm/week-08.html", "available": true },
-      { "week": 9, "title": "Week 9", "subtitle": "Assignment 9", "file": "data/rm/week-09.html", "available": true },
+      { "week": 9, "title": "Week 09", "subtitle": "Assignment 9", "file": "data/rm/week-09.html", "available": true },
       { "week": 10, "title": "Week 10", "subtitle": "Assignment 10", "file": "data/rm/week-10.html", "available": true },
       { "week": 11, "title": "Week 11", "subtitle": "Assignment 11", "file": "data/rm/week-11.html", "available": true },
       { "week": 12, "title": "Week 12", "subtitle": "Assignment 12", "file": "data/rm/week-12.html", "available": true }

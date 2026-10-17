@@ -388,6 +388,75 @@
       color: var(--mono-badge-text);
       white-space: nowrap;
     }
+    .archived-courses-card {
+      width: 100%;
+      margin-top: 14px;
+      background: var(--canvas-elevated);
+      border: 1px dashed var(--hairline-hover);
+      border-radius: var(--rounded-md);
+      padding: 12px 16px;
+      transition: var(--transition);
+    }
+    .archived-courses-card:hover {
+      border-color: var(--hairline-hover);
+    }
+    .archived-toggle-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      color: var(--ink);
+      font-family: var(--font-sans);
+      text-align: left;
+    }
+    .archived-toggle-btn:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+    .archived-content {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .archived-course-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--rounded-sm);
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      transition: var(--transition);
+      flex-wrap: wrap;
+    }
+    .archived-course-item:hover {
+      border-color: var(--hairline-hover);
+    }
+    .archived-course-item.active {
+      border-color: var(--ink);
+      background: var(--hairline-soft);
+    }
+    .archived-back-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      background: var(--hairline-soft);
+      border: 1px solid var(--hairline-hover);
+      border-radius: var(--rounded-sm);
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+    }
     .weeks-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1616,14 +1685,21 @@
 
     <!-- Course & Week Selector -->
     <div class="course-card" id="course-card">
+      <div id="archived-banner" style="display:none;" class="archived-back-banner">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:0.95rem;">📦</span>
+          <span style="font-weight:600; color:var(--ink);">Viewing Archived Course</span>
+          <span id="archived-banner-course" style="font-size:0.75rem; color:var(--mute);">• Research Methodology</span>
+        </div>
+        <button type="button" id="btn-back-to-active" class="btn btn-secondary" style="font-size:0.75rem; padding:3px 10px; height:28px; border-radius:var(--rounded-pill);">
+          ← Back to Entrepreneurship
+        </button>
+      </div>
+
       <div class="course-header">
         <div style="flex:1;">
-          <div class="course-meta" id="course-meta">Curated Course</div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <select id="course-select" style="display:none; font-family:var(--font-sans); font-size:1.05rem; font-weight:600; background:var(--canvas); color:var(--ink); border:1px solid var(--hairline); border-radius:var(--rounded-sm); padding:4px 8px; cursor:pointer;">
-            </select>
-            <div class="course-title" id="course-title">Research Methodology</div>
-          </div>
+          <div class="course-meta" id="course-meta">NPTEL-EP • Curated Course</div>
+          <div class="course-title" id="course-title">Entrepreneurship</div>
         </div>
         <span class="course-tag" id="course-tag">All 12 Weeks Ready</span>
       </div>
@@ -1717,6 +1793,24 @@
         <button type="button" id="btn-open-upload-card" class="btn btn-secondary" style="font-size:0.78rem; padding:4px 12px; height:32px; border-radius:var(--rounded-pill);">
           Upload Custom File &rarr;
         </button>
+      </div>
+    </div>
+
+    <!-- Archived Courses Accordion -->
+    <div class="archived-courses-card" id="archived-courses-card">
+      <button type="button" class="archived-toggle-btn" id="btn-toggle-archived" aria-expanded="false">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:0.95rem;">📦</span>
+          <span style="font-weight:600; font-size:0.86rem; color:var(--ink);">Archived Courses</span>
+          <span class="badge" id="archived-count-badge" style="background:var(--mono-badge-bg); border:1px solid var(--hairline); color:var(--mute); font-family:var(--font-mono); font-size:0.7rem; padding:2px 8px; border-radius:var(--rounded-pill);">1 Course</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span id="archived-toggle-hint" style="font-size:0.75rem; color:var(--mute);">View past courses</span>
+          <svg id="archived-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.2s ease; color:var(--mute);"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="archived-content" id="archived-content" style="display:none;">
+        <div id="archived-list"></div>
       </div>
     </div>
 
@@ -2632,10 +2726,33 @@ function loadAssignmentFromHtml(htmlString, weekNum = null) {
 // ─── Course & Week Manifest Loader (courses.json) ──────
 const FALLBACK_COURSES = [
   {
+    id: "entrepreneurship",
+    name: "Entrepreneurship",
+    code: "NPTEL-EP",
+    description: "NPTEL Swayam Entrepreneurship 12-Week Assignment Series",
+    archived: false,
+    totalWeeks: 12,
+    weeks: [
+      { week: 1, title: "Week 01", subtitle: "Assignment 1", file: "data/ep/week-01.html", available: true },
+      { week: 2, title: "Week 02", subtitle: "Assignment 2", file: "data/ep/week-02.html", available: true },
+      { week: 3, title: "Week 03", subtitle: "Assignment 3", file: "data/ep/week-03.html", available: true },
+      { week: 4, title: "Week 04", subtitle: "Assignment 4", file: "data/ep/week-04.html", available: true },
+      { week: 5, title: "Week 05", subtitle: "Assignment 5", file: "data/ep/week-05.html", available: true },
+      { week: 6, title: "Week 06", subtitle: "Assignment 6", file: "data/ep/week-06.html", available: true },
+      { week: 7, title: "Week 07", subtitle: "Assignment 7", file: "data/ep/week-07.html", available: true },
+      { week: 8, title: "Week 08", subtitle: "Assignment 8", file: "data/ep/week-08.html", available: true },
+      { week: 9, title: "Week 09", subtitle: "Assignment 9", file: "data/ep/week-09.html", available: true },
+      { week: 10, title: "Week 10", subtitle: "Assignment 10", file: "data/ep/week-10.html", available: true },
+      { week: 11, title: "Week 11", subtitle: "Assignment 11", file: "data/ep/week-11.html", available: true },
+      { week: 12, title: "Week 12", subtitle: "Assignment 12", file: "data/ep/week-12.html", available: true }
+    ]
+  },
+  {
     id: "research-methodology",
     name: "Research Methodology",
     code: "NPTEL-RM",
     description: "NPTEL Swayam Research Methodology 12-Week Assignment Series",
+    archived: true,
     totalWeeks: 12,
     weeks: [
       { week: 1, title: "Week 01", subtitle: "Assignment 1", file: "data/rm/week-01.html", available: true },
@@ -2646,7 +2763,7 @@ const FALLBACK_COURSES = [
       { week: 6, title: "Week 06", subtitle: "Assignment 6", file: "data/rm/week-06.html", available: true },
       { week: 7, title: "Week 07", subtitle: "Assignment 7", file: "data/rm/week-07.html", available: true },
       { week: 8, title: "Week 08", subtitle: "Assignment 8", file: "data/rm/week-08.html", available: true },
-      { week: 9, title: "Week 9", subtitle: "Assignment 9", file: "data/rm/week-09.html", available: true },
+      { week: 9, title: "Week 09", subtitle: "Assignment 9", file: "data/rm/week-09.html", available: true },
       { week: 10, title: "Week 10", subtitle: "Assignment 10", file: "data/rm/week-10.html", available: true },
       { week: 11, title: "Week 11", subtitle: "Assignment 11", file: "data/rm/week-11.html", available: true },
       { week: 12, title: "Week 12", subtitle: "Assignment 12", file: "data/rm/week-12.html", available: true }
@@ -2670,33 +2787,115 @@ async function initCourses() {
     // If running in local file:// without server, fallback array is used
   }
 
-  renderCourseSelector();
+  const activeCourse = appCourses.find(c => !c.archived) || appCourses[0];
+  currentCourse = activeCourse;
+
+  renderCourseView();
+  initArchivedCourses();
   checkDeepLink();
 }
 
-function renderCourseSelector() {
-  const selectEl = $('course-select');
-  const titleEl = $('course-title');
+function renderCourseView() {
+  const activeCourse = appCourses.find(c => !c.archived) || appCourses[0];
+  const isArchived = !!currentCourse.archived;
 
-  if (appCourses.length > 1) {
-    selectEl.style.display = 'block';
-    titleEl.style.display = 'none';
-    selectEl.innerHTML = appCourses.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-    selectEl.addEventListener('change', () => {
-      const sel = appCourses.find(c => c.id === selectEl.value);
-      if (sel) {
-        currentCourse = sel;
-        renderWeeksGrid(currentCourse);
-      }
-    });
-  } else {
-    selectEl.style.display = 'none';
-    titleEl.style.display = 'block';
-    titleEl.textContent = appCourses[0].name;
+  const titleEl = $('course-title');
+  if (titleEl) titleEl.textContent = currentCourse.name;
+  if ($('course-meta')) {
+    $('course-meta').textContent = isArchived
+      ? `${currentCourse.code || ''} • ARCHIVED COURSE`
+      : `${currentCourse.code || ''} • CURATED COURSE`;
   }
 
-  currentCourse = appCourses[0];
+  const banner = $('archived-banner');
+  const bannerCourse = $('archived-banner-course');
+  const backBtn = $('btn-back-to-active');
+  if (banner) {
+    if (isArchived) {
+      banner.style.display = 'flex';
+      if (bannerCourse) bannerCourse.textContent = `• ${currentCourse.name}`;
+      if (backBtn) {
+        backBtn.textContent = `← Back to ${activeCourse.name}`;
+        backBtn.onclick = () => {
+          currentCourse = activeCourse;
+          renderCourseView();
+        };
+      }
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
   renderWeeksGrid(currentCourse);
+  renderArchivedList();
+}
+
+function initArchivedCourses() {
+  const toggleBtn = $('btn-toggle-archived');
+  const content = $('archived-content');
+  const chevron = $('archived-chevron');
+
+  if (toggleBtn && content) {
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = content.style.display !== 'none';
+      content.style.display = isOpen ? 'none' : 'flex';
+      toggleBtn.setAttribute('aria-expanded', !isOpen);
+      if (chevron) {
+        chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    });
+  }
+}
+
+function renderArchivedList() {
+  const listEl = $('archived-list');
+  const badgeEl = $('archived-count-badge');
+  const cardEl = $('archived-courses-card');
+  if (!listEl) return;
+
+  const archivedCourses = appCourses.filter(c => c.archived);
+  if (cardEl) {
+    cardEl.style.display = archivedCourses.length > 0 ? 'block' : 'none';
+  }
+  if (badgeEl) {
+    badgeEl.textContent = `${archivedCourses.length} ${archivedCourses.length === 1 ? 'Course' : 'Courses'}`;
+  }
+
+  listEl.innerHTML = '';
+  archivedCourses.forEach(c => {
+    const isCurrent = currentCourse && currentCourse.id === c.id;
+    const item = document.createElement('div');
+    item.className = `archived-course-item ${isCurrent ? 'active' : ''}`;
+    item.innerHTML = `
+      <div style="flex:1; min-width:200px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+          <span style="font-weight:600; font-size:0.92rem; color:var(--ink);">${c.name}</span>
+          <span class="badge" style="background:var(--mono-badge-bg); border:1px solid var(--hairline); color:var(--mute); font-family:var(--font-mono); font-size:0.68rem; padding:1px 6px; border-radius:var(--rounded-pill);">${c.code || 'ARCHIVED'} • ${c.totalWeeks || c.weeks.length} Weeks</span>
+        </div>
+        <div style="font-size:0.78rem; color:var(--mute);">${c.description || ''}</div>
+      </div>
+      <div>
+        ${isCurrent
+          ? `<span class="badge" style="background:var(--hairline-hover); color:var(--ink); font-size:0.75rem; padding:4px 10px; border-radius:var(--rounded-pill);">✓ Active Now</span>`
+          : `<button type="button" class="btn btn-secondary btn-switch-course" data-id="${c.id}" style="font-size:0.76rem; padding:4px 12px; height:30px; border-radius:var(--rounded-pill);">
+              Switch to Course &rarr;
+            </button>`
+        }
+      </div>
+    `;
+
+    const switchBtn = item.querySelector('.btn-switch-course');
+    if (switchBtn) {
+      switchBtn.addEventListener('click', () => {
+        currentCourse = c;
+        renderCourseView();
+        const cc = $('course-card');
+        if (cc) cc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    listEl.appendChild(item);
+  });
 }
 
 function renderWeeksGrid(course) {
@@ -2705,7 +2904,12 @@ function renderWeeksGrid(course) {
 
   const availCount = course.weeks.filter(w => w.available).length;
   $('course-tag').textContent = `Weeks 1–${availCount} Ready`;
-  if ($('course-meta')) $('course-meta').textContent = course.code ? `${course.code} • Curated Course` : 'Curated Course';
+  if ($('course-meta')) {
+    const isArchived = !!course.archived;
+    $('course-meta').textContent = isArchived
+      ? `${course.code || ''} • ARCHIVED COURSE`
+      : `${course.code || ''} • CURATED COURSE`;
+  }
 
   course.weeks.forEach(w => {
     const btn = document.createElement('button');
@@ -2864,6 +3068,20 @@ async function startFullCourseTest(orderMode = 'random') {
 function checkDeepLink() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
+    const courseParam = urlParams.get('course');
+    if (courseParam) {
+      const matched = appCourses.find(c =>
+        c.id === courseParam ||
+        (c.code && c.code.toLowerCase() === courseParam.toLowerCase()) ||
+        (courseParam.toLowerCase() === 'ep' && c.id === 'entrepreneurship') ||
+        (courseParam.toLowerCase() === 'rm' && c.id === 'research-methodology')
+      );
+      if (matched) {
+        currentCourse = matched;
+        renderCourseView();
+      }
+    }
+
     const testParam = urlParams.get('test');
     const orderParam = urlParams.get('order');
     const initialWeek = urlParams.get('week');
