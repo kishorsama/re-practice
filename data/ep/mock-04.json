@@ -1,0 +1,365 @@
+{
+  "title": "Entrepreneurship — Mock Exam 4 (30 Qs)",
+  "questions": [
+    {
+      "question": "What is the primary purpose of a \"pitch deck\" according to the lecture notes?",
+      "type": "mcq",
+      "options": [
+        "To serve as a legal contract between founders and investors",
+        "To act as a detailed financial statement for auditing purposes",
+        "To be a concise presentation used to engage stakeholders, especially investors",
+        "To function as a comprehensive employee onboarding manual"
+      ],
+      "answer": "C",
+      "explanation": "Source: 08qhSzm85-w | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on Corporate Governance, what is the primary institutional structure legally mandated to oversee a company's conduct?",
+      "type": "mcq",
+      "options": [
+        "The CXO Team",
+        "The Board of Directors",
+        "The External Statutory Auditors",
+        "The Shareholders' Association"
+      ],
+      "answer": "B",
+      "explanation": "Source: 3aXjtAbaeC0 | Difficulty: Easy"
+    },
+    {
+      "question": "In the Innovation-Perfection Matrix, what is a product with both high innovation and high perfection called?",
+      "type": "mcq",
+      "options": [
+        "A Niche Product",
+        "A Commodity Product",
+        "A Blockbuster Product",
+        "A Legacy Product"
+      ],
+      "answer": "C",
+      "explanation": "Source: 4wtO5oUVjsU | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on the Indian Unicorn Space defines a \"unicorn\" as a privately held startup company with a valuation exceeding what amount?",
+      "type": "mcq",
+      "options": [
+        "$100 million",
+        "$500 million",
+        "$1 billion",
+        "$10 billion"
+      ],
+      "answer": "C",
+      "explanation": "Source: W9eo60MXfjw | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary focus of \"B2C (Business-to-Consumer)\" business models?",
+      "type": "mcq",
+      "options": [
+        "Selling products or services to other businesses",
+        "Selling products or services directly to individual end-users",
+        "Licensing technology to government agencies",
+        "Forming joint ventures for industrial manufacturing"
+      ],
+      "answer": "B",
+      "explanation": "Source: 0M0Tqfg7xJs | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on HR strategy, what term describes the intense competition among companies to attract and retain valuable employees?",
+      "type": "mcq",
+      "options": [
+        "The Talent War",
+        "The Recruitment Race",
+        "The War for Talent",
+        "The Human Capital Conflict"
+      ],
+      "answer": "C",
+      "explanation": "Source: yI-KWel2VT0 | Difficulty: Easy"
+    },
+    {
+      "question": "What does the \"FAME II Scheme\" in India aim to promote?",
+      "type": "mcq",
+      "options": [
+        "The faster adoption and manufacturing of electric vehicles",
+        "The development of pharmaceutical products",
+        "The expansion of the IT services sector",
+        "The growth of agricultural exports"
+      ],
+      "answer": "A",
+      "explanation": "Source: w48Hj_KWZeY | Difficulty: Easy"
+    },
+    {
+      "question": "In the context of entrepreneurial thermodynamics, what does \"entrepreneurial passion\" primarily sustain?",
+      "type": "mcq",
+      "options": [
+        "Only financial profitability and market share",
+        "The physical infrastructure of the company",
+        "The company's legal and compliance framework",
+        "Creativity, commitment, dedication, and survival instinct"
+      ],
+      "answer": "D",
+      "explanation": "Source: ZzYxHg7wVS4 | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary goal of the \"Ideation\" phase in the entrepreneurial product journey?",
+      "type": "mcq",
+      "options": [
+        "To secure final funding for mass production",
+        "To conduct final regulatory compliance checks",
+        "To encompass empathy and design thinking to generate product concepts",
+        "To launch the product in the market and manage sales"
+      ],
+      "answer": "C",
+      "explanation": "Source: WDV03MMzOA0 | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on M&A, what is the \"Thrasio-style\" business model?",
+      "type": "mcq",
+      "options": [
+        "A model focused on developing in-house software solutions for large corporations",
+        "A model where startups acquire and scale fast-growing, digitally native brands",
+        "A subscription-based model for enterprise software",
+        "A model for providing hyperlocal delivery services within a single city"
+      ],
+      "answer": "B",
+      "explanation": "Source: mmgklT_fcF0 | Difficulty: Easy"
+    },
+    {
+      "question": "Which of the following is NOT a characteristic of \"Wave 4 Technologies\" as described in the lecture?",
+      "type": "mcq",
+      "options": [
+        "Convergence of digital, mechanical, and biological systems",
+        "A focus on \"more with less\" philosophy",
+        "Aiming to revive and regenerate life completely",
+        "Primarily focused on \"more for more\" by enhancing electromechanical devices"
+      ],
+      "answer": "D",
+      "explanation": "Source: 08psHTZPHHI | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture on raising finances, what is the primary difference between Venture Capital (VC) and Private Equity (PE) funding?",
+      "type": "mcq",
+      "options": [
+        "VC funding is only for non-profits, while PE is for for-profit companies",
+        "VC firms invest in high-growth startups, while PE firms focus on more established companies",
+        "VC funding is exclusively debt-based, while PE is equity-based",
+        "VC funding is provided by governments, while PE funding comes from individual angel investors"
+      ],
+      "answer": "B",
+      "explanation": "Source: AVR024-DR6g | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on commercialization identifies \"No Market Need\" as the primary reason for startup failure. What percentage of failures does this account for according to the CB Insights study mentioned?",
+      "type": "mcq",
+      "options": [
+        "15%",
+        "28%",
+        "42%",
+        "55%"
+      ],
+      "answer": "C",
+      "explanation": "Source: JBu-cEaQGAI | Difficulty: Medium"
+    },
+    {
+      "question": "The Economic Survey 2018-19 introduced the term \"dwarfs\" to describe a specific type of firm. What is the definition of a \"dwarf\" firm?",
+      "type": "mcq",
+      "options": [
+        "A startup less than one year old with fewer than 10 employees",
+        "Any firm with an annual turnover below 1 crore rupees",
+        "A firm that is over 10 years old but still employs fewer than 100 workers",
+        "A firm that has not received any venture capital funding"
+      ],
+      "answer": "C",
+      "explanation": "Source: U_p-xwydsH8 | Difficulty: Medium"
+    },
+    {
+      "question": "In the special lecture on the SARA UV Sanitiser, why was Far-UVC technology chosen over other UVC sources?",
+      "type": "mcq",
+      "options": [
+        "It is the cheapest technology available",
+        "It has the longest wavelength, making it penetrate deeper",
+        "It is effective against pathogens but safe for human exposure",
+        "It is the only technology that works with LED lights"
+      ],
+      "answer": "C",
+      "explanation": "Source: hrqT94iPtJM | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on national entrepreneurial culture discusses the \"Indian Paradox.\" What does this paradox describe?",
+      "type": "mcq",
+      "options": [
+        "The coexistence of high-tech industries and traditional agriculture",
+        "The high number of startups but low number of unicorns",
+        "The strong tradition of self-employment alongside a reluctance of the educated workforce towards formal entrepreneurship",
+        "The rapid economic growth despite high levels of bureaucracy"
+      ],
+      "answer": "C",
+      "explanation": "Source: bDcxDQpfe08 | Difficulty: Medium"
+    },
+    {
+      "question": "What is the key difference between \"Sustaining Innovation\" and \"Disruptive Innovation\" as explained in the lecture?",
+      "type": "mcq",
+      "options": [
+        "Sustaining innovation is always cheaper than disruptive innovation",
+        "Sustaining innovation improves existing products without changing market structure, while disruptive innovation creates new markets or transforms existing ones",
+        "Only startups can perform disruptive innovation, while only large firms can perform sustaining innovation",
+        "Sustaining innovation is software-based, while disruptive innovation is hardware-based"
+      ],
+      "answer": "B",
+      "explanation": "Source: DbxeBBig3mo | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture on financial strategy, what is the primary purpose of a Net Present Value (NPV) calculation?",
+      "type": "mcq",
+      "options": [
+        "To determine the exact time it will take to recover an initial investment",
+        "To calculate the company's current stock price",
+        "To assess a project's profitability by comparing the present value of cash inflows to outflows",
+        "To measure the company's short-term liquidity"
+      ],
+      "answer": "C",
+      "explanation": "Source: xEdY2aTJtQ8 | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on the entrepreneurial journey discusses the \"Vision-Strategy-Execution Triad.\" What is the role of \"Vision\" in this triad?",
+      "type": "mcq",
+      "options": [
+        "To provide a detailed, step-by-step operational plan",
+        "To define the socio-economic purpose of the business and its broader impact",
+        "To secure initial funding from angel investors",
+        "To manage the day-to-day tasks of the startup team"
+      ],
+      "answer": "B",
+      "explanation": "Source: 9kbZnFYiOfI | Difficulty: Medium"
+    },
+    {
+      "question": "In the lecture on testing and validation, what is the main purpose of User Acceptance Testing (UAT), especially in a B2B context?",
+      "type": "mcq",
+      "options": [
+        "To test the product's durability under extreme physical stress",
+        "To allow developers to fix internal coding bugs before release",
+        "To serve as a formal sign-off process where the user verifies the product meets their specified requirements",
+        "To determine the final retail price of the product"
+      ],
+      "answer": "C",
+      "explanation": "Source: puT8xxFJRgE | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on startup models discusses CRED's business model. How does CRED primarily generate engagement and value for its users?",
+      "type": "mcq",
+      "options": [
+        "By offering the lowest interest rates on personal loans",
+        "By providing a platform for peer-to-peer lending exclusively",
+        "By rewarding consumers with \"CRED coins\" and benefits for paying their credit card bills through the app",
+        "By acting as a digital yellow pages for financial services"
+      ],
+      "answer": "C",
+      "explanation": "Source: 87lITHJaJJc | Difficulty: Medium"
+    },
+    {
+      "question": "What is the primary function of the \"Emerge platform\" in India's financial landscape?",
+      "type": "mcq",
+      "options": [
+        "It is a crowdfunding platform for social causes",
+        "It is an integrated institutional trading platform for startups and SMEs to access public markets",
+        "It is a government portal for applying for MSME loans",
+        "It is a private network for angel investors to share deal flow"
+      ],
+      "answer": "B",
+      "explanation": "Source: 08qhSzm85-w | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on entrepreneurial thermodynamics applies the Second Law to organizations. What is the key implication of this law for an entrepreneurial firm's energy flow?",
+      "type": "mcq",
+      "options": [
+        "Energy can be created from nothing if the founder's passion is high enough",
+        "Energy naturally flows from high-energy founders to the team, and it's unlikely to flow effectively in reverse",
+        "All energy within a startup can be converted into 100% productive work without any loss",
+        "The total energy of a startup system remains constant over time, regardless of external inputs"
+      ],
+      "answer": "B",
+      "explanation": "Source: remnotA1CuE | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on entrepreneurial discovery discusses a nine-factor grid for success. Which three factors comprise the \"Sustainability Aspect\"?",
+      "type": "mcq",
+      "options": [
+        "Purpose, Creativity, and Passion",
+        "Self-confidence, Self-expression, and Self-promotion",
+        "Rejection Tolerance, Risk Tolerance, and Failure Tolerance",
+        "Competence, Gumption, and Vision"
+      ],
+      "answer": "C",
+      "explanation": "Source: 8iKsZZYv90k | Difficulty: Hard"
+    },
+    {
+      "question": "The CAGE framework is mentioned as a tool for analyzing internationalization opportunities. What do the letters in CAGE stand for?",
+      "type": "mcq",
+      "options": [
+        "Corporate, Asset, Governmental, and Environmental distances",
+        "Customer, Alliance, Global, and Economic distances",
+        "Cultural, Administrative, Geographic, and Economic distances",
+        "Capital, Acumen, Growth, and Execution distances"
+      ],
+      "answer": "C",
+      "explanation": "Source: jWtspKYiOfI | Difficulty: Hard"
+    },
+    {
+      "question": "In the lecture on India as a startup nation, a proposed \"R&D First\" model for Indian startups involves two distinct streams. What are these two streams?",
+      "type": "mcq",
+      "options": [
+        "A marketing stream and a sales stream",
+        "An R&D stream for product development and a manufacturing/commercialization stream post-validation",
+        "A domestic stream and an international export stream",
+        "A software stream and a hardware stream"
+      ],
+      "answer": "B",
+      "explanation": "Source: W3UFBkYbKK4 | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on leadership transitions beyond founders discusses the \"two boards and one team\" model. What are the distinct roles of the Board of Directors and the Board of Advisors in this model?",
+      "type": "mcq",
+      "options": [
+        "The Board of Directors handles daily operations, while the Board of Advisors manages long-term strategy",
+        "Both boards have identical functions but report to different stakeholders",
+        "The Board of Directors focuses on governance and performance, while the Board of Advisors focuses on coaching and mentoring",
+        "The Board of Directors is for external members, while the Board of Advisors is for family members only"
+      ],
+      "answer": "C",
+      "explanation": "Source: peof3W8gNvc | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on ideation workshops contrasts them with formal meetings. What is the key difference in their goals and strategy development?",
+      "type": "mcq",
+      "options": [
+        "Formal meetings have non-linear goals and develop strategies on the fly, while ideation workshops have pre-set linear goals",
+        "Ideation workshops aim to solve problems and create new businesses with non-linear goals, while formal meetings execute pre-defined strategies with linear goals",
+        "Both have identical goals, but ideation workshops involve only internal employees",
+        "Formal meetings focus on brainstorming, while ideation workshops focus on budget approval"
+      ],
+      "answer": "B",
+      "explanation": "Source: wW2K5BZcdnQ | Difficulty: Hard"
+    },
+    {
+      "question": "According to the lecture on education and entrepreneurship, what is the \"Winning Paradigm\" for fostering a dynamic entrepreneurial environment in India?",
+      "type": "mcq",
+      "options": [
+        "The complete separation of education from industry to maintain academic purity",
+        "Focusing solely on government-led R&D and discouraging private startups",
+        "The synergistic integration of education, experience, and entrepreneurship, reinforced by faculty and student participation",
+        "Prioritizing rote learning and standardized tests to produce a highly disciplined workforce"
+      ],
+      "answer": "C",
+      "explanation": "Source: MQnarvBLG2s | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on commercialization discusses the \"technology price equation.\" How does this equation influence the entry point and spread of market disruption?",
+      "type": "mcq",
+      "options": [
+        "It states that all technology, regardless of level, must be priced low to succeed",
+        "It has no impact on market disruption, which is purely driven by marketing",
+        "It determines market adoption based on the relationship between technology level and price, influencing whether disruption starts in niche or mass markets",
+        "It is a formula used exclusively for calculating patent licensing fees"
+      ],
+      "answer": "C",
+      "explanation": "Source: DbxeBBig3mo | Difficulty: Hard"
+    }
+  ]
+}

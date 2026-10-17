@@ -1,0 +1,365 @@
+{
+  "title": "Entrepreneurship — Mock Exam 5 (30 Qs)",
+  "questions": [
+    {
+      "question": "According to the lecture, what is the primary significance of 'Not-for-profit Startups'?",
+      "type": "mcq",
+      "options": [
+        "They focus exclusively on generating financial profit for social causes.",
+        "They demonstrate technology's broader application beyond commercial ventures to foster social impact.",
+        "They are primarily funded by government grants without any private sector involvement.",
+        "They avoid using startup methodologies to maintain their non-profit status."
+      ],
+      "answer": "B",
+      "explanation": "Source: 08psHTZPHHI | Difficulty: Easy"
+    },
+    {
+      "question": "What is the strategic dilemma of 'Growth vs. Profit' that startups face, as described in the lecture?",
+      "type": "mcq",
+      "options": [
+        "The choice between developing new products or improving existing ones.",
+        "The decision to hire more employees versus investing in automation.",
+        "The trade-off between prioritizing rapid market share expansion or immediate financial returns.",
+        "The conflict between seeking venture capital versus bootstrapping."
+      ],
+      "answer": "C",
+      "explanation": "Source: 08qhSzm85-w | Difficulty: Medium"
+    },
+    {
+      "question": "How does the DFV Triad (Desirability, Feasibility, Viability) ensure a balanced approach to commercialization?",
+      "type": "mcq",
+      "options": [
+        "It prioritizes technical feasibility above all other factors to ensure the product can be built.",
+        "It focuses solely on customer desirability to guarantee market demand.",
+        "It ensures a product is wanted by customers, can be technically produced, and is financially sustainable for the business.",
+        "It is a framework used exclusively by established companies to maintain profitability, not for startups."
+      ],
+      "answer": "C",
+      "explanation": "Source: 0M0Tqfg7xJs | Difficulty: Hard"
+    },
+    {
+      "question": "What is the definition of a 'Unicorn' in the context of the startup ecosystem?",
+      "type": "mcq",
+      "options": [
+        "A startup that has received its first round of angel investment.",
+        "A publicly listed startup company with a valuation exceeding $1 million.",
+        "A privately held startup company with a valuation exceeding $1 billion.",
+        "A startup that has become profitable within its first year of operation."
+      ],
+      "answer": "C",
+      "explanation": "Source: 0apynSCov-4 | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture describes an 'Entrepreneurial Paradox' related to scale. What is this paradox?",
+      "type": "mcq",
+      "options": [
+        "As enterprises grow larger, they tend to become more entrepreneurial.",
+        "As enterprises grow larger, they tend to become less entrepreneurial.",
+        "The scale of an enterprise has no relationship with its entrepreneurial spirit.",
+        "Only small-scale enterprises can be truly entrepreneurial."
+      ],
+      "answer": "B",
+      "explanation": "Source: 2UX5H6SNmqI | Difficulty: Medium"
+    },
+    {
+      "question": "What is the primary goal of an 'Operational Strategy'?",
+      "type": "mcq",
+      "options": [
+        "To focus solely on marketing and sales activities.",
+        "To develop new product technologies independently of business goals.",
+        "To maximize the efficiency and effectiveness of converting inputs into outputs.",
+        "To secure funding from venture capitalists."
+      ],
+      "answer": "C",
+      "explanation": "Source: 35vNdJ1fvcY | Difficulty: Easy"
+    },
+    {
+      "question": "What is the significance of 'Director Independence' on a company's Board of Directors?",
+      "type": "mcq",
+      "options": [
+        "It ensures directors have a significant financial stake in the company's daily operations.",
+        "It allows directors to be involved in the day-to-day management of the company.",
+        "It is crucial for objective decision-making and preventing conflicts of interest.",
+        "It is a policy that applies only to not-for-profit organizations."
+      ],
+      "answer": "C",
+      "explanation": "Source: 3aXjtAbaeC0 | Difficulty: Medium"
+    },
+    {
+      "question": "In the Innovation-Perfection Matrix, what are the characteristics of a 'Blockbuster Product'?",
+      "type": "mcq",
+      "options": [
+        "Low innovation and low perfection, offering the lowest lifetime value.",
+        "High innovation and low perfection, leading to a high initial surge in buying.",
+        "Low innovation and high perfection, with high recurring manufacturing costs.",
+        "High innovation and high perfection, offering the highest lifetime value."
+      ],
+      "answer": "D",
+      "explanation": "Source: 4wtO5oUVjsU | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture, Bill Gates identified three fields offering significant opportunities for impact. Which of the following was NOT one of them?",
+      "type": "mcq",
+      "options": [
+        "Artificial Intelligence",
+        "Energy",
+        "Social Media",
+        "Biosciences"
+      ],
+      "answer": "C",
+      "explanation": "Source: 5B1-IjtbWZ8 | Difficulty: Medium"
+    },
+    {
+      "question": "In the solar mobile charger project, why was the 'CIGS Perovskite Version' chosen as the proposed technology?",
+      "type": "mcq",
+      "options": [
+        "Because it was the cheapest available technology, regardless of efficiency.",
+        "To maximize energy absorption by using Perovskite for visible light and CIGS for near-infrared light.",
+        "Because it is the only technology that works under artificial light.",
+        "To replicate the exact technology used in traditional power banks."
+      ],
+      "answer": "B",
+      "explanation": "Source: 87ZoRijUdbA | Difficulty: Hard"
+    },
+    {
+      "question": "What is the core principle of Urban Company's 'Full-Stack Model' as described in the case study?",
+      "type": "mcq",
+      "options": [
+        "It acts only as a lead generation platform, connecting customers to unverified professionals.",
+        "It controls multiple layers of the value chain, including onboarding, training, and providing tools to service professionals.",
+        "It focuses exclusively on an asset-light model by outsourcing all service provision.",
+        "It operates solely through physical storefronts without a digital backbone."
+      ],
+      "answer": "B",
+      "explanation": "Source: 87lITHJaJJc | Difficulty: Medium"
+    },
+    {
+      "question": "How does the lecture distinguish between the 'competence' of an entrepreneur and that of a professional leader?",
+      "type": "mcq",
+      "options": [
+        "Entrepreneurs have generic knowledge, while professional leaders have deep, core technical skills.",
+        "Entrepreneurs possess deep, core technical skills for their novel idea, while professional leaders have broad, generic knowledge applicable across industries.",
+        "Both entrepreneurs and professional leaders possess the exact same type of competence.",
+        "Professional leaders focus on technical skills, while entrepreneurs focus only on managerial skills."
+      ],
+      "answer": "B",
+      "explanation": "Source: 8iKsZZYv90k | Difficulty: Hard"
+    },
+    {
+      "question": "According to the Global Entrepreneurship Monitor (GEM) methodology cited in the lecture, India is currently classified as what type of economy?",
+      "type": "mcq",
+      "options": [
+        "Innovation-driven economy",
+        "Factor-driven economy",
+        "Efficiency-driven economy",
+        "Service-driven economy"
+      ],
+      "answer": "B",
+      "explanation": "Source: 8rXsqUQ9fEA | Difficulty: Easy"
+    },
+    {
+      "question": "What was a crucial success factor for Quikr's rapid market penetration in India?",
+      "type": "mcq",
+      "options": [
+        "Focusing exclusively on high-end, luxury goods.",
+        "A business model that avoided digital payments and relied on cash.",
+        "Its deep understanding and integration of local Indian communication habits, like the 'missed call' feature.",
+        "Its strategy of operating only in major metropolitan cities."
+      ],
+      "answer": "C",
+      "explanation": "Source: 8xW7djgDrno | Difficulty: Medium"
+    },
+    {
+      "question": "What is the significance of 'Proof of Business (PoB)' in the twelve steps of the entrepreneurial journey?",
+      "type": "mcq",
+      "options": [
+        "It demonstrates the basic technical feasibility of an idea.",
+        "It validates that the product prototype functions as designed.",
+        "It proves that the business model is viable, sustainable, and scalable in the marketplace.",
+        "It is the initial step of discovering one's entrepreneurial passion."
+      ],
+      "answer": "C",
+      "explanation": "Source: 9-O15gDqebg | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture, what is a key difference between an 'Accelerator' and an 'Incubator'?",
+      "type": "mcq",
+      "options": [
+        "Incubators are time-compressed programs, while accelerators offer long-term support.",
+        "Accelerators are time-compressed, goal-driven programs, often backed by established companies, while incubators provide longer-term, foundational support.",
+        "Only incubators provide physical office space.",
+        "Accelerators focus on ideation, while incubators focus on commercialization."
+      ],
+      "answer": "B",
+      "explanation": "Source: 9kbZnFYiOfI | Difficulty: Medium"
+    },
+    {
+      "question": "In the context of startup financing, what is 'Bootstrapping'?",
+      "type": "mcq",
+      "options": [
+        "Securing a large round of venture capital funding at the idea stage.",
+        "Financing a business primarily through personal savings and initial sales, minimizing external equity.",
+        "A government grant provided to all new startups.",
+        "Raising funds by selling a majority stake of the company to a large corporation."
+      ],
+      "answer": "B",
+      "explanation": "Source: AVR024-DR6g | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on 'Education and Entrepreneurship' describes an 'Indian Dilemma'. What is this dilemma?",
+      "type": "mcq",
+      "options": [
+        "India has too many STEM graduates and not enough jobs.",
+        "India's education system focuses too much on entrepreneurship over traditional employment.",
+        "Despite producing world-standard products, India often does not indigenously produce the sophisticated equipment or global software products used to make them.",
+        "Indian startups are unable to achieve scalability due to a lack of globalization."
+      ],
+      "answer": "C",
+      "explanation": "Source: Bp9-JVLAzeE | Difficulty: Medium"
+    },
+    {
+      "question": "How does the Lingua Reader project plan to use the concept of the 'Forgetting Curve' to its advantage?",
+      "type": "mcq",
+      "options": [
+        "By providing content that is designed to be forgotten quickly to encourage re-reading.",
+        "By offering only short, simple lessons that are easy to remember without reinforcement.",
+        "By using adaptive exercises and spaced repetition to reinforce learning at optimal intervals, enhancing retention.",
+        "By ignoring the forgetting curve and focusing solely on gamification."
+      ],
+      "answer": "C",
+      "explanation": "Source: CBf6RURIoVI | Difficulty: Hard"
+    },
+    {
+      "question": "In the E-Compost Maker project, what is the primary purpose of achieving an ideal Carbon-to-Nitrogen (C:N) ratio of 30:1?",
+      "type": "mcq",
+      "options": [
+        "To ensure the final compost has a pleasant smell.",
+        "To optimize microbial activity for efficient and high-quality decomposition.",
+        "To reduce the overall weight of the waste.",
+        "To meet the aesthetic requirements of the product design."
+      ],
+      "answer": "B",
+      "explanation": "Source: CMmAgR_TylU | Difficulty: Medium"
+    },
+    {
+      "question": "What is a primary characteristic of a 'mass market' as described in the lecture on disruption?",
+      "type": "mcq",
+      "options": [
+        "Luxurious, high-technology products with limited sales volume.",
+        "Products with basic functionality, low technology, high scale of manufacture, and low margins.",
+        "A market segment with developing technology and moderate margins.",
+        "A niche market catering to highly specialized needs."
+      ],
+      "answer": "B",
+      "explanation": "Source: DbxeBBig3mo | Difficulty: Easy"
+    },
+    {
+      "question": "What is the key difference between 'Innovative Entrepreneurs' and 'Replicative Entrepreneurs'?",
+      "type": "mcq",
+      "options": [
+        "Innovative entrepreneurs focus on social causes, while replicative entrepreneurs focus on profit.",
+        "Innovative entrepreneurs introduce novel products creating new markets, while replicative entrepreneurs offer similar products with a unique selling proposition in existing markets.",
+        "Replicative entrepreneurs are always more successful than innovative ones.",
+        "Only innovative entrepreneurs can secure venture capital funding."
+      ],
+      "answer": "B",
+      "explanation": "Source: F5-sDkIM0uY | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture, why do B2C unicorns like Flipkart often generate significantly more direct jobs than B2B unicorns like Inmobi?",
+      "type": "mcq",
+      "options": [
+        "B2B companies are inherently less profitable and cannot afford to hire as many people.",
+        "B2C companies can quickly cover a large consumer market with new business models, requiring large teams for logistics, customer service, and operations.",
+        "B2B companies rely entirely on automation and have no need for human employees.",
+        "Government regulations limit the number of employees a B2B company can hire."
+      ],
+      "answer": "B",
+      "explanation": "Source: GJG75UBAdqM | Difficulty: Hard"
+    },
+    {
+      "question": "What are the four core controllable elements of the traditional '4 P's of Marketing' framework?",
+      "type": "mcq",
+      "options": [
+        "People, Process, Profit, and Planet",
+        "Product, Price, Promotion, and Place",
+        "Planning, Production, Performance, and Publicity",
+        "Passion, Perseverance, Purpose, and Profit"
+      ],
+      "answer": "B",
+      "explanation": "Source: HHub2PAJoNg | Difficulty: Easy"
+    },
+    {
+      "question": "Based on the CB Insights study of 101 failed startups, what was identified as the single most significant reason for failure?",
+      "type": "mcq",
+      "options": [
+        "Lack of passion from the founders.",
+        "Getting out-competed by rivals.",
+        "No market need for the product.",
+        "Running out of cash."
+      ],
+      "answer": "C",
+      "explanation": "Source: JBu-cEaQGAI | Difficulty: Medium"
+    },
+    {
+      "question": "What is the 'Entry Deterrent Price' and why is it a critical consideration for a startup's commercial positioning?",
+      "type": "mcq",
+      "options": [
+        "The lowest possible price to attract the maximum number of customers quickly.",
+        "A price set high to signal premium quality, deterring only budget-conscious buyers.",
+        "A hypothetical price point above which market entry is unlikely to succeed, helping startups set realistic prices that balance innovation with market acceptance.",
+        "The price at which a product achieves its maximum possible profit margin."
+      ],
+      "answer": "C",
+      "explanation": "Source: KkCQStb5unQ | Difficulty: Hard"
+    },
+    {
+      "question": "What is the primary vision of the Government of India's National Innovation and Startup Policy (NISP)?",
+      "type": "mcq",
+      "options": [
+        "To provide direct government employment to all STEM graduates.",
+        "To convert India's demographic dividend into high-quality human resources capable of deep-tech entrepreneurship.",
+        "To nationalize all private startups and incubators.",
+        "To focus exclusively on non-profit and social entrepreneurship."
+      ],
+      "answer": "B",
+      "explanation": "Source: MQnarvBLG2s | Difficulty: Easy"
+    },
+    {
+      "question": "How does 'Empathetic Analysis' in design thinking primarily differ from traditional 'Market Research'?",
+      "type": "mcq",
+      "options": [
+        "Empathetic analysis uses large-scale quantitative surveys, while market research uses small focus groups.",
+        "Market research is conducted by in-house staff, while empathetic analysis is always outsourced.",
+        "Empathetic analysis involves deep, qualitative observation to uncover unarticulated needs for disruption, while market research is product-performance oriented and aims for incremental improvement.",
+        "There is no difference; the terms are used interchangeably."
+      ],
+      "answer": "C",
+      "explanation": "Source: PzQXj27L6vU | Difficulty: Hard"
+    },
+    {
+      "question": "During the COVID-19 pandemic, the venture capital landscape shifted. What became a key priority for investors, moving away from a 'growth-at-all-costs' mindset?",
+      "type": "mcq",
+      "options": [
+        "Investing only in startups with more than 1,000 employees.",
+        "A focus on capital efficiency, profitability, and robust business models.",
+        "A preference for non-tech startups over digital ones.",
+        "Funding startups for extremely short cash runways of less than 6 months."
+      ],
+      "answer": "B",
+      "explanation": "Source: RtxZNJQy7Vs | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture, what are the three 'winning traits' consistently found in successful professional CEOs leading entrepreneurial firms?",
+      "type": "mcq",
+      "options": [
+        "Micromanagement, risk aversion, and cost-cutting.",
+        "Charisma, public speaking, and social media presence.",
+        "Personal gravitas, operational excellence, and strategic intuition.",
+        "Technical expertise, marketing skill, and financial knowledge."
+      ],
+      "answer": "C",
+      "explanation": "Source: SUU1iIPn5hk | Difficulty: Hard"
+    }
+  ]
+}

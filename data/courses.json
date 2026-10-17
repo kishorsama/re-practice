@@ -19,6 +19,13 @@
       { "week": 10, "title": "Week 10", "subtitle": "Assignment 10", "file": "data/ep/week-10.html", "available": true },
       { "week": 11, "title": "Week 11", "subtitle": "Assignment 11", "file": "data/ep/week-11.html", "available": true },
       { "week": 12, "title": "Week 12", "subtitle": "Assignment 12", "file": "data/ep/week-12.html", "available": true }
+    ],
+    "mockExams": [
+      { "id": "mock-01", "title": "Mock Exam 1", "subtitle": "30 Questions", "file": "data/ep/mock-01.json", "available": true },
+      { "id": "mock-02", "title": "Mock Exam 2", "subtitle": "30 Questions", "file": "data/ep/mock-02.json", "available": true },
+      { "id": "mock-03", "title": "Mock Exam 3", "subtitle": "30 Questions", "file": "data/ep/mock-03.json", "available": true },
+      { "id": "mock-04", "title": "Mock Exam 4", "subtitle": "30 Questions", "file": "data/ep/mock-04.json", "available": true },
+      { "id": "mock-05", "title": "Mock Exam 5", "subtitle": "30 Questions", "file": "data/ep/mock-05.json", "available": true }
     ]
   },
   {

@@ -1,0 +1,365 @@
+{
+  "title": "Entrepreneurship — Mock Exam 1 (30 Qs)",
+  "questions": [
+    {
+      "question": "According to the lecture on Corporate Governance, what is the primary driver of poor corporate governance, manifesting as corruption, fraud, deceit, and cronyism?",
+      "type": "mcq",
+      "options": [
+        "Technological disruption",
+        "Aggressive competition",
+        "Greed",
+        "Lack of government regulation"
+      ],
+      "answer": "C",
+      "explanation": "Source: 3aXjtAbaeC0 | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on Technology, Business, and Operations Strategies Part 2 defines 'Additive Manufacturing' as which of the following processes?",
+      "type": "mcq",
+      "options": [
+        "A process of removing material from a larger block to create an object.",
+        "A process of creating three-dimensional objects by adding material layer by layer.",
+        "A method for assembling pre-fabricated components into a final product.",
+        "A software development process for creating digital prototypes."
+      ],
+      "answer": "B",
+      "explanation": "Source: 08psHTZPHHI | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary purpose of a 'Pitch Deck' as described in the lecture on Raising Finances Part 4?",
+      "type": "mcq",
+      "options": [
+        "To serve as a legal contract between a startup and its investors.",
+        "To provide a detailed financial audit of the company for regulatory bodies.",
+        "To act as a concise presentation for engaging stakeholders, especially investors.",
+        "To function as a comprehensive employee training manual."
+      ],
+      "answer": "C",
+      "explanation": "Source: 08qhSzm85-w | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on Commercialisation and Disruption Part 1 defines the 'DFV Triad' as a framework for evaluating a product's potential. What do the letters D, F, and V stand for?",
+      "type": "mcq",
+      "options": [
+        "Distribution, Funding, and Valuation",
+        "Design, Functionality, and Viability",
+        "Desirability, Feasibility, and Viability",
+        "Development, Features, and Value"
+      ],
+      "answer": "C",
+      "explanation": "Source: 0M0Tqfg7xJs | Difficulty: Easy"
+    },
+    {
+      "question": "In the lecture on Raising Finances Part 1, what is a 'Unicorn' defined as?",
+      "type": "mcq",
+      "options": [
+        "A startup that achieves profitability in its first year.",
+        "A publicly traded tech company with a market cap over $1 billion.",
+        "A privately held startup company with a valuation exceeding $1 billion.",
+        "A startup that has received funding from more than ten venture capital firms."
+      ],
+      "answer": "C",
+      "explanation": "Source: 0apynSCov-4 | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on Entrepreneurial Discovery Part 4, what are the three core factors of the BDC Entrepreneurial Potential Assessment?",
+      "type": "mcq",
+      "options": [
+        "Education, Experience, and Finance",
+        "Motivation, Aptitude, and Attitude",
+        "Creativity, Passion, and Purpose",
+        "Vision, Strategy, and Execution"
+      ],
+      "answer": "B",
+      "explanation": "Source: 2UX5H6SNmqI | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary goal of 'Lean Manufacturing' as described in the lecture on Technology, Business, and Operations Strategies Part 5?",
+      "type": "mcq",
+      "options": [
+        "To produce a wide variety of customized products.",
+        "To maximize throughput, minimize waste, and achieve high efficiency.",
+        "To focus on experimental product development and innovation.",
+        "To build a globally networked production system."
+      ],
+      "answer": "B",
+      "explanation": "Source: 35vNdJ1fvcY | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on Technology, Business, and Operations Strategies Part 1 introduces the 'Innovation-Perfection Matrix'. What is a 'Blockbuster Product' according to this matrix?",
+      "type": "mcq",
+      "options": [
+        "A product with low innovation and high perfection.",
+        "A product with high innovation and low perfection.",
+        "A product with low innovation and low perfection.",
+        "A product with high innovation and high perfection."
+      ],
+      "answer": "D",
+      "explanation": "Source: 4wtO5oUVjsU | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on Entrepreneurship and Employment Part 1, what is the key difference between 'Innovative Entrepreneurs' and 'Replicative Entrepreneurs'?",
+      "type": "mcq",
+      "options": [
+        "Innovative entrepreneurs focus on social impact, while replicative entrepreneurs focus on profit.",
+        "Innovative entrepreneurs introduce novel products creating new markets, while replicative entrepreneurs offer similar products with a unique selling proposition.",
+        "Innovative entrepreneurs are necessity-driven, while replicative entrepreneurs are opportunity-driven.",
+        "Innovative entrepreneurs operate in the formal sector, while replicative entrepreneurs operate in the informal sector."
+      ],
+      "answer": "B",
+      "explanation": "Source: F5-sDkIM0uY | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on Ideation and Prototyping Part 6 discusses three fundamental criteria for an invention to be patentable. What are they?",
+      "type": "mcq",
+      "options": [
+        "Profitability, Marketability, and Scalability",
+        "Novelty, Non-obviousness, and Usefulness",
+        "Complexity, Originality, and Affordability",
+        "Design, Functionality, and Durability"
+      ],
+      "answer": "B",
+      "explanation": "Source: fxCQr2QSAkQ | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on 'Start-up Models' describes the business model of Urban Company. How did its model evolve?",
+      "type": "mcq",
+      "options": [
+        "From a subscription model to a one-time payment model.",
+        "From a full-stack model to a lead generation model.",
+        "From an asset-light model to owning all physical assets.",
+        "From a lead generation model to a full-stack model involving training and branded tools."
+      ],
+      "answer": "D",
+      "explanation": "Source: 87lITHJaJJc | Difficulty: Medium"
+    },
+    {
+      "question": "In the lecture on Entrepreneurial Discovery Part 2, how is a 'Professional Leader' primarily distinguished from an 'Entrepreneur' in terms of competence?",
+      "type": "mcq",
+      "options": [
+        "A professional leader has deep, core technical skills, while an entrepreneur has generic knowledge.",
+        "A professional leader has generic knowledge applicable across industries, while an entrepreneur possesses deep, core technical skills for their novel idea.",
+        "Both have identical skill sets, but the professional leader has more experience.",
+        "An entrepreneur focuses on marketing skills, while a professional leader focuses on financial skills."
+      ],
+      "answer": "B",
+      "explanation": "Source: 8iKsZZYv90k | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on 'India as A Start-up Nation Part 1' classifies India's economy using the GEM methodology. What is India's current classification and its aspiration?",
+      "type": "mcq",
+      "options": [
+        "Currently innovation-driven, aspiring to be factor-driven.",
+        "Currently efficiency-driven, aspiring to be innovation-driven.",
+        "Currently factor-driven, aspiring to be innovation-driven.",
+        "Currently factor-driven, aspiring to be efficiency-driven."
+      ],
+      "answer": "C",
+      "explanation": "Source: 8rXsqUQ9fEA | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture on Commercialisation and Disruption Part 4, what was a key strategic reason for Ola Cabs' dominance over Uber in the Indian market?",
+      "type": "mcq",
+      "options": [
+        "Ola offered significantly lower prices than Uber from the start.",
+        "Ola acquired its competitor TaxiForSure, which boosted its market share to over 70%.",
+        "Ola focused exclusively on the premium luxury car segment.",
+        "Ola was the first to introduce a digital wallet for payments."
+      ],
+      "answer": "B",
+      "explanation": "Source: 8xW7djgDrno | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on the Entrepreneurial Journey Part 3 outlines twelve critical steps. What is the primary purpose of 'Proof of Business (PoB)'?",
+      "type": "mcq",
+      "options": [
+        "To demonstrate the basic technical feasibility of the core idea.",
+        "To create a physical prototype for initial testing.",
+        "To prove that the business model is viable, sustainable, and scalable in the marketplace.",
+        "To secure initial seed funding from angel investors."
+      ],
+      "answer": "C",
+      "explanation": "Source: 9-O15gDqebg | Difficulty: Medium"
+    },
+    {
+      "question": "In the lecture on the Entrepreneurial Journey Part 2, what are the three distinct approaches entrepreneurs use to drive change?",
+      "type": "mcq",
+      "options": [
+        "Cost reduction, quality improvement, and aggressive marketing.",
+        "Product market expansion, digital reinvention, and complete industrial transformation.",
+        "Bootstrapping, angel investing, and venture capital funding.",
+        "Local, national, and global market entry."
+      ],
+      "answer": "B",
+      "explanation": "Source: 9kbZnFYiOfI | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on Raising Finances Part 3 discusses the 'Corporate Catalyst Model'. What does this model entail?",
+      "type": "mcq",
+      "options": [
+        "Startups acquiring large corporations to gain market access.",
+        "Corporations divesting non-core assets to fund internal startups.",
+        "Large corporations investing in or supporting startups to build an ecosystem around their core business.",
+        "Government agencies acting as catalysts by providing grants to corporate R&D."
+      ],
+      "answer": "C",
+      "explanation": "Source: AVR024-DR6g | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on Education and Entrepreneurship Part 1 highlights a dilemma in India's industrial capability. What is this dilemma?",
+      "type": "mcq",
+      "options": [
+        "India has a surplus of management graduates but a shortage of engineers.",
+        "India excels at producing world-standard products but often uses imported sophisticated equipment to do so.",
+        "India's education system is too focused on entrepreneurship, neglecting basic sciences.",
+        "Indian startups are highly innovative but struggle to find domestic markets."
+      ],
+      "answer": "B",
+      "explanation": "Source: Bp9-JVLAzeE | Difficulty: Medium"
+    },
+    {
+      "question": "In the 'Lingua Reader' special lecture, what is the primary unique selling proposition (USP) that differentiates it from existing e-readers like Kindle?",
+      "type": "mcq",
+      "options": [
+        "It has a larger screen and longer battery life than any competitor.",
+        "It offers access to a larger bookstore with more titles.",
+        "It integrates language learning functionalities with vernacular language support.",
+        "It is the first e-reader to be manufactured entirely in India."
+      ],
+      "answer": "C",
+      "explanation": "Source: CBf6RURIoVI | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture on Entrepreneurship and Employment Part 4, what is the primary threat to jobs, more so than technological advancements?",
+      "type": "mcq",
+      "options": [
+        "Global competition from low-wage countries.",
+        "A decline in consumer spending.",
+        "Bad management and poor corporate governance.",
+        "Increasing government regulations and taxes."
+      ],
+      "answer": "C",
+      "explanation": "Source: GJG75UBAdqM | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on Marketing Strategy introduces a 2x2 matrix for categorizing customer needs. In which quadrant do authentic startups, creating entirely new market segments, typically operate?",
+      "type": "mcq",
+      "options": [
+        "Linear Known (fulfilling existing, predictable needs)",
+        "Linear Unknown (unknown needs, linear development)",
+        "Non-linear Known (known needs, non-linear expectations)",
+        "Non-linear Unknown (unknown needs, non-linear future)"
+      ],
+      "answer": "D",
+      "explanation": "Source: HHub2PAJoNg | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on Commercialisation and Disruption Part 5 discusses the primary reason for startup failure based on a CB Insights study. What was identified as the most significant reason, accounting for 42% of failures?",
+      "type": "mcq",
+      "options": [
+        "Ran out of cash",
+        "Not having the right team",
+        "Getting out-competed",
+        "No market need"
+      ],
+      "answer": "D",
+      "explanation": "Source: JBu-cEaQGAI | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on 'Beyond Founders and Founder-Families Part 2' discusses the 'hybrid startup leadership model'. What is the significance of this model in the context of disruptive technologies like AI and genetics?",
+      "type": "mcq",
+      "options": [
+        "It ensures that only founders with technical backgrounds can lead the company.",
+        "It combines the visionary passion of founders with the expertise of professional leaders to navigate complex environments.",
+        "It replaces all founders with professional managers to attract investors.",
+        "It focuses exclusively on family members to maintain control over the company's vision."
+      ],
+      "answer": "B",
+      "explanation": "Source: vrQbt0_ngLw | Difficulty: Hard"
+    },
+    {
+      "question": "In the lecture on 'Beyond Founders and Founder-Families Part 4', what is the purpose of the 'two boards and one team' model for a company undergoing a leadership transition?",
+      "type": "mcq",
+      "options": [
+        "To create redundancy in case one board fails.",
+        "To separate financial decisions from operational decisions completely.",
+        "To provide a structure where a Board of Directors handles governance and a Board of Advisors provides coaching, supporting the CEO and team's execution.",
+        "To allow founders and new professional leaders to lead separate, parallel boards."
+      ],
+      "answer": "C",
+      "explanation": "Source: peof3W8gNvc | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on 'National Entrepreneurial Culture - Part 2' discusses the 'women entrepreneurship gap'. According to the McKinsey study cited, what is the potential economic impact for India if this gap is closed?",
+      "type": "mcq",
+      "options": [
+        "A 10% increase in the number of startups.",
+        "A gain of $700 billion in GDP.",
+        "Doubling the number of unicorns in the country.",
+        "A 50% reduction in unemployment."
+      ],
+      "answer": "B",
+      "explanation": "Source: h3lSRTVos2s | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on 'Technological Innovation and Entrepreneurship Part 4' discusses 'humantronics'. Which of the following best describes a startup opportunity derived from this concept?",
+      "type": "mcq",
+      "options": [
+        "Developing a new social media platform.",
+        "Creating a system where human surgical performance is enhanced by robotic precision.",
+        "Manufacturing low-cost generic pharmaceuticals.",
+        "Offering financial consulting services to large corporations."
+      ],
+      "answer": "B",
+      "explanation": "Source: VuRhjK4mrHE | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on 'Technological Innovation and Entrepreneurship Part 2' argues that startups must balance 'innovation intensity' and 'product profitability'. What characterizes a 'Strategically Outstanding Company' in this context?",
+      "type": "mcq",
+      "options": [
+        "High innovation intensity but low product profitability.",
+        "Low innovation intensity but high product profitability.",
+        "Low scores on both innovation and profitability.",
+        "High scores on both innovation intensity and product profitability."
+      ],
+      "answer": "D",
+      "explanation": "Source: zypCWW3SqQM | Difficulty: Hard"
+    },
+    {
+      "question": "The 'E - Compost Maker' special lecture emphasizes the importance of the C:N ratio for effective composting. What is the ideal Carbon-to-Nitrogen ratio mentioned for optimal microbial activity?",
+      "type": "mcq",
+      "options": [
+        "10:1",
+        "1:30",
+        "30:1",
+        "1:1"
+      ],
+      "answer": "C",
+      "explanation": "Source: CMmAgR_TylU | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on 'Entrepreneurship and Employment - Part 3' discusses the Economic Survey's critique of MSMEs, introducing the term 'dwarfs'. What is the primary negative contribution of these 'dwarf' firms to the economy?",
+      "type": "mcq",
+      "options": [
+        "They constitute a small fraction of firms but contribute the most to employment.",
+        "They are young firms that fail to grow and quickly exit the market.",
+        "They are old firms that remain small, contributing disproportionately less to employment and productivity compared to their numbers.",
+        "They primarily operate in the informal sector, avoiding taxes and regulations."
+      ],
+      "answer": "C",
+      "explanation": "Source: U_p-xwydsH8 | Difficulty: Hard"
+    },
+    {
+      "question": "The special lecture on 'Mergers and Acquisitions in Start-ups' highlights the 'Thrasio-style' business model. What is the core strategy of this model?",
+      "type": "mcq",
+      "options": [
+        "A startup acquiring a large, established corporation to gain its distribution network.",
+        "A company acquiring other startups to consolidate intellectual property for defensive purposes.",
+        "A startup specializing in acquiring and scaling multiple fast-growing, digitally native e-commerce brands.",
+        "A large corporation acquiring startups to shut them down and eliminate competition."
+      ],
+      "answer": "C",
+      "explanation": "Source: mmgklT_fcF0 | Difficulty: Hard"
+    }
+  ]
+}

@@ -1906,6 +1906,15 @@
         </div>
       </div>
 
+      <!-- Mock Exams Section (visible when course has mock exams) -->
+      <div id="mock-exams-section" style="display:none; margin-top:20px;">
+        <div class="week-selector-header" style="margin-bottom:10px;">
+          <span class="week-selector-title">Or practice Mock Exams:</span>
+          <span class="week-count-tag" id="mock-exams-tag">Mock Papers</span>
+        </div>
+        <div class="weeks-grid" id="mock-exams-grid" style="margin-bottom:6px;"></div>
+      </div>
+
       <div class="week-selector-header">
         <span class="week-selector-title" id="course-desc">Or practice individual weeks:</span>
         <span class="week-count-tag">12 Assignments</span>
@@ -1992,7 +2001,7 @@
 
         <div class="upload-modal-body">
           <div class="upload-card" id="drop-zone">
-            <input type="file" id="file-input" accept=".html,.htm" />
+            <input type="file" id="file-input" accept=".html,.htm,.json" />
             <div class="upload-icon-wrap">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -2002,8 +2011,8 @@
                 <line x1="15" y1="15" x2="12" y2="12"></line>
               </svg>
             </div>
-            <h3>Drop assignment HTML here</h3>
-            <p>or <span>browse files</span> to upload &bull; saved NPTEL web pages</p>
+            <h3>Drop assignment HTML or Mock Exam JSON here</h3>
+            <p>or <span>browse files</span> to upload &bull; saved NPTEL pages (.html) or mock exams (.json)</p>
           </div>
 
           <div class="upload-tips" style="margin-top:14px;">
@@ -2887,11 +2896,122 @@ window.addEventListener('scroll', () => {
   document.querySelector('.upload-top-controls')?.classList.toggle('scrolled', isScrolled);
 }, { passive: true });
 
+// ─── JSON Mock Exam Parser ────────────────────────────
+function parseMockExamJson(data, weekNum = null, overrideTitle = null) {
+  let list = [];
+  let title = overrideTitle || 'Mock Exam';
+
+  if (Array.isArray(data)) {
+    list = data;
+  } else if (data && Array.isArray(data.questions)) {
+    list = data.questions;
+    if (data.title && !overrideTitle) title = data.title;
+  } else {
+    return null;
+  }
+
+  const idPrefix = weekNum != null
+    ? ('w' + String(weekNum).replace(/[^a-zA-Z0-9_-]/g, '_') + '-')
+    : 'mock-';
+
+  const questions = list.map((item, idx) => {
+    const qText = item.question || item.text || item.title || `Question ${idx + 1}`;
+
+    // Normalize options
+    let rawOptions = item.options || [];
+    if (!Array.isArray(rawOptions) && typeof rawOptions === 'object' && rawOptions !== null) {
+      rawOptions = Object.entries(rawOptions).map(([key, val]) => ({
+        letter: key,
+        text: val
+      }));
+    }
+
+    let ansKeys = [];
+    if (Array.isArray(item.answer)) {
+      ansKeys = item.answer.map(a => String(a).trim());
+    } else if (item.answer != null) {
+      ansKeys = [String(item.answer).trim()];
+    } else if (item.correctAnswer != null) {
+      ansKeys = Array.isArray(item.correctAnswer) ? item.correctAnswer.map(a => String(a).trim()) : [String(item.correctAnswer).trim()];
+    }
+
+    const options = rawOptions.map((opt, optIdx) => {
+      let optText = '';
+      let isExplicitCorrect = false;
+
+      if (typeof opt === 'string') {
+        optText = opt.trim();
+      } else if (typeof opt === 'object' && opt !== null) {
+        optText = (opt.text || opt.label || '').trim();
+        if (opt.isCorrect || opt.correct) isExplicitCorrect = true;
+      }
+
+      const optLetter = String.fromCharCode(65 + optIdx).toUpperCase();
+      const optNum1 = String(optIdx + 1);
+      const optNum0 = String(optIdx);
+
+      const isKeyMatch = ansKeys.some(k => {
+        const kUpper = k.toUpperCase();
+        if (kUpper === optLetter) return true;
+        if (k === optNum1 || k === optNum0) return true;
+        if (k.length > 1 && (optText.toLowerCase() === k.toLowerCase() || optText.toLowerCase().startsWith(k.toLowerCase()))) return true;
+        return false;
+      });
+
+      const isCorrect = isExplicitCorrect || isKeyMatch;
+
+      return {
+        id: `${idPrefix}q${idx}-opt-${optIdx}`,
+        text: optText,
+        html: escapeHtml(optText),
+        isCorrect: isCorrect,
+        originalIndex: optIdx
+      };
+    });
+
+    const correctCount = options.filter(o => o.isCorrect).length;
+    const qType = (item.type === 'msq' || correctCount > 1) ? 'msq' : 'mcq';
+
+    return {
+      id: `${idPrefix}q${idx}`,
+      originalIdx: idx,
+      weekNum: weekNum || null,
+      weekTitle: item.weekTitle || null,
+      passageId: null,
+      type: qType,
+      text: qText,
+      html: escapeHtml(qText),
+      options: options,
+      correctCount: correctCount,
+      explanation: item.explanation || item.source || item.meta || '',
+      acceptedAnswerText: item.answer ? String(item.answer) : ''
+    };
+  });
+
+  return { questions, title, passages: [] };
+}
+
 function loadAssignmentFromHtml(htmlString, weekNum = null, overrideTitle = null) {
-  const result = parseNPTELHtml(htmlString, weekNum);
+  const trimmed = (htmlString || '').trim();
+  let result = null;
+
+  // 1. Try JSON parser first if string looks like JSON
+  if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+    try {
+      const data = JSON.parse(trimmed);
+      result = parseMockExamJson(data, weekNum, overrideTitle);
+    } catch (e) {
+      console.warn('JSON parsing attempt failed, falling back to HTML parser:', e);
+    }
+  }
+
+  // 2. Fall back to NPTEL HTML parser
+  if (!result || !result.questions || result.questions.length === 0) {
+    result = parseNPTELHtml(htmlString, weekNum);
+  }
 
   if (!result || result.questions.length === 0) {
-    alert('⚠️ No quiz questions found in this HTML file.\n\nMake sure:\n• You saved the correct NPTEL assignment page\n• The page was fully loaded before saving\n• You submitted the assignment so answers are marked');
+    alert('⚠️ No quiz questions found.\n\nMake sure:\n• For NPTEL web pages: The saved HTML contains assignment questions and submitted answers\n• For Mock Exams: The file is a valid JSON containing questions and options');
     return false;
   }
 
@@ -2937,6 +3057,13 @@ const FALLBACK_COURSES = [
       { week: 10, title: "Week 10", subtitle: "Assignment 10", file: "data/ep/week-10.html", available: true },
       { week: 11, title: "Week 11", subtitle: "Assignment 11", file: "data/ep/week-11.html", available: true },
       { week: 12, title: "Week 12", subtitle: "Assignment 12", file: "data/ep/week-12.html", available: true }
+    ],
+    mockExams: [
+      { id: "mock-01", title: "Mock Exam 1", subtitle: "30 Questions", file: "data/ep/mock-01.json", available: true },
+      { id: "mock-02", title: "Mock Exam 2", subtitle: "30 Questions", file: "data/ep/mock-02.json", available: true },
+      { id: "mock-03", title: "Mock Exam 3", subtitle: "30 Questions", file: "data/ep/mock-03.json", available: true },
+      { id: "mock-04", title: "Mock Exam 4", subtitle: "30 Questions", file: "data/ep/mock-04.json", available: true },
+      { id: "mock-05", title: "Mock Exam 5", subtitle: "30 Questions", file: "data/ep/mock-05.json", available: true }
     ]
   },
   {
@@ -3040,6 +3167,39 @@ function renderCourseView() {
   }
 
   renderWeeksGrid(currentCourse);
+  renderMockExamsGrid(currentCourse);
+}
+
+function renderMockExamsGrid(course) {
+  const section = $('mock-exams-section');
+  const grid = $('mock-exams-grid');
+  const tag = $('mock-exams-tag');
+  if (!section || !grid) return;
+
+  const mocks = (course && course.mockExams) ? course.mockExams.filter(m => m.available) : [];
+  if (mocks.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  if (tag) tag.textContent = `${mocks.length} Mock ${mocks.length === 1 ? 'Exam' : 'Exams'}`;
+  grid.innerHTML = '';
+
+  mocks.forEach(m => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'week-btn';
+    btn.dataset.file = m.file;
+    btn.innerHTML = `
+      <span class="week-num">${escapeHtml(m.title)}</span>
+      <span class="week-sub">${escapeHtml(m.subtitle || 'Practice Mock')}</span>
+    `;
+    btn.addEventListener('click', () => {
+      loadWeekAssignment(course, { ...m, week: m.id || 'mock-01' }, btn);
+    });
+    grid.appendChild(btn);
+  });
 }
 
 function initCourseTabs() {
@@ -4028,6 +4188,12 @@ function buildAnswerBoxHTML(q) {
           <span class="ans-detail-text" style="color:var(--text-secondary);font-size:0.84rem;">${escapeHtml(q.acceptedAnswerText)}</span>
         </div>
       ` : ''}
+      ${q.explanation ? `
+        <div class="ans-detail-row info-row" style="margin-top:2px;">
+          <span class="ans-label-tag">💡 Source / Note:</span>
+          <span class="ans-detail-text" style="color:var(--text-secondary);font-size:0.84rem;">${escapeHtml(q.explanation)}</span>
+        </div>
+      ` : ''}
       ${isAttempted ? `
         <div class="ans-detail-row ${isFullyCorrect ? 'correct-row' : 'wrong-row'}">
           <span class="ans-label-tag">${isFullyCorrect ? '✓' : '✗'} Your Choice:</span>
@@ -4081,7 +4247,7 @@ function updateQuestionCard(q, idx) {
     userAns.every(id => correctIds.includes(id));
 
   // Update badge
-  const badge = card.querySelector('#badge-' + q.id);
+  const badge = card.querySelector('.q-status-badge');
   if (badge) updateBadgeContent(badge, isRevealed, isAttempted, isFullyCorrect);
 
   // Update options
@@ -4096,39 +4262,41 @@ function updateQuestionCard(q, idx) {
     const badgeSpan = item.querySelector('.option-badge');
 
     item.classList.remove('selected', 'correct', 'wrong', 'correct-reveal', 'disabled');
-    indicator.textContent = '';
-    badgeSpan.textContent = '';
+    if (indicator) indicator.textContent = '';
+    if (badgeSpan) badgeSpan.textContent = '';
 
     if (isRevealed) {
       if (isSelected && opt.isCorrect) {
         item.classList.add('correct');
-        indicator.textContent = '✓';
-        badgeSpan.textContent = 'Correct ✓';
+        if (indicator) indicator.textContent = '✓';
+        if (badgeSpan) badgeSpan.textContent = 'Correct ✓';
       } else if (isSelected && !opt.isCorrect) {
         item.classList.add('wrong');
-        indicator.textContent = '✗';
-        badgeSpan.textContent = 'Your Choice ✗';
+        if (indicator) indicator.textContent = '✗';
+        if (badgeSpan) badgeSpan.textContent = 'Your Choice ✗';
       } else if (!isSelected && opt.isCorrect) {
         item.classList.add('correct-reveal');
-        indicator.textContent = '✓';
-        badgeSpan.textContent = 'Correct Answer';
+        if (indicator) indicator.textContent = '✓';
+        if (badgeSpan) badgeSpan.textContent = 'Correct Answer';
       }
     } else if (isSelected) {
       item.classList.add('selected');
-      indicator.textContent = q.type === 'mcq' ? '●' : '✓';
+      if (indicator) indicator.textContent = q.type === 'mcq' ? '●' : '✓';
     }
   });
 
   // Update show answer button
-  const btnShow = card.querySelector('#btn-show-' + q.id);
+  const btnShow = card.querySelector('.btn-show-ans');
   if (btnShow) {
     btnShow.classList.toggle('active', isRevealed);
-    btnShow.querySelector('.ans-icon').textContent = isRevealed ? '🙈' : '👁';
-    btnShow.querySelector('.ans-label').textContent = isRevealed ? 'Hide Answer' : 'Show Answer';
+    const ansIcon = btnShow.querySelector('.ans-icon');
+    const ansLabel = btnShow.querySelector('.ans-label');
+    if (ansIcon) ansIcon.textContent = isRevealed ? '🙈' : '👁';
+    if (ansLabel) ansLabel.textContent = isRevealed ? 'Hide Answer' : 'Show Answer';
   }
 
   // Update answer reveal box
-  const ansBox = card.querySelector('#ans-box-' + q.id);
+  const ansBox = card.querySelector('.answer-reveal-box');
   if (ansBox) {
     ansBox.style.display = isRevealed ? 'block' : 'none';
     ansBox.className = `answer-reveal-box ${!isAttempted ? 'state-unattempted' : isFullyCorrect ? 'state-correct' : 'state-wrong'}`;

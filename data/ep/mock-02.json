@@ -1,0 +1,365 @@
+{
+  "title": "Entrepreneurship — Mock Exam 2 (30 Qs)",
+  "questions": [
+    {
+      "question": "According to the lecture on \"Raising Finances and Developing Financial Strategy Part 4\", what is the primary purpose of a \"Pitch Deck\"?",
+      "type": "mcq",
+      "options": [
+        "To finalize legal contracts with investors.",
+        "To serve as the company's annual financial report.",
+        "To engage stakeholders, especially investors, by outlining the business idea and strategy.",
+        "To onboard new employees and outline their responsibilities."
+      ],
+      "answer": "C",
+      "explanation": "Source: 08qhSzm85-w | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on \"Commercialisation and Disruption as Success Drivers Part 5\" identifies the most significant reason for startup failure, accounting for 42% of cases. What is this reason?",
+      "type": "mcq",
+      "options": [
+        "The team ran out of cash.",
+        "The startup was out-competed by rivals.",
+        "There was no market need for the product.",
+        "The founding team was not right for the venture."
+      ],
+      "answer": "C",
+      "explanation": "Source: JBu-cEaQGAI | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary function of an \"Incubator\" for startups, as explained in the lecture \"Entrepreneurial Journey Part 2\"?",
+      "type": "mcq",
+      "options": [
+        "To provide large-scale venture capital funding for commercialization.",
+        "To acquire the startup on behalf of a larger corporation.",
+        "To provide space, facilities, common services, and mentoring for early-stage companies.",
+        "To conduct final product testing and market validation for mature companies."
+      ],
+      "answer": "C",
+      "explanation": "Source: 9kbZnFYiOfI | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on \"Technological Innovation and Entrepreneurship Part 1\", what is a \"Unicorn\"?",
+      "type": "mcq",
+      "options": [
+        "A startup that has gone public through an IPO.",
+        "A government-funded research project with high potential.",
+        "A privately held startup company with a valuation exceeding US $1 billion.",
+        "A startup that has been acquired by a large corporation for over $500 million."
+      ],
+      "answer": "C",
+      "explanation": "Source: nITjNZb7_WM | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary advantage of \"Additive Manufacturing\" (3D printing) over traditional manufacturing methods, as described in the lecture on \"Technology, Business, and Operations Strategies Part 2\"?",
+      "type": "mcq",
+      "options": [
+        "It is always faster for mass production of simple parts.",
+        "It uses more raw material to ensure product strength and durability.",
+        "It reduces material waste and enables the creation of complex geometries.",
+        "It is limited to producing only small, non-functional prototypes."
+      ],
+      "answer": "C",
+      "explanation": "Source: 08psHTZPHHI | Difficulty: Easy"
+    },
+    {
+      "question": "In the \"Special Lecture : Electric Scooter Start-ups\", what is the primary purpose of the Indian government's FAME II Scheme?",
+      "type": "mcq",
+      "options": [
+        "To regulate the speed limits and safety standards of all two-wheelers.",
+        "To promote the faster adoption and manufacturing of electric vehicles through subsidies and incentives.",
+        "To fund research into improving the efficiency of internal combustion engines.",
+        "To provide free public charging stations for all electric vehicle owners."
+      ],
+      "answer": "B",
+      "explanation": "Source: w48Hj_KWZeY | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary goal of \"Crowdfunding\" as a funding mechanism for startups, according to the lecture on \"Raising Finances and Developing Financial Strategy Part 4\"?",
+      "type": "mcq",
+      "options": [
+        "To secure a single large investment from a government fund.",
+        "To raise small amounts of money from a large number of people, typically via the internet.",
+        "To obtain a long-term, high-interest loan from a commercial bank.",
+        "To sell the company's entire equity to a private equity firm."
+      ],
+      "answer": "B",
+      "explanation": "Source: 08qhSzm85-w | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on \"Marketing Strategy\", what are the traditional \"4 P's of Marketing\"?",
+      "type": "mcq",
+      "options": [
+        "People, Process, Performance, Profit.",
+        "Product, Price, Promotion, Place.",
+        "Planning, Prototyping, Pitching, Patenting.",
+        "Passion, Perseverance, Purpose, Potential."
+      ],
+      "answer": "B",
+      "explanation": "Source: HHub2PAJoNg | Difficulty: Easy"
+    },
+    {
+      "question": "What is the primary characteristic of \"Wave 4 Technologies\" as described in the lecture \"Technology, Business, and Operations Strategies Part 2\"?",
+      "type": "mcq",
+      "options": [
+        "They are purely mechanical devices based on laws of movement.",
+        "They focus on a \"more for more\" philosophy of consumption.",
+        "They are characterized by the convergence of digital, mechanical, and biological systems.",
+        "They are limited to improving communication technologies like the telephone."
+      ],
+      "answer": "C",
+      "explanation": "Source: 08psHTZPHHI | Difficulty: Easy"
+    },
+    {
+      "question": "According to the lecture on \"Entrepreneurship and Employment - Part 1\", what is the key difference between an \"innovative entrepreneur\" and a \"replicative entrepreneur\"?",
+      "type": "mcq",
+      "options": [
+        "Innovative entrepreneurs are always necessity-driven, while replicative entrepreneurs are opportunity-driven.",
+        "Innovative entrepreneurs introduce novel products creating new markets, while replicative entrepreneurs offer similar products with a unique selling proposition.",
+        "Innovative entrepreneurs operate only in the tech sector, while replicative entrepreneurs operate in traditional manufacturing.",
+        "Innovative entrepreneurs are always more profitable in the short term than replicative entrepreneurs."
+      ],
+      "answer": "B",
+      "explanation": "Source: F5-sDkIM0uY | Difficulty: Easy"
+    },
+    {
+      "question": "The lecture on \"Corporate Governance\" argues that jobs are more threatened by what factor than by technological advancements?",
+      "type": "mcq",
+      "options": [
+        "Global economic recessions and market volatility.",
+        "Bad management and poor corporate governance.",
+        "Increased international competition from low-cost manufacturers.",
+        "The rapid shift towards automation and artificial intelligence."
+      ],
+      "answer": "B",
+      "explanation": "Source: 3aXjtAbaeC0 | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"Commercialisation and Disruption as Success Drivers Part 1\" distinguishes between B2B and B2C models. What is a key characteristic often associated with B2C startups in the digital age?",
+      "type": "mcq",
+      "options": [
+        "They always achieve profitability faster than B2B companies due to larger markets.",
+        "They typically involve fewer, larger clients and have more stable revenue streams.",
+        "They are often perceived to have higher valuations due to addressing a larger potential market, even if operating at a loss.",
+        "They have smaller market sizes and therefore attract less venture capital compared to B2B startups."
+      ],
+      "answer": "C",
+      "explanation": "Source: 0M0Tqfg7xJs | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"India as A Start-up Nation Part 2\" critiques the \"aggressive loss-funding model.\" What is the proposed alternative for a capital-scarce economy like India?",
+      "type": "mcq",
+      "options": [
+        "A model focused exclusively on government grants and subsidies for all operational costs.",
+        "An \"R&D First\" model where startups are initially funded as R&D companies to fully validate products before commercialization.",
+        "A model that prioritizes rapid international expansion and ignores the domestic market.",
+        "A model that relies solely on bootstrapping and avoids all external investment to maintain control."
+      ],
+      "answer": "B",
+      "explanation": "Source: W3UFBkYbKK4 | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"Ideation and Prototyping Part 2\" contrasts Design Thinking with Concurrent Engineering. What is the key difference?",
+      "type": "mcq",
+      "options": [
+        "Concurrent Engineering focuses on customer empathy, while Design Thinking focuses on manufacturing efficiency.",
+        "Design Thinking is only for software development, while Concurrent Engineering is exclusively for hardware.",
+        "Design Thinking defines *what* product to make based on customer needs, while Concurrent Engineering optimizes *how* a defined product is made.",
+        "Concurrent Engineering is an older, outdated method that has been completely replaced by Design Thinking in modern firms."
+      ],
+      "answer": "C",
+      "explanation": "Source: PzQXj27L6vU | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"Human Resources Strategy\" introduces the concepts of \"Bonsai Manager\" and \"Banyan Leader\". What do these terms represent?",
+      "type": "mcq",
+      "options": [
+        "Two ideal leadership styles that all startups should emulate for rapid growth.",
+        "Two pitfalls in talent development where a manager's growth is stunted or a leader stifles the growth of others.",
+        "Specific roles required for managing international and domestic teams, respectively.",
+        "HR software tools used for performance appraisal and employee development."
+      ],
+      "answer": "B",
+      "explanation": "Source: yI-KWel2VT0 | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture on \"Raising Finances and Developing Financial Strategy Part 1\", what is the \"product staircase\"?",
+      "type": "mcq",
+      "options": [
+        "A marketing strategy for launching products in different price tiers to maximize revenue.",
+        "A five-phase model outlining the entrepreneurial journey: Ideation, Prototyping, Testing & Validation, Growth, and Expansion.",
+        "A physical display structure for showcasing prototypes to investors during a pitch.",
+        "A legal framework for protecting intellectual property through a series of patents."
+      ],
+      "answer": "B",
+      "explanation": "Source: 0apynSCov-4 | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"Technological Innovation and Entrepreneurship Part 4\" distinguishes between the technical and business domains. How is success validated in each domain?",
+      "type": "mcq",
+      "options": [
+        "The technical domain is validated by a successful market launch, while the business domain is validated by internal experimentation.",
+        "Both domains are primarily validated through securing investor funding at a high valuation.",
+        "The technical domain is validated by experimentation (alpha/beta testing), while the business domain is validated only upon market launch.",
+        "Both domains are validated by achieving a high company valuation and unicorn status."
+      ],
+      "answer": "C",
+      "explanation": "Source: VuRhjK4mrHE | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"Entrepreneurial Discovery Part 2\" presents a nine-factor grid for entrepreneurial success. Which three factors comprise the \"Sustainability Aspect\"?",
+      "type": "mcq",
+      "options": [
+        "Purpose, Creativity, and Passion.",
+        "Self-confidence, Self-expression, and Self-promotion.",
+        "Rejection Tolerance, Risk Tolerance, and Failure Tolerance.",
+        "Core Competence, Gumption, and Strategic Vision."
+      ],
+      "answer": "C",
+      "explanation": "Source: 8iKsZZYv90k | Difficulty: Medium"
+    },
+    {
+      "question": "In the \"Special Lecture : Home Gas Detector\", what is the key advantage of using Far-UVC technology for disinfection?",
+      "type": "mcq",
+      "options": [
+        "It is the cheapest available UV technology, making the product affordable.",
+        "It efficiently kills pathogens without harming human cells, making it safe for direct exposure.",
+        "It has the longest range of any UV light, allowing it to disinfect an entire room from one corner.",
+        "It also functions as a source of visible light, doubling as a lamp."
+      ],
+      "answer": "B",
+      "explanation": "Source: udDh7wUJ8G4 | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"Raising Finances and Developing Financial Strategy Part 3\" discusses the \"corporate catalyst model.\" What does this model entail?",
+      "type": "mcq",
+      "options": [
+        "A government program that provides seed funding and tax breaks to all new startups.",
+        "A university incubator that provides legal, accounting, and administrative support.",
+        "Large corporations investing in or supporting startups to build an ecosystem around their core business.",
+        "A model where startups exclusively fund their growth through personal savings and early revenue (bootstrapping)."
+      ],
+      "answer": "C",
+      "explanation": "Source: AVR024-DR6g | Difficulty: Medium"
+    },
+    {
+      "question": "The lecture on \"Testing and Validation Part 2\" distinguishes between a Minimum Viable Product (MVP) and an Ultimate Desirable Product (UDP). What is the primary purpose of an MVP?",
+      "type": "mcq",
+      "options": [
+        "To include all possible features to attract the maximum number of customers at launch.",
+        "To be the final, polished version of the product ready for mass production and global distribution.",
+        "To allow a team to collect the maximum amount of validated learning about customers with the least effort.",
+        "To secure a patent for the product concept before any development begins."
+      ],
+      "answer": "C",
+      "explanation": "Source: puT8xxFJRgE | Difficulty: Medium"
+    },
+    {
+      "question": "According to the lecture on \"Ideation and Prototyping Part 6\", what is the primary benefit of the Patent Cooperation Treaty (PCT) for a startup seeking global protection?",
+      "type": "mcq",
+      "options": [
+        "It grants a single \"global patent\" that is automatically valid in all 150+ member countries.",
+        "It completely eliminates all costs associated with filing patents internationally.",
+        "It streamlines the initial filing process and provides a time window to assess market potential before entering national phases.",
+        "It guarantees that a patent will be granted in every member country without further examination."
+      ],
+      "answer": "C",
+      "explanation": "Source: fxCQr2QSAkQ | Difficulty: Medium"
+    },
+    {
+      "question": "The \"Entrepreneurial Thermodynamics\" lecture uses the First Law to challenge the notion that entrepreneurs create \"something out of nothing.\" What is the entrepreneurial analogy presented for the First Law of Thermodynamics?",
+      "type": "mcq",
+      "options": [
+        "Entrepreneurial energy naturally flows from higher potential (founders) to lower potential (team members), requiring active management.",
+        "Entrepreneurial systems can never be \"organizationally frozen\" or reach a state of zero entropy; they must remain dynamic.",
+        "Entrepreneurs excel at transforming lean inputs (capital, talent) into disproportionately high outputs, thus optimizing energy efficiency.",
+        "Different components of an entrepreneurial system must be in \"thermal equilibrium\" (shared passion and energy) to operate cohesively."
+      ],
+      "answer": "C",
+      "explanation": "Source: ZzYxHg7wVS4 | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on \"Beyond Founders and Founder-Families Part 2\" discusses the \"hybrid startup leadership model.\" Why is this model considered increasingly vital in today's landscape?",
+      "type": "mcq",
+      "options": [
+        "It is the only way to secure funding from family offices and private wealth funds.",
+        "It is necessary for navigating disruptive technologies like AI and biologics, requiring a blend of founder vision and professional execution expertise.",
+        "It guarantees that a company will avoid all corporate governance controversies and shareholder disputes.",
+        "It is a legal requirement for startups planning an IPO within five years of incorporation."
+      ],
+      "answer": "B",
+      "explanation": "Source: vrQbt0_ngLw | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on \"Entrepreneurship and Employment - Part 3\" discusses the Economic Survey 2018-19's critique of MSMEs. What did the survey identify as \"dwarfs\" and what was their contribution to employment?",
+      "type": "mcq",
+      "options": [
+        "Young startups under 2 years old, which are noted to contribute the most to net job creation.",
+        "Firms over 10 years old with fewer than 100 workers, which contribute disproportionately less to employment and productivity.",
+        "Large corporations with over 1000 employees, which are seen as too bureaucratic to create new jobs effectively.",
+        "Unregistered village industries, which have a high but unmeasured impact on rural employment."
+      ],
+      "answer": "B",
+      "explanation": "Source: U_p-xwydsH8 | Difficulty: Hard"
+    },
+    {
+      "question": "In the \"Special Lecture : Mergers and Acquisitions in Start-ups\", what is the \"Thrasio-style\" business model and which Indian startup exemplified it?",
+      "type": "mcq",
+      "options": [
+        "A model of acquiring direct competitors to create a monopoly in a specific service area; exemplified by Ola's acquisition of Taxi for Sure.",
+        "A model where a startup is acquired by a large international corporation to integrate its technology; exemplified by Flipkart's acquisition by Walmart.",
+        "A model of acquiring and scaling fast-growing, digitally native brands under one centralized operational umbrella; exemplified by Mensa Brands.",
+        "A model of merging with a physical business to create a hybrid online-offline model; exemplified by Byju's acquisition of Akash."
+      ],
+      "answer": "C",
+      "explanation": "Source: mmgklT_fcF0 | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on \"National Entrepreneurial Culture - Part 2\" discusses the \"women entrepreneurship gap.\" According to the McKinsey study cited, what is the potential economic impact for India if this gap is addressed?",
+      "type": "mcq",
+      "options": [
+        "A 10% increase in the total number of startups founded annually.",
+        "A potential gain of $700 billion for India's GDP.",
+        "A doubling of the amount of venture capital funding available to all startups.",
+        "A 5% reduction in the national unemployment rate within a decade."
+      ],
+      "answer": "B",
+      "explanation": "Source: h3lSRTVos2s | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture \"Beyond Founders and Founder-Families Part 4\" introduces the \"two boards and one team\" model for successful leadership transitions. What are the distinct roles of the Board of Directors and the Board of Advisors in this model?",
+      "type": "mcq",
+      "options": [
+        "The Board of Directors handles daily operations, while the Board of Advisors sets the long-term company vision.",
+        "The Board of Directors focuses on corporate governance and performance, while the Board of Advisors provides coaching, mentoring, and networking support.",
+        "Both boards have identical responsibilities but meet on different schedules to ensure redundancy.",
+        "The Board of Directors is composed of internal members, while the Board of Advisors is composed of external investors only."
+      ],
+      "answer": "B",
+      "explanation": "Source: peof3W8gNvc | Difficulty: Hard"
+    },
+    {
+      "question": "The lecture on \"Technological Innovation and Entrepreneurship Part 3\" introduces the CATCH model for new product development. What does the \"H\" in CATCH stand for and what does it entail in the context of an EV startup?",
+      "type": "mcq",
+      "options": [
+        "Honesty; ensuring all marketing claims about range and performance are truthful.",
+        "Holistic approach; considering the entire ecosystem, including battery development, charging infrastructure, and component sourcing.",
+        "Hardware; focusing exclusively on the physical components of the vehicle and outsourcing all software.",
+        "Human Resources; ensuring the right team of engineers and designers is in place for development."
+      ],
+      "answer": "B",
+      "explanation": "Source: mND5y0T-YiY | Difficulty: Hard"
+    },
+    {
+      "question": "In the \"Special Lecture : The Indian Unicorn Space\", the ONDC (Open Network for Digital Commerce) initiative is discussed. What is its primary goal?",
+      "type": "mcq",
+      "options": [
+        "To provide direct government funding to all unicorn startups to help them expand globally.",
+        "To create a new government-owned social media platform for Indian entrepreneurs to network.",
+        "To curb digital monopolies and democratize e-commerce by creating an open, platform-agnostic network.",
+        "To regulate the valuation of startups to prevent investment bubbles and protect small investors."
+      ],
+      "answer": "C",
+      "explanation": "Source: W9eo60MXfjw | Difficulty: Hard"
+    }
+  ]
+}
