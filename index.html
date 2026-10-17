@@ -2609,18 +2609,45 @@ function parseNPTELHtml(htmlString, weekNum = null) {
   });
 
   // ── Detect title ────────────────────────────────────
-  let title = 'NPTEL Assignment Practice';
-  const titleEl = doc.querySelector('title');
-  if (titleEl) title = titleEl.textContent.trim().split('|')[0].trim();
+  let title = '';
 
-  // Look for "Quiz: Week N..." text
-  const allEls = Array.from(doc.querySelectorAll('p, span, button, a, h1, h2, h3'));
-  for (const el of allEls) {
-    const t = el.textContent.trim();
-    if ((t.startsWith('Quiz:') || /Week\s*\d+.*Assignment/i.test(t)) && t.length < 70) {
-      title = t; break;
+  // Priority 1: Official NPTEL assessment header title (main content heading)
+  const assessHeader = doc.querySelector('.assessment-header-title, [class*="assessment-header"] [class*="title"]');
+  if (assessHeader && assessHeader.textContent.trim()) {
+    title = assessHeader.textContent.trim();
+  }
+
+  // Priority 2: Main heading near "Due date"
+  if (!title) {
+    const dueEl = Array.from(doc.querySelectorAll('*')).find(el => el.children.length === 0 && /Due date/i.test(el.textContent));
+    if (dueEl) {
+      let p = dueEl.parentElement;
+      for (let i = 0; i < 4 && p; i++) {
+        const h = p.querySelector('h1, h2, h3, h4, [class*="title"]');
+        if (h && h.textContent.trim() && !/due date/i.test(h.textContent)) {
+          title = h.textContent.trim();
+          break;
+        }
+        p = p.parentElement;
+      }
     }
   }
+
+  // Priority 3: Fallback to weekNum if provided
+  if (!title && weekNum != null) {
+    title = `Week ${weekNum < 10 ? '0' + weekNum : weekNum} Assignment`;
+  }
+
+  // Priority 4: Document <title> tag
+  if (!title) {
+    const titleEl = doc.querySelector('title');
+    if (titleEl) {
+      const t = titleEl.textContent.trim().split('|')[0].trim();
+      if (t && !/course:/i.test(t)) title = t;
+    }
+  }
+
+  if (!title) title = 'NPTEL Assignment Practice';
 
   return { questions, title, passages };
 }
@@ -2695,7 +2722,7 @@ window.addEventListener('scroll', () => {
   document.querySelector('.upload-top-controls')?.classList.toggle('scrolled', isScrolled);
 }, { passive: true });
 
-function loadAssignmentFromHtml(htmlString, weekNum = null) {
+function loadAssignmentFromHtml(htmlString, weekNum = null, overrideTitle = null) {
   const result = parseNPTELHtml(htmlString, weekNum);
 
   if (!result || result.questions.length === 0) {
@@ -2705,7 +2732,7 @@ function loadAssignmentFromHtml(htmlString, weekNum = null) {
 
   state.rawQuestions = result.questions;
   state.passages = result.passages || [];
-  state.quizTitle = result.title || 'NPTEL Assignment Practice';
+  state.quizTitle = overrideTitle || result.title || 'NPTEL Assignment Practice';
   state.isFullTest = false;
 
   const total = result.questions.length;
@@ -2945,10 +2972,11 @@ async function loadWeekAssignment(course, weekObj, btnEl) {
     const res = await fetch(`./${weekObj.file}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}: File not found`);
     const htmlString = await res.text();
-    const ok = loadAssignmentFromHtml(htmlString, weekObj.week);
+    const quizTitle = `${course.name} — ${weekObj.title}`;
+    const ok = loadAssignmentFromHtml(htmlString, weekObj.week, quizTitle);
     if (ok) {
       state.isFullTest = false;
-      state.quizTitle = `${course.name} — ${weekObj.title}`;
+      state.quizTitle = quizTitle;
       $('quiz-title').textContent = state.quizTitle;
       startBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
