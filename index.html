@@ -527,21 +527,36 @@
       transition: var(--transition);
       user-select: none;
       text-align: center;
+      outline: none;
     }
-    .week-btn:hover:not(:disabled) {
+    .week-btn:focus-visible {
+      outline: 2px solid var(--link);
+      outline-offset: 2px;
+    }
+    .week-btn:hover:not(:disabled):not(.active) {
       border-color: var(--hairline-hover);
       background: var(--hairline-soft);
       transform: translateY(-1px);
     }
-    .week-btn.active {
-      border-color: var(--ink);
-      background: var(--ink);
-      color: var(--canvas);
-      box-shadow: var(--shadow-whisper);
+    .week-btn.active,
+    .week-btn.active:hover,
+    .week-btn.active:focus {
+      border-color: var(--primary-btn-bg) !important;
+      background: var(--primary-btn-bg) !important;
+      color: var(--primary-btn-text) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      transform: none;
     }
-    .week-btn.active .week-sub {
-      color: var(--canvas);
-      opacity: 0.85;
+    .week-btn.active .week-num,
+    .week-btn.active:hover .week-num,
+    .week-btn.active:focus .week-num {
+      color: var(--primary-btn-text) !important;
+    }
+    .week-btn.active .week-sub,
+    .week-btn.active:hover .week-sub,
+    .week-btn.active:focus .week-sub {
+      color: var(--primary-btn-text) !important;
+      opacity: 0.88;
     }
     .week-btn .week-num {
       font-family: var(--font-mono);
