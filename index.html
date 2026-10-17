@@ -1684,15 +1684,6 @@
       display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 32px;
     }
 
-    /* ─── Confetti ─── */
-    .confetti-piece {
-      position: fixed; width: 6px; height: 6px; border-radius: 1px;
-      z-index: 9999; pointer-events: none; animation: fall linear forwards;
-    }
-    @keyframes fall {
-      0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
-    }
 
     /* ─── Responsive ─── */
     @media (max-width: 640px) {
@@ -1904,6 +1895,22 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
+      </div>
+
+      <!-- Mistakes Practice Banner (Weak Spot Spaced Repetition) -->
+      <div class="mistakes-banner" id="mistakes-banner" style="display:flex; margin-top:16px; background:linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(239, 68, 68, 0.05) 100%), var(--canvas-elevated); border:1px solid rgba(245, 158, 11, 0.28); border-radius:var(--rounded-md); padding:16px 20px; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="badge" style="background:rgba(245, 158, 11, 0.16); border:1px solid rgba(245, 158, 11, 0.35); color:#d97706; font-size:0.75rem; font-weight:600; padding:2px 8px; border-radius:var(--rounded-pill);">🎯 Weak Spot Training</span>
+            <span id="mistakes-count-badge" class="badge" style="font-family:var(--font-mono); font-size:0.72rem; padding:2px 8px; border-radius:var(--rounded-pill); background:var(--mono-badge-bg); border:1px solid var(--mono-badge-bdr); color:var(--mono-badge-text);">0 Mistakes</span>
+          </div>
+          <div style="font-size:0.95rem; font-weight:600; color:var(--ink); margin-top:6px;" id="mistakes-banner-title">Practice Your Mistakes</div>
+          <p id="mistakes-banner-desc" style="font-size:0.8rem; color:var(--mute); margin:3px 0 0;">Flashcard-style spaced repetition: each mistake needs 2 consecutive correct answers to graduate to Mastered.</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="btn-start-mistakes" style="font-size:0.84rem; height:38px; padding:0 18px; border-radius:var(--rounded-pill); white-space:nowrap; background:#d97706; border-color:#d97706; color:#ffffff;">
+          <span id="btn-start-mistakes-text">Practice Mistakes</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </div>
 
       <!-- Mock Exams Section (visible when course has mock exams) -->
@@ -2212,6 +2219,7 @@
     <div class="result-cta">
       <button class="btn btn-secondary" id="back-home-btn">← Back to Courses</button>
       <button class="btn btn-secondary" id="review-all-btn">Review All Questions</button>
+      <button class="btn btn-primary" id="practice-mistakes-now-btn" style="display:none; background:#d97706; border-color:#d97706; color:#ffffff;">🎯 Practice Mistakes (<span id="result-mistakes-count">0</span>)</button>
       <button class="btn btn-primary" id="retry-btn">Try Again</button>
     </div>
   </div>
@@ -2235,6 +2243,7 @@ const state = {
   currentPage: 0,      // 0-indexed page number for 10-per-page mode
   pageSize: 10,        // 10 questions per page
   isFullTest: false,   // whether currently taking the 120-question full course test
+  isMistakesWorkout: false, // whether currently practicing questions answered wrong
   answers: {},         // { questionId: [optionIds] }
   answered: {},        // { questionId: bool }
   revealed: {},        // { questionId: bool } -- for showing answers inline!
@@ -2257,6 +2266,93 @@ const screens = {
   result: $('result-screen'),
 };
 
+// ─── Mistakes Spaced Repetition Store (Leitner 2-Streak Mastery) ──
+const MistakesStore = {
+  STORAGE_KEY: 'nptel_mistakes_v1',
+
+  getStore() {
+    try {
+      const data = localStorage.getItem(this.STORAGE_KEY);
+      return data ? JSON.parse(data) : {};
+    } catch (e) {
+      console.warn('Could not read mistakes store:', e);
+      return {};
+    }
+  },
+
+  saveStore(store) {
+    try {
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(store));
+    } catch (e) {
+      console.warn('Could not save mistakes store:', e);
+    }
+  },
+
+  getCourseMistakes(courseId) {
+    const store = this.getStore();
+    const courseStore = store[courseId] || {};
+    // Return unmastered questions (streak < 2 and not marked mastered)
+    return Object.values(courseStore).filter(item => !item.mastered && (item.streak || 0) < 2);
+  },
+
+  getPendingCount(courseId) {
+    return this.getCourseMistakes(courseId).length;
+  },
+
+  recordMistake(courseId, q) {
+    if (!courseId || !q) return;
+    const store = this.getStore();
+    if (!store[courseId]) store[courseId] = {};
+
+    const existing = store[courseId][q.id] || {};
+    store[courseId][q.id] = {
+      id: q.id,
+      courseId: courseId,
+      source: q.weekTitle || (typeof state !== 'undefined' && state.quizTitle ? state.quizTitle : '') || 'Practice Quiz',
+      text: q.text,
+      html: q.html,
+      options: (q.options || []).map(o => ({
+        id: o.id,
+        text: o.text,
+        html: o.html,
+        isCorrect: o.isCorrect,
+        originalIndex: o.originalIndex
+      })),
+      type: q.type || 'mcq',
+      explanation: q.explanation || '',
+      acceptedAnswerText: q.acceptedAnswerText || '',
+      streak: 0, // Reset to 0 on wrong answer
+      wrongCount: (existing.wrongCount || 0) + 1,
+      mastered: false,
+      lastPracticed: Date.now()
+    };
+    this.saveStore(store);
+  },
+
+  recordWorkoutAnswer(courseId, q, isCorrect) {
+    if (!courseId || !q) return;
+    const store = this.getStore();
+    if (!store[courseId] || !store[courseId][q.id]) {
+      if (!isCorrect) this.recordMistake(courseId, q);
+      return;
+    }
+
+    const item = store[courseId][q.id];
+    if (isCorrect) {
+      item.streak = (item.streak || 0) + 1;
+      if (item.streak >= 2) {
+        item.mastered = true; // 2 consecutive correct answers = Mastered!
+      }
+    } else {
+      item.streak = 0; // Wrong drops streak back to 0
+      item.wrongCount = (item.wrongCount || 0) + 1;
+      item.mastered = false;
+    }
+    item.lastPracticed = Date.now();
+    this.saveStore(store);
+  }
+};
+
 // ─── Screen & Navigation Management (Mobile Phone Back Button Support) ──
 let currentScreen = 'upload';
 let skipNextBackConfirm = false;
@@ -2271,6 +2367,10 @@ function showScreen(name, pushHistory = true) {
   Object.entries(screens).forEach(([k, el]) => {
     el.classList.toggle('active', k === name);
   });
+
+  if (name === 'upload' && typeof renderCourseView === 'function') {
+    renderCourseView();
+  }
 
   if (pushHistory) {
     try {
@@ -3087,6 +3187,7 @@ function loadAssignmentFromHtml(htmlString, weekNum = null, overrideTitle = null
   state.passages = result.passages || [];
   state.quizTitle = overrideTitle || result.title || 'NPTEL Assignment Practice';
   state.isFullTest = false;
+  state.isMistakesWorkout = false;
 
   const total = result.questions.length;
   const mcqCount = result.questions.filter(q => q.type === 'mcq').length;
@@ -3232,6 +3333,56 @@ function renderCourseView() {
   if (ftSubtitle) {
     const totalQs = (currentCourse.weeks || []).length * 10;
     ftSubtitle.textContent = `Practice all ${totalQs} questions across all ${currentCourse.weeks ? currentCourse.weeks.length : 12} weeks with instant scoring and complete answer keys.`;
+  }
+
+  // Update Mistakes Practice Banner (Always visible so users discover the feature)
+  const mistakesBanner = $('mistakes-banner');
+  const mistakesBadge = $('mistakes-count-badge');
+  const mistakesDesc = $('mistakes-banner-desc');
+  const btnStartMistakes = $('btn-start-mistakes');
+  const btnStartMistakesText = $('btn-start-mistakes-text');
+
+  if (mistakesBanner && currentCourse) {
+    mistakesBanner.style.display = 'flex';
+    const pendingMistakes = MistakesStore.getPendingCount(currentCourse.id);
+
+    if (pendingMistakes > 0) {
+      if (mistakesBadge) {
+        mistakesBadge.textContent = `${pendingMistakes} ${pendingMistakes === 1 ? 'Mistake' : 'Mistakes'} to Practice`;
+        mistakesBadge.style.color = '#d97706';
+      }
+      if (mistakesDesc) {
+        mistakesDesc.textContent = 'Flashcard-style spaced repetition: each mistake needs 2 consecutive correct answers to graduate to Mastered.';
+      }
+      if (btnStartMistakes) {
+        btnStartMistakes.style.background = '#d97706';
+        btnStartMistakes.style.borderColor = '#d97706';
+        btnStartMistakes.style.color = '#ffffff';
+        btnStartMistakes.style.opacity = '1';
+        btnStartMistakes.style.cursor = 'pointer';
+        if (btnStartMistakesText) btnStartMistakesText.textContent = 'Practice Mistakes';
+        btnStartMistakes.onclick = () => startMistakesWorkout(currentCourse);
+      }
+    } else {
+      if (mistakesBadge) {
+        mistakesBadge.textContent = '0 Mistakes • All Clear 🎉';
+        mistakesBadge.style.color = 'var(--correct, #10b981)';
+      }
+      if (mistakesDesc) {
+        mistakesDesc.textContent = 'No mistakes recorded yet! Any question you answer incorrectly in assignments or mock tests will automatically show up here for 2-streak flashcard mastery.';
+      }
+      if (btnStartMistakes) {
+        btnStartMistakes.style.background = 'var(--hairline-soft)';
+        btnStartMistakes.style.borderColor = 'var(--hairline-hover)';
+        btnStartMistakes.style.color = 'var(--ink)';
+        btnStartMistakes.style.opacity = '0.9';
+        btnStartMistakes.style.cursor = 'pointer';
+        if (btnStartMistakesText) btnStartMistakesText.textContent = '0 Mistakes';
+        btnStartMistakes.onclick = () => {
+          alert('🎉 Awesome! You currently have 0 pending mistakes for this course.\n\nWhenever you answer a question incorrectly in any assignment or mock exam, it will automatically be saved here so you can master it with spaced repetition.');
+        };
+      }
+    }
   }
 
   renderWeeksGrid(currentCourse);
@@ -3436,6 +3587,7 @@ async function startFullCourseTest(orderMode = 'random') {
     state.rawQuestions = allQuestions;
     state.passages = allPassages;
     state.isFullTest = true;
+    state.isMistakesWorkout = false;
     state.quizTitle = `${course.name} — Full Course Mock Test (${allQuestions.length} Qs • ${availableWeeks.length} Weeks)`;
 
     if (orderMode === 'random') {
@@ -3463,6 +3615,68 @@ async function startFullCourseTest(orderMode = 'random') {
   }
 }
 
+function startMistakesWorkout(course) {
+  const c = course || currentCourse;
+  if (!c) return;
+
+  const mistakeItems = MistakesStore.getCourseMistakes(c.id);
+  if (mistakeItems.length === 0) {
+    alert('🎉 Excellent! You have no pending mistakes to practice for this course.');
+    return;
+  }
+
+  // Convert mistake items back to standard question format
+  const questions = mistakeItems.map((item, idx) => {
+    const options = (item.options || []).map((o, optIdx) => ({
+      id: o.id || `mistake-q${idx}-opt-${optIdx}`,
+      text: o.text || '',
+      html: o.html || escapeHtml(o.text || ''),
+      isCorrect: !!o.isCorrect,
+      originalIndex: o.originalIndex !== undefined ? o.originalIndex : optIdx
+    }));
+
+    const correctCount = options.filter(o => o.isCorrect).length;
+    const qType = item.type || (correctCount > 1 ? 'msq' : 'mcq');
+
+    return {
+      id: item.id || `mistake-q${idx}`,
+      originalIdx: idx,
+      courseId: c.id,
+      weekNum: null,
+      weekTitle: item.source || null,
+      passageId: null,
+      type: qType,
+      text: item.text || '',
+      html: item.html || escapeHtml(item.text || ''),
+      options: options,
+      correctCount: correctCount,
+      explanation: item.explanation || '',
+      acceptedAnswerText: item.acceptedAnswerText || '',
+      mistakeMeta: {
+        streak: item.streak || 0,
+        wrongCount: item.wrongCount || 1,
+        source: item.source || ''
+      }
+    };
+  });
+
+  state.rawQuestions = questions;
+  state.passages = [];
+  state.isFullTest = false;
+  state.isMistakesWorkout = true;
+  state.quizTitle = `${c.name} — Mistakes Practice (${questions.length} Weak Spot${questions.length === 1 ? '' : 's'})`;
+
+  // Randomize questions & options so user doesn't memorize letter positions
+  state.settings.shuffleQuestions = true;
+  state.settings.shuffleOptions = true;
+  const optShuffle = $('opt-shuffle');
+  const optShuffleOpts = $('opt-shuffle-opts');
+  if (optShuffle) optShuffle.checked = true;
+  if (optShuffleOpts) optShuffleOpts.checked = true;
+
+  startQuiz();
+}
+
 function checkDeepLink() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
@@ -3483,6 +3697,11 @@ function checkDeepLink() {
     const testParam = urlParams.get('test');
     const orderParam = urlParams.get('order');
     const initialWeek = urlParams.get('week');
+
+    if (testParam === 'mistakes') {
+      startMistakesWorkout(currentCourse);
+      return;
+    }
 
     if (testParam === 'full' || initialWeek === 'all') {
       const mode = (orderParam === 'sequential' || orderParam === 'seq') ? 'sequential' : 'random';
@@ -4070,6 +4289,30 @@ function createQuestionCard(q, idx, isSingleMode) {
   }
   meta.appendChild(typeSpan);
 
+  if (q.mistakeMeta) {
+    const streakSpan = document.createElement('span');
+    streakSpan.className = 'q-streak-badge';
+    streakSpan.style.display = 'inline-flex';
+    streakSpan.style.alignItems = 'center';
+    streakSpan.style.gap = '4px';
+    streakSpan.style.padding = '2px 8px';
+    streakSpan.style.borderRadius = 'var(--rounded-pill)';
+    streakSpan.style.fontSize = '0.72rem';
+    streakSpan.style.fontWeight = '600';
+    if (q.mistakeMeta.streak === 1) {
+      streakSpan.style.background = 'rgba(16, 185, 129, 0.15)';
+      streakSpan.style.color = '#059669';
+      streakSpan.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+      streakSpan.textContent = '🔥 Streak 1/2 (1 more to Master!)';
+    } else {
+      streakSpan.style.background = 'rgba(245, 158, 11, 0.15)';
+      streakSpan.style.color = '#d97706';
+      streakSpan.style.border = '1px solid rgba(245, 158, 11, 0.3)';
+      streakSpan.textContent = `🎯 Box 1 • Streak 0/2${q.mistakeMeta.wrongCount > 1 ? ` (${q.mistakeMeta.wrongCount}x missed)` : ''}`;
+    }
+    meta.appendChild(streakSpan);
+  }
+
   // If question has an associated reading passage, add jump pill in meta
   if (q.passage) {
     const passageBtn = document.createElement('button');
@@ -4594,13 +4837,58 @@ function showResults() {
   const total = questions.length;
   const pct = Math.round((correct / total) * 100);
 
+  // ── Mistakes Spaced Repetition Tracking ──
+  const courseId = (currentCourse && currentCourse.id) || (questions[0] && questions[0].courseId) || 'entrepreneurship';
+
+  details.forEach(d => {
+    if (state.isMistakesWorkout) {
+      if (d.result === 'correct') {
+        MistakesStore.recordWorkoutAnswer(courseId, d.q, true);
+      } else if (d.result === 'wrong') {
+        MistakesStore.recordWorkoutAnswer(courseId, d.q, false);
+      }
+    } else {
+      if (d.result === 'wrong') {
+        MistakesStore.recordMistake(courseId, d.q);
+      }
+    }
+  });
+
+  const pendingCount = MistakesStore.getPendingCount(courseId);
+  const practiceMistakesBtn = $('practice-mistakes-now-btn');
+  const resultMistakesCount = $('result-mistakes-count');
+  if (practiceMistakesBtn) {
+    if (pendingCount > 0) {
+      practiceMistakesBtn.style.display = 'inline-flex';
+      if (resultMistakesCount) resultMistakesCount.textContent = pendingCount;
+      practiceMistakesBtn.onclick = () => {
+        startMistakesWorkout(currentCourse);
+      };
+    } else {
+      practiceMistakesBtn.style.display = 'none';
+    }
+  }
+
   // Header
   let emoji, heading;
-  if (pct === 100) { emoji = '🏆'; heading = 'Perfect Score!'; }
-  else if (pct >= 80) { emoji = '🌟'; heading = 'Excellent Work!'; }
-  else if (pct >= 60) { emoji = '👍'; heading = 'Good Effort!'; }
-  else if (pct >= 40) { emoji = '📚'; heading = 'Keep Practicing!'; }
-  else { emoji = '💪'; heading = 'Don\'t Give Up!'; }
+  if (state.isMistakesWorkout) {
+    if (pct === 100) {
+      emoji = '🎓';
+      heading = 'Mistakes Mastered! 🎉';
+    } else if (pct >= 50) {
+      emoji = '🔥';
+      heading = 'Great Practice Session!';
+    } else {
+      emoji = '💪';
+      heading = 'Mistakes Workout Complete!';
+    }
+  } else {
+    if (pct === 100) { emoji = '🏆'; heading = 'Perfect Score!'; }
+    else if (pct >= 80) { emoji = '🌟'; heading = 'Excellent Work!'; }
+    else if (pct >= 60) { emoji = '👍'; heading = 'Good Effort!'; }
+    else if (pct >= 40) { emoji = '📚'; heading = 'Keep Practicing!'; }
+    else { emoji = '💪'; heading = 'Don\'t Give Up!'; }
+  }
 
   $('result-emoji').textContent = emoji;
   $('result-heading').textContent = heading;
@@ -4618,8 +4906,6 @@ function showResults() {
     arc.style.strokeDashoffset = circumference - (pct / 100) * circumference;
   }, 100);
 
-  // Confetti
-  if (pct >= 80) launchConfetti(pct === 100 ? 120 : 60);
 
   // Review list
   const reviewList = $('review-list');
@@ -4688,10 +4974,16 @@ $('review-all-btn')?.addEventListener('click', () => {
 });
 
 $('retry-btn').addEventListener('click', () => {
-  startQuiz();
+  if (state.isMistakesWorkout) {
+    startMistakesWorkout(currentCourse);
+  } else {
+    startQuiz();
+  }
 });
 
 $('back-home-btn').addEventListener('click', () => {
+  state.isFullTest = false;
+  state.isMistakesWorkout = false;
   state.rawQuestions = [];
   state.passages = [];
   state.questions = [];
@@ -4709,27 +5001,6 @@ $('back-home-btn').addEventListener('click', () => {
   showScreen('upload');
 });
 
-// ─── Confetti ─────────────────────────────────────────
-function launchConfetti(count = 60) {
-  const colors = ['#007cf0', '#00dfd8', '#7928ca', '#ff0080', '#f9cb28', '#171717'];
-  for (let i = 0; i < count; i++) {
-    setTimeout(() => {
-      const piece = document.createElement('div');
-      piece.className = 'confetti-piece';
-      piece.style.cssText = `
-        left: ${Math.random() * 100}vw;
-        background: ${colors[Math.floor(Math.random() * colors.length)]};
-        width: ${4 + Math.random() * 8}px;
-        height: ${4 + Math.random() * 8}px;
-        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
-        animation-duration: ${1.5 + Math.random() * 2}s;
-        animation-delay: ${Math.random() * 0.5}s;
-      `;
-      document.body.appendChild(piece);
-      setTimeout(() => piece.remove(), 4000);
-    }, i * 20);
-  }
-}
 
 </script>
 </body>
